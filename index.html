@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeNest — Find Your Perfect Home, Your Way</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F7F4;
+    --stone: #E8E3DC;
+    --warm-gray: #C4BDB4;
+    --mid-gray: #8A8078;
+    --dark: #2C2825;
+    --darker: #1A1714;
+    --accent: #8B6F47;
+    --accent-light: #C4A882;
+    --accent-pale: #F0E9DF;
+    --success: #4A7C59;
+    --error: #B85C38;
+    --shadow: 0 2px 20px rgba(44,40,37,0.08);
+    --shadow-lg: 0 8px 40px rgba(44,40,37,0.14);
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–cream);
+color: var(–dark);
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+header {
+background: var(–darker);
+padding: 0 24px;
+position: sticky; top: 0; z-index: 100;
+display: flex; align-items: center; justify-content: space-between;
+height: 64px;
+border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.logo {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.7rem;
+font-weight: 700;
+color: #fff;
+letter-spacing: 0.01em;
+display: flex; align-items: center; gap: 10px;
+text-decoration: none;
+}
+.logo-icon {
+width: 32px; height: 32px;
+background: var(–accent);
+border-radius: 8px;
+display: flex; align-items: center; justify-content: center;
+font-size: 0.9rem;
+}
+
+.header-right { display: flex; align-items: center; gap: 16px; }
+
+.agent-btn {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.78rem;
+font-weight: 500;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+color: var(–warm-gray);
+background: transparent;
+border: 1px solid rgba(255,255,255,0.12);
+padding: 7px 16px;
+border-radius: 6px;
+cursor: pointer;
+transition: all 0.2s;
+text-decoration: none;
+}
+.agent-btn:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+
+/* ── HERO ── */
+.hero {
+background: var(–darker);
+padding: 72px 24px 80px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.hero::before {
+content: ‘’;
+position: absolute; inset: 0;
+background: radial-gradient(ellipse 70% 60% at 50% 120%, rgba(139,111,71,0.18) 0%, transparent 70%);
+pointer-events: none;
+}
+.hero-eyebrow {
+font-size: 0.72rem;
+font-weight: 500;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(–accent-light);
+margin-bottom: 18px;
+opacity: 0.9;
+}
+.hero h1 {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.4rem, 7vw, 4rem);
+font-weight: 600;
+color: #fff;
+line-height: 1.12;
+max-width: 600px;
+margin: 0 auto 20px;
+letter-spacing: -0.01em;
+}
+.hero h1 em { color: var(–accent-light); font-style: normal; }
+.hero p {
+color: rgba(255,255,255,0.55);
+font-size: 1.05rem;
+max-width: 480px;
+margin: 0 auto;
+font-weight: 300;
+line-height: 1.7;
+}
+
+/* ── FORM CONTAINER ── */
+.form-wrap {
+max-width: 720px;
+margin: -32px auto 60px;
+padding: 0 16px;
+position: relative;
+z-index: 10;
+}
+
+.form-card {
+background: #fff;
+border-radius: 20px;
+box-shadow: var(–shadow-lg);
+overflow: hidden;
+}
+
+/* ── SECTION BLOCKS ── */
+.form-section {
+padding: 36px 40px 32px;
+border-bottom: 1px solid var(–stone);
+animation: fadeUp 0.5s ease both;
+}
+.form-section:last-of-type { border-bottom: none; }
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(16px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+display: flex; align-items: center; gap: 12px;
+margin-bottom: 26px;
+}
+.section-icon {
+width: 38px; height: 38px; border-radius: 10px;
+background: var(–accent-pale);
+display: flex; align-items: center; justify-content: center;
+font-size: 1.1rem;
+flex-shrink: 0;
+}
+.section-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.35rem;
+font-weight: 600;
+color: var(–darker);
+letter-spacing: 0.01em;
+}
+
+/* ── FIELDS ── */
+.field-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+margin-bottom: 16px;
+}
+.field-row.single { grid-template-columns: 1fr; }
+.field-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+label {
+font-size: 0.82rem;
+font-weight: 500;
+color: var(–mid-gray);
+letter-spacing: 0.04em;
+text-transform: uppercase;
+}
+label .optional {
+font-size: 0.72rem;
+color: var(–warm-gray);
+text-transform: none;
+letter-spacing: 0;
+font-weight: 400;
+margin-left: 4px;
+}
+
+input[type=“text”],
+input[type=“email”],
+input[type=“tel”],
+select,
+textarea {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.95rem;
+color: var(–darker);
+background: var(–cream);
+border: 1.5px solid var(–stone);
+border-radius: 10px;
+padding: 12px 14px;
+outline: none;
+transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+width: 100%;
+appearance: none;
+-webkit-appearance: none;
+}
+input:focus, select:focus, textarea:focus {
+border-color: var(–accent);
+background: #fff;
+box-shadow: 0 0 0 3px rgba(139,111,71,0.12);
+}
+select {
+background-image: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘12’ height=‘8’ viewBox=‘0 0 12 8’%3E%3Cpath d=‘M1 1l5 5 5-5’ stroke=’%238A8078’ stroke-width=‘1.5’ fill=‘none’ stroke-linecap=‘round’/%3E%3C/svg%3E”);
+background-repeat: no-repeat;
+background-position: right 14px center;
+padding-right: 36px;
+cursor: pointer;
+}
+textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
+
+/* Radio/Toggle rows */
+.toggle-group {
+display: flex; gap: 10px; flex-wrap: wrap;
+}
+.toggle-option { position: relative; }
+.toggle-option input[type=“radio”],
+.toggle-option input[type=“checkbox”] {
+position: absolute; opacity: 0; width: 0; height: 0;
+}
+.toggle-option label {
+display: inline-flex; align-items: center; gap: 6px;
+font-size: 0.88rem;
+font-weight: 400;
+text-transform: none;
+letter-spacing: 0;
+color: var(–dark);
+background: var(–cream);
+border: 1.5px solid var(–stone);
+border-radius: 8px;
+padding: 8px 14px;
+cursor: pointer;
+transition: all 0.18s;
+white-space: nowrap;
+}
+.toggle-option input:checked + label {
+background: var(–accent-pale);
+border-color: var(–accent);
+color: var(–accent);
+font-weight: 500;
+}
+.toggle-option label:hover { border-color: var(–accent-light); }
+
+/* Checkbox grid */
+.checkbox-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+gap: 10px;
+}
+
+/* ── SUBMIT ── */
+.form-footer {
+padding: 32px 40px 36px;
+background: var(–cream);
+text-align: center;
+}
+.submit-btn {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 1rem;
+font-weight: 500;
+letter-spacing: 0.04em;
+color: #fff;
+background: var(–accent);
+border: none;
+border-radius: 12px;
+padding: 16px 40px;
+cursor: pointer;
+transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+width: 100%;
+max-width: 320px;
+box-shadow: 0 4px 16px rgba(139,111,71,0.35);
+position: relative;
+overflow: hidden;
+}
+.submit-btn:hover { background: #7A5E38; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(139,111,71,0.4); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn.loading { pointer-events: none; opacity: 0.7; }
+
+.footer-note {
+margin-top: 16px;
+font-size: 0.78rem;
+color: var(–mid-gray);
+line-height: 1.5;
+}
+.footer-note span { display: inline-block; }
+
+/* ── SUCCESS ── */
+.success-overlay {
+display: none;
+text-align: center;
+padding: 60px 40px;
+}
+.success-overlay.show { display: block; animation: fadeUp 0.5s ease; }
+.success-icon {
+width: 64px; height: 64px; border-radius: 50%;
+background: #E8F5ED;
+display: flex; align-items: center; justify-content: center;
+font-size: 1.8rem;
+margin: 0 auto 20px;
+}
+.success-overlay h2 {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.9rem;
+font-weight: 600;
+color: var(–darker);
+margin-bottom: 10px;
+}
+.success-overlay p { color: var(–mid-gray); font-size: 0.95rem; }
+
+/* ── FOOTER ── */
+footer {
+background: var(–darker);
+color: rgba(255,255,255,0.35);
+text-align: center;
+padding: 28px 24px;
+font-size: 0.8rem;
+line-height: 1.6;
+}
+footer strong { color: rgba(255,255,255,0.6); font-weight: 500; }
+
+/* ── AGENT PORTAL MODAL ── */
+.modal-backdrop {
+display: none;
+position: fixed; inset: 0;
+background: rgba(26,23,20,0.75);
+backdrop-filter: blur(4px);
+z-index: 999;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+.modal-backdrop.open { display: flex; }
+
+.modal {
+background: #fff;
+border-radius: 20px;
+width: 100%;
+max-width: 900px;
+max-height: 90vh;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+animation: fadeUp 0.3s ease;
+}
+
+.modal-header {
+padding: 24px 28px 20px;
+border-bottom: 1px solid var(–stone);
+display: flex; align-items: center; justify-content: space-between;
+flex-shrink: 0;
+}
+.modal-header h2 {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.5rem;
+font-weight: 600;
+color: var(–darker);
+display: flex; align-items: center; gap: 10px;
+}
+.close-modal {
+width: 36px; height: 36px; border-radius: 8px;
+background: var(–stone); border: none; cursor: pointer;
+display: flex; align-items: center; justify-content: center;
+font-size: 1.1rem; color: var(–mid-gray);
+transition: background 0.2s;
+}
+.close-modal:hover { background: var(–warm-gray); color: var(–darker); }
+
+/* Login form */
+.modal-login {
+padding: 40px 28px;
+display: flex; flex-direction: column; gap: 16px;
+align-items: center;
+}
+.modal-login .login-field { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 6px; }
+.modal-login .login-submit {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.9rem;
+font-weight: 500;
+color: #fff;
+background: var(–darker);
+border: none;
+border-radius: 10px;
+padding: 12px 32px;
+cursor: pointer;
+width: 100%;
+max-width: 320px;
+transition: background 0.2s;
+}
+.modal-login .login-submit:hover { background: var(–accent); }
+.login-error {
+color: var(–error);
+font-size: 0.82rem;
+display: none;
+}
+.login-error.show { display: block; }
+
+/* Submissions list */
+.modal-body {
+overflow-y: auto;
+flex: 1;
+padding: 20px 28px 28px;
+}
+.submissions-toolbar {
+display: flex; align-items: center; justify-content: space-between;
+margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
+}
+.sub-count {
+font-size: 0.85rem;
+color: var(–mid-gray);
+font-weight: 500;
+}
+.clear-btn {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.78rem;
+font-weight: 500;
+color: var(–error);
+background: transparent;
+border: 1px solid rgba(184,92,56,0.25);
+border-radius: 6px;
+padding: 6px 14px;
+cursor: pointer;
+transition: all 0.2s;
+}
+.clear-btn:hover { background: rgba(184,92,56,0.08); }
+
+.empty-state {
+text-align: center;
+padding: 60px 20px;
+color: var(–warm-gray);
+}
+.empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.empty-state p { font-size: 0.9rem; }
+
+.submission-card {
+background: var(–cream);
+border: 1px solid var(–stone);
+border-radius: 14px;
+margin-bottom: 14px;
+overflow: hidden;
+}
+.sub-card-header {
+padding: 14px 18px;
+display: flex; align-items: center; justify-content: space-between;
+cursor: pointer;
+user-select: none;
+transition: background 0.2s;
+}
+.sub-card-header:hover { background: var(–stone); }
+.sub-name {
+font-weight: 500;
+color: var(–darker);
+font-size: 0.95rem;
+display: flex; align-items: center; gap: 8px;
+}
+.sub-meta { font-size: 0.78rem; color: var(–mid-gray); }
+.sub-toggle { font-size: 0.8rem; color: var(–warm-gray); transition: transform 0.2s; }
+.sub-toggle.open { transform: rotate(180deg); }
+
+.sub-details {
+display: none;
+padding: 0 18px 18px;
+border-top: 1px solid var(–stone);
+}
+.sub-details.open { display: block; }
+.sub-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 12px;
+margin-top: 14px;
+}
+.sub-field { display: flex; flex-direction: column; gap: 3px; }
+.sub-field-label {
+font-size: 0.72rem;
+font-weight: 500;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: var(–warm-gray);
+}
+.sub-field-value {
+font-size: 0.88rem;
+color: var(–darker);
+word-break: break-word;
+}
+.sub-notes {
+margin-top: 12px;
+padding: 12px 14px;
+background: #fff;
+border-radius: 8px;
+font-size: 0.88rem;
+color: var(–dark);
+line-height: 1.55;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+.form-section { padding: 28px 20px 24px; }
+.form-footer { padding: 24px 20px 28px; }
+.field-row { grid-template-columns: 1fr; }
+.field-row.triple { grid-template-columns: 1fr 1fr; }
+.toggle-group { gap: 8px; }
+.checkbox-grid { grid-template-columns: 1fr 1fr; }
+.modal-header, .modal-login, .modal-body { padding-left: 18px; padding-right: 18px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+
+<header>
+  <a class="logo" href="#">
+    <div class="logo-icon">🏠</div>
+    HomeNest
+  </a>
+  <div class="header-right">
+    <button class="agent-btn" onclick="openAgentPortal()">Agent Portal</button>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+
+<div class="hero">
+  <p class="hero-eyebrow">Rent-to-Own &amp; Flexible Housing</p>
+  <h1>Find Your Perfect Home, <em>Your Way</em></h1>
+  <p>Tell us what you're looking for and we'll match you with the best available homes based on your preferences.</p>
+</div>
+
+<!-- ═══════════ FORM ═══════════ -->
+
+<div class="form-wrap">
+  <div class="form-card">
+
+
+<!-- SUCCESS STATE -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">✓</div>
+  <h2>You're on the list!</h2>
+  <p>Thank you! We'll review your preferences and get back to you shortly.<br>Keep an eye on your inbox.</p>
+</div>
+
+<!-- THE FORM -->
+<form id="nestForm" novalidate>
+
+  <!-- 📍 Location -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon">📍</div>
+      <div class="section-title">Location Preferences</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="area">Preferred Area</label>
+        <select id="area" name="area" required>
+          <option value="" disabled selected>Select a borough / region</option>
+          <option>Queens</option>
+          <option>Brooklyn</option>
+          <option>Long Island</option>
+          <option>The Bronx</option>
+          <option>Manhattan</option>
+          <option>Staten Island</option>
+          <option>New Jersey</option>
+          <option>Westchester</option>
+          <option>Other / Not sure yet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="neighborhoods">Specific Neighborhoods <span class="optional">(optional)</span></label>
+        <input type="text" id="neighborhoods" name="neighborhoods" placeholder="e.g. Astoria, Flushing, Bed-Stuy…">
+      </div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label>Willing to Relocate?</label>
+        <div class="toggle-group">
+          <div class="toggle-option">
+            <input type="radio" name="relocate" id="relocateYes" value="Yes" required>
+            <label for="relocateYes">✅ Yes, I'm open to it</label>
+          </div>
+          <div class="toggle-option">
+            <input type="radio" name="relocate" id="relocateNo" value="No">
+            <label for="relocateNo">❌ No, staying local</label>
+          </div>
+          <div class="toggle-option">
+            <input type="radio" name="relocate" id="relocateMaybe" value="Maybe">
+            <label for="relocateMaybe">🤔 Maybe — depends</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🏡 Home Preferences -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon">🏡</div>
+      <div class="section-title">Home Preferences</div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label>Type of Home</label>
+        <div class="toggle-group">
+          <div class="toggle-option"><input type="radio" name="homeType" id="ht1" value="Single-family"><label for="ht1">🏠 Single-family</label></div>
+          <div class="toggle-option"><input type="radio" name="homeType" id="ht2" value="Apartment"><label for="ht2">🏢 Apartment</label></div>
+          <div class="toggle-option"><input type="radio" name="homeType" id="ht3" value="Condo"><label for="ht3">🏙️ Condo</label></div>
+          <div class="toggle-option"><input type="radio" name="homeType" id="ht4" value="Townhouse"><label for="ht4">🏘️ Townhouse</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row" style="margin-top:16px">
+      <div class="field">
+        <label for="bedrooms">Bedrooms</label>
+        <select id="bedrooms" name="bedrooms" required>
+          <option value="" disabled selected>Select…</option>
+          <option>Studio</option>
+          <option>1 bedroom</option>
+          <option>2 bedrooms</option>
+          <option>3 bedrooms</option>
+          <option>4 bedrooms</option>
+          <option>5+ bedrooms</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="bathrooms">Bathrooms</label>
+        <select id="bathrooms" name="bathrooms" required>
+          <option value="" disabled selected>Select…</option>
+          <option>1 bathroom</option>
+          <option>1.5 bathrooms</option>
+          <option>2 bathrooms</option>
+          <option>2.5 bathrooms</option>
+          <option>3+ bathrooms</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row single" style="margin-top:16px">
+      <div class="field">
+        <label>Must-Have Features</label>
+        <div class="checkbox-grid">
+          <div class="toggle-option"><input type="checkbox" name="features" id="f1" value="Parking"><label for="f1">🚗 Parking</label></div>
+          <div class="toggle-option"><input type="checkbox" name="features" id="f2" value="Backyard"><label for="f2">🌿 Backyard</label></div>
+          <div class="toggle-option"><input type="checkbox" name="features" id="f3" value="Basement"><label for="f3">🏚️ Basement</label></div>
+          <div class="toggle-option"><input type="checkbox" name="features" id="f4" value="Modern kitchen"><label for="f4">🍳 Modern Kitchen</label></div>
+          <div class="toggle-option"><input type="checkbox" name="features" id="f5" value="Pet-friendly"><label for="f5">🐾 Pet-Friendly</label></div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row single" style="margin-top:16px">
+      <div class="field">
+        <label>Move-in Timeframe</label>
+        <div class="toggle-group">
+          <div class="toggle-option"><input type="radio" name="timeframe" id="tf1" value="ASAP"><label for="tf1">⚡ ASAP</label></div>
+          <div class="toggle-option"><input type="radio" name="timeframe" id="tf2" value="1–3 months"><label for="tf2">📅 1–3 Months</label></div>
+          <div class="toggle-option"><input type="radio" name="timeframe" id="tf3" value="Flexible"><label for="tf3">🗓️ Flexible</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 💰 Budget -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon">💰</div>
+      <div class="section-title">Budget &amp; Payment</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="monthlyBudget">Monthly Budget Range</label>
+        <select id="monthlyBudget" name="monthlyBudget" required>
+          <option value="" disabled selected>Select range…</option>
+          <option>Under $1,500/mo</option>
+          <option>$1,500 – $2,000/mo</option>
+          <option>$2,000 – $2,500/mo</option>
+          <option>$2,500 – $3,000/mo</option>
+          <option>$3,000 – $3,500/mo</option>
+          <option>$3,500 – $4,000/mo</option>
+          <option>$4,000+/mo</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="downPayment">Down Payment Range</label>
+        <select id="downPayment" name="downPayment" required>
+          <option value="" disabled selected>Select range…</option>
+          <option>$0 – $2,500</option>
+          <option>$2,500 – $5,000</option>
+          <option>$5,000 – $10,000</option>
+          <option>$10,000 – $20,000</option>
+          <option>$20,000 – $40,000</option>
+          <option>$40,000+</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row single" style="margin-top:6px">
+      <div class="field">
+        <label>Interested In</label>
+        <div class="toggle-group">
+          <div class="toggle-option"><input type="radio" name="interest" id="in1" value="Rent-to-Own"><label for="in1">🔑 Rent-to-Own</label></div>
+          <div class="toggle-option"><input type="radio" name="interest" id="in2" value="Owner Financing"><label for="in2">📄 Owner Financing</label></div>
+          <div class="toggle-option"><input type="radio" name="interest" id="in3" value="Open to both"><label for="in3">🤝 Open to Both</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 👤 Basic Info -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon">👤</div>
+      <div class="section-title">Your Information</div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Jane Smith" required>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
+      </div>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+      </div>
+    </div>
+  </div>
+
+  <!-- 💼 Employment -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon">💼</div>
+      <div class="section-title">Employment Info</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Employment Status</label>
+        <div class="toggle-group">
+          <div class="toggle-option"><input type="radio" name="employment" id="em1" value="Employed"><label for="em1">👔 Employed</label></div>
+          <div class="toggle-option"><input type="radio" name="employment" id="em2" value="Self-employed"><label for="em2">💡 Self-Employed</label></div>
+          <div class="toggle-option"><input type="radio" name="employment" id="em3" value="Other"><label for="em3">🔄 Other</label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="income">Monthly Income Range <span class="optional">(optional)</span></label>
+        <select id="income" name="income">
+          <option value="" selected>Prefer not to say</option>
+          <option>Under $3,000/mo</option>
+          <option>$3,000 – $5,000/mo</option>
+          <option>$5,000 – $7,500/mo</option>
+          <option>$7,500 – $10,000/mo</option>
+          <option>$10,000+/mo</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📌 Notes -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon">📌</div>
+      <div class="section-title">Additional Notes</div>
+    </div>
+    <div class="field-row single">
+      <div class="field">
+        <label for="notes">Tell us anything else that matters for your search <span class="optional">(optional)</span></label>
+        <textarea id="notes" name="notes" placeholder="Any specific requirements, accessibility needs, school districts, commute preferences…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="form-footer">
+    <button type="submit" class="submit-btn" id="submitBtn">🏠 Find My Home Options</button>
+    <p class="footer-note">
+      <span>🔒 We do not charge any application fees.</span><br>
+      <span>This form is only used to match you with available housing options.</span>
+    </p>
+  </div>
+
+</form><!-- /form -->
+
+
+  </div><!-- /form-card -->
+</div><!-- /form-wrap -->
+
+<!-- ═══════════ SITE FOOTER ═══════════ -->
+
+<footer>
+  <strong>HomeNest</strong> — Connecting families with flexible home options.<br>
+  No application fees. No commitments. Just your perfect match.
+</footer>
+
+<!-- ═══════════ AGENT PORTAL MODAL ═══════════ -->
+
+<div class="modal-backdrop" id="agentModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Agent Portal">
+
+
+<div class="modal-header">
+  <h2>🗂️ Agent Portal</h2>
+  <button class="close-modal" onclick="closeAgentPortal()" aria-label="Close">✕</button>
+</div>
+
+<!-- Login screen -->
+<div id="agentLogin" class="modal-login">
+  <div style="text-align:center; margin-bottom:8px;">
+    <p style="font-size:0.85rem; color:var(--mid-gray);">Enter your agent credentials to view submissions.</p>
+  </div>
+  <div class="login-field">
+    <label for="agentUser">Username</label>
+    <input type="text" id="agentUser" placeholder="agent@homenest.com" autocomplete="username">
+  </div>
+  <div class="login-field">
+    <label for="agentPass">Password</label>
+    <input type="password" id="agentPass" placeholder="••••••••" autocomplete="current-password">
+  </div>
+  <p class="login-error" id="loginError">Incorrect credentials. Please try again.</p>
+  <button class="login-submit" onclick="attemptLogin()">Sign In →</button>
+  <p style="font-size:0.72rem; color:var(--warm-gray); margin-top:4px;">Demo: username <strong>admin</strong> / password <strong>homenest2024</strong></p>
+</div>
+
+<!-- Submissions dashboard -->
+<div id="agentDashboard" style="display:none; flex-direction:column; flex:1; overflow:hidden;">
+  <div class="modal-body">
+    <div class="submissions-toolbar">
+      <span class="sub-count" id="subCount">0 submissions</span>
+      <button class="clear-btn" onclick="clearSubmissions()">Clear All</button>
+    </div>
+    <div id="submissionsList"></div>
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════
+//  STORAGE HELPERS
+// ════════════════════════════════
+const STORE_KEY = 'homenest_submissions';
+
+function getSubmissions() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+  catch(e) { return []; }
+}
+function saveSubmissions(data) {
+  localStorage.setItem(STORE_KEY, JSON.stringify(data));
+}
+
+// ════════════════════════════════
+//  FORM SUBMIT
+// ════════════════════════════════
+document.getElementById('nestForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Basic validation
+  const required = ['area','bedrooms','bathrooms','monthlyBudget','downPayment','fullName','phone','email'];
+  let valid = true;
+  required.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) { el.style.borderColor = '#B85C38'; valid = false; }
+    else el.style.borderColor = '';
+  });
+  if (!valid) {
+    document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  btn.textContent = 'Submitting…';
+
+  // Gather checkboxes
+  const features = [...document.querySelectorAll('input[name="features"]:checked')].map(c => c.value);
+
+  const entry = {
+    id: Date.now(),
+    submittedAt: new Date().toLocaleString(),
+    // Location
+    area: document.getElementById('area').value,
+    neighborhoods: document.getElementById('neighborhoods').value,
+    relocate: document.querySelector('input[name="relocate"]:checked')?.value || '—',
+    // Home
+    homeType: document.querySelector('input[name="homeType"]:checked')?.value || '—',
+    bedrooms: document.getElementById('bedrooms').value,
+    bathrooms: document.getElementById('bathrooms').value,
+    features: features.length ? features.join(', ') : 'None selected',
+    timeframe: document.querySelector('input[name="timeframe"]:checked')?.value || '—',
+    // Budget
+    monthlyBudget: document.getElementById('monthlyBudget').value,
+    downPayment: document.getElementById('downPayment').value,
+    interest: document.querySelector('input[name="interest"]:checked')?.value || '—',
+    // Personal
+    fullName: document.getElementById('fullName').value,
+    phone: document.getElementById('phone').value,
+    email: document.getElementById('email').value,
+    // Employment
+    employment: document.querySelector('input[name="employment"]:checked')?.value || '—',
+    income: document.getElementById('income').value,
+    // Notes
+    notes: document.getElementById('notes').value
+  };
+
+  setTimeout(() => {
+    const subs = getSubmissions();
+    subs.unshift(entry);
+    saveSubmissions(subs);
+
+    // Show success
+    document.getElementById('nestForm').style.display = 'none';
+    const overlay = document.getElementById('successOverlay');
+    overlay.classList.add('show');
+    btn.classList.remove('loading');
+  }, 800);
+});
+
+// ════════════════════════════════
+//  AGENT PORTAL
+// ════════════════════════════════
+const AGENT_CREDS = { username: 'admin', password: 'homenest2024' };
+let agentAuthenticated = false;
+
+function openAgentPortal() {
+  document.getElementById('agentModal').classList.add('open');
+  if (agentAuthenticated) showDashboard();
+}
+function closeAgentPortal() {
+  document.getElementById('agentModal').classList.remove('open');
+}
+
+// Close on backdrop click
+document.getElementById('agentModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAgentPortal();
+});
+
+// Keyboard: Enter on password field
+document.getElementById('agentPass').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') attemptLogin();
+});
+
+function attemptLogin() {
+  const u = document.getElementById('agentUser').value.trim();
+  const p = document.getElementById('agentPass').value;
+  const err = document.getElementById('loginError');
+  if (u === AGENT_CREDS.username && p === AGENT_CREDS.password) {
+    err.classList.remove('show');
+    agentAuthenticated = true;
+    showDashboard();
+  } else {
+    err.classList.add('show');
+    document.getElementById('agentPass').value = '';
+  }
+}
+
+function showDashboard() {
+  document.getElementById('agentLogin').style.display = 'none';
+  const dash = document.getElementById('agentDashboard');
+  dash.style.display = 'flex';
+  renderSubmissions();
+}
+
+function renderSubmissions() {
+  const subs = getSubmissions();
+  const list = document.getElementById('submissionsList');
+  const count = document.getElementById('subCount');
+  count.textContent = subs.length === 1 ? '1 submission' : ${subs.length} submissions;
+
+  if (subs.length === 0) {
+    list.innerHTML = <div class="empty-state"><div class="empty-icon">📭</div><p>No submissions yet.<br>They'll appear here once clients fill out the form.</p></div>;
+    return;
+  }
+
+  list.innerHTML = subs.map((s, i) => `
+    <div class="submission-card">
+      <div class="sub-card-header" onclick="toggleCard(${i})">
+        <div>
+          <div class="sub-name">👤 ${s.fullName}</div>
+          <div class="sub-meta">${s.submittedAt} &nbsp;·&nbsp; ${s.area} &nbsp;·&nbsp; ${s.homeType}</div>
+        </div>
+        <div class="sub-toggle" id="toggle-${i}">▼</div>
+      </div>
+      <div class="sub-details" id="detail-${i}">
+        <div class="sub-grid">
+          <div class="sub-field"><span class="sub-field-label">Phone</span><span class="sub-field-value">${s.phone}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Email</span><span class="sub-field-value">${s.email}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Preferred Area</span><span class="sub-field-value">${s.area}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Neighborhoods</span><span class="sub-field-value">${s.neighborhoods || '—'}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Relocate</span><span class="sub-field-value">${s.relocate}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Home Type</span><span class="sub-field-value">${s.homeType}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Bedrooms</span><span class="sub-field-value">${s.bedrooms}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Bathrooms</span><span class="sub-field-value">${s.bathrooms}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Features</span><span class="sub-field-value">${s.features}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Move-in</span><span class="sub-field-value">${s.timeframe}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Monthly Budget</span><span class="sub-field-value">${s.monthlyBudget}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Down Payment</span><span class="sub-field-value">${s.downPayment}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Interest In</span><span class="sub-field-value">${s.interest}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Employment</span><span class="sub-field-value">${s.employment}</span></div>
+          <div class="sub-field"><span class="sub-field-label">Income</span><span class="sub-field-value">${s.income || '—'}</span></div>
+        </div>
+        ${s.notes ? <div class="sub-notes"><strong style="font-size:0.75rem;color:var(--mid-gray);text-transform:uppercase;letter-spacing:.05em;">Notes</strong><br>${s.notes}</div> : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleCard(i) {
+  const detail = document.getElementById(detail-${i});
+  const tog = document.getElementById(toggle-${i});
+  detail.classList.toggle('open');
+  tog.classList.toggle('open');
+}
+
+function clearSubmissions() {
+  if (confirm('Are you sure you want to delete all submissions? This cannot be undone.')) {
+    saveSubmissions([]);
+    renderSubmissions();
+  }
+}
+</script>
+
+</body>
+</html>
