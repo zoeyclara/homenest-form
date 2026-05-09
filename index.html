@@ -42,7 +42,7 @@ nav{background:var(--primary);padding:14px 24px;display:flex;align-items:center;
 .trust-bar{background:#fff;border-bottom:1px solid var(--border);padding:12px 24px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
 .trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
 
-/* HOW IT WORKS */
+/* SECTION */
 .section{padding:48px 24px;max-width:1100px;margin:0 auto}
 .section-title{font-size:24px;font-weight:700;margin-bottom:8px}
 .section-sub{color:var(--muted);margin-bottom:28px}
@@ -51,8 +51,9 @@ nav{background:var(--primary);padding:14px 24px;display:flex;align-items:center;
 .prop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
 .prop-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.2s}
 .prop-card:hover{box-shadow:0 4px 18px rgba(0,0,0,.1);transform:translateY(-2px)}
-.prop-media-box{width:100%;height:190px;background:#e8edf2;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;overflow:hidden;position:relative}
+.prop-media-box{width:100%;height:190px;background:#e8edf2;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;overflow:hidden;position:relative;cursor:pointer}
 .prop-media-box img,.prop-media-box video{width:100%;height:100%;object-fit:cover}
+.media-count-badge{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;pointer-events:none}
 .prop-info{padding:16px}
 .prop-tag{display:inline-block;background:var(--accent-light);color:#065f46;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:8px}
 .prop-tag.sold{background:#fee2e2;color:#991b1b}
@@ -70,6 +71,21 @@ nav{background:var(--primary);padding:14px 24px;display:flex;align-items:center;
 .sold-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center}
 .sold-badge{background:#ef4444;color:#fff;font-size:18px;font-weight:700;padding:8px 22px;border-radius:8px;transform:rotate(-8deg)}
 .sold-badge.rented{background:#d97706}
+
+/* GALLERY LIGHTBOX */
+.gallery-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.92);z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:16px}
+.gallery-main{max-width:900px;max-height:70vh;width:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.gallery-main img,.gallery-main video{max-width:100%;max-height:70vh;border-radius:10px;object-fit:contain}
+.gallery-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
+.gallery-nav:hover{background:rgba(255,255,255,.3)}
+.gallery-prev{left:-52px}
+.gallery-next{right:-52px}
+.gallery-thumbs{display:flex;gap:8px;margin-top:14px;overflow-x:auto;max-width:900px;padding-bottom:4px}
+.gallery-thumb{width:70px;height:52px;border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid transparent;flex-shrink:0;transition:.2s}
+.gallery-thumb.active{border-color:#10b981}
+.gallery-thumb img,.gallery-thumb video{width:100%;height:100%;object-fit:cover}
+.gallery-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:1001;line-height:1}
+.gallery-counter{color:rgba(255,255,255,.6);font-size:13px;margin-top:8px}
 
 /* FORM */
 .form-wrap{max-width:630px;margin:0 auto;padding:36px 24px}
@@ -100,16 +116,23 @@ nav{background:var(--primary);padding:14px 24px;display:flex;align-items:center;
 .pay-methods{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
 .pay-btn{border:2px solid var(--border);background:#fff;padding:12px 8px;border-radius:10px;text-align:center;cursor:pointer;transition:.2s;font-size:13px;font-weight:500;color:var(--text)}
 .pay-btn:hover,.pay-btn.active{border-color:var(--primary);background:#eff6ff}
-.pay-logo{font-size:20px;display:block;margin-bottom:4px}
 .card-fields{display:grid;gap:11px;margin-top:14px;padding:14px;background:#f8fafc;border-radius:10px;border:1px solid var(--border)}
 .secure-note{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:8px}
 .check-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);margin-top:10px}
 .check-row input{width:auto;margin-top:3px}
 
-/* SUCCESS */
-.success-wrap{text-align:center;padding:56px 24px;max-width:480px;margin:0 auto}
-.success-icon{width:68px;height:68px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 18px}
-.app-id-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-weight:700;font-size:18px;letter-spacing:2px;margin:14px auto;display:inline-block}
+/* PASSWORD GATE */
+.pw-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.96);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px}
+.pw-box{background:#fff;border-radius:20px;padding:40px 36px;max-width:400px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.pw-box h2{font-size:22px;font-weight:700;margin-bottom:8px}
+.pw-box p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.pw-input-wrap{position:relative;margin-bottom:16px;text-align:left}
+.pw-input-wrap input{padding-right:44px;font-size:16px}
+.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;width:auto;padding:0}
+.pw-err{color:var(--danger);font-size:13px;margin-bottom:12px;display:none}
+.pw-submit{width:100%;background:var(--primary);color:#fff;border:none;padding:13px;border-radius:10px;font-weight:600;font-size:15px;transition:.2s}
+.pw-submit:hover{background:var(--primary-light)}
+.pw-lock-icon{width:58px;height:58px;background:#eff6ff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px}
 
 /* ADMIN */
 .admin-wrap{max-width:1100px;margin:0 auto;padding:28px 24px}
@@ -156,15 +179,63 @@ tr:last-child td{border-bottom:none}
 .modal-close-btn{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1;margin-top:-4px}
 .row-sep{border-bottom:1px solid var(--border);padding:8px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px}
 .row-sep:last-child{border-bottom:none}
+
+/* Cloudinary upload progress */
+.upload-progress{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:var(--primary);margin-top:8px}
+.media-preview-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.media-preview-item{position:relative;width:72px;height:54px;border-radius:6px;overflow:hidden}
+.media-preview-item img,.media-preview-item video{width:100%;height:100%;object-fit:cover}
+.media-remove{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.6);border:none;color:#fff;border-radius:50%;width:18px;height:18px;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* Loader */
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.sync-indicator{font-size:12px;color:var(--muted);padding:4px 10px;background:#f1f5f9;border-radius:20px;margin-left:auto}
+.sync-ok{color:var(--accent)}
+.sync-err{color:var(--danger)}
+
 @media(max-width:620px){
   .form-row{grid-template-columns:1fr}
   .kpi-row{grid-template-columns:1fr 1fr}
   .two-col{grid-template-columns:1fr}
   .pay-methods{grid-template-columns:1fr 1fr}
+  .gallery-prev{left:-8px}
+  .gallery-next{right:-8px}
 }
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="pw-gate" class="pw-gate hidden">
+  <div class="pw-box">
+    <div class="pw-lock-icon">🔐</div>
+    <h2>Agent Portal</h2>
+    <p>This area is restricted to authorized agents only. Enter your password to continue.</p>
+    <div class="pw-input-wrap">
+      <input type="password" id="pw-input" placeholder="Enter portal password" onkeydown="if(event.key==='Enter')checkPw()">
+      <button class="pw-eye" onclick="togglePwVis()" id="pw-eye-btn">👁</button>
+    </div>
+    <div class="pw-err" id="pw-err">Incorrect password. Please try again.</div>
+    <button class="pw-submit" onclick="checkPw()">Access Portal →</button>
+    <div style="margin-top:16px">
+      <button style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer" onclick="closePwGate()">← Back to Site</button>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY LIGHTBOX -->
+<div id="gallery-overlay" class="gallery-overlay hidden">
+  <button class="gallery-close" onclick="closeGallery()">×</button>
+  <div class="gallery-main">
+    <button class="gallery-nav gallery-prev" onclick="galleryNav(-1)">‹</button>
+    <div id="gallery-main-content"></div>
+    <button class="gallery-nav gallery-next" onclick="galleryNav(1)">›</button>
+  </div>
+  <div class="gallery-counter" id="gallery-counter"></div>
+  <div class="gallery-thumbs" id="gallery-thumbs"></div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -174,7 +245,7 @@ tr:last-child td{border-bottom:none}
     <button class="nav-btn" onclick="go('listings')">Properties</button>
     <button class="nav-btn" onclick="go('sold')">Sold</button>
     <button class="nav-btn" onclick="go('apply')">Apply</button>
-    <button class="nav-btn" onclick="go('admin')">Agent Portal</button>
+    <button class="nav-btn" onclick="requireAuth()">Agent Portal</button>
   </div>
 </nav>
 
@@ -185,7 +256,7 @@ tr:last-child td{border-bottom:none}
     <p>HomeNest connects qualified applicants with rent-to-own housing opportunities. Apply in minutes, move in sooner.</p>
     <button class="btn-primary" onclick="go('apply')">Start Your Application →</button>
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">2,400+</div><div class="stat-lbl">Applications Reviewed</div></div>
+      <div class="stat"><div class="stat-num" id="stat-apps">—</div><div class="stat-lbl">Applications Reviewed</div></div>
       <div class="stat"><div class="stat-num">SSL</div><div class="stat-lbl">Encrypted & Secure</div></div>
       <div class="stat"><div class="stat-num">Fair Housing</div><div class="stat-lbl">Compliant Program</div></div>
     </div>
@@ -215,7 +286,7 @@ tr:last-child td{border-bottom:none}
       </div>
       <div style="text-align:center;padding:26px;background:#fff;border:1px solid var(--border);border-radius:var(--radius)">
         <div style="font-size:34px;margin-bottom:10px">🏡</div>
-        <div style="font-weight:700;margin-bottom:6px">3. View &amp; Move In</div>
+        <div style="font-weight:700;margin-bottom:6px">3. View & Move In</div>
         <div style="color:var(--muted);font-size:14px">Qualified applicants are matched with available properties.</div>
       </div>
     </div>
@@ -231,7 +302,7 @@ tr:last-child td{border-bottom:none}
 <div id="pg-listings" class="hidden">
   <div class="section">
     <div class="section-title">Available Properties</div>
-    <div class="section-sub">Browse current rent-to-own opportunities. Apply to be considered.</div>
+    <div class="section-sub">Browse current rent-to-own opportunities. Tap a photo to view all images and videos.</div>
     <div id="listings-grid" class="prop-grid"></div>
     <div id="no-listings" style="text-align:center;padding:56px;color:var(--muted)" class="hidden">
       <div style="font-size:44px;margin-bottom:14px">🏠</div>
@@ -243,7 +314,7 @@ tr:last-child td{border-bottom:none}
 <!-- SOLD -->
 <div id="pg-sold" class="hidden">
   <div class="section">
-    <div class="section-title">Sold &amp; Rented Properties</div>
+    <div class="section-title">Sold & Rented Properties</div>
     <div class="section-sub">These homes have been placed. Apply now to get first access to new listings.</div>
     <div id="sold-grid" class="sold-grid"></div>
     <div style="text-align:center;margin-top:36px;padding:28px;background:#fff;border:1px solid var(--border);border-radius:var(--radius)">
@@ -267,7 +338,11 @@ tr:last-child td{border-bottom:none}
   <div class="admin-wrap">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:8px">
       <div style="font-size:22px;font-weight:700">🏠 Agent Portal</div>
-      <div style="font-size:13px;color:var(--muted)">Admin Access</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="sync-indicator" id="sync-status">⏳ Syncing…</span>
+        <div style="font-size:13px;color:var(--muted)">Admin Access</div>
+        <button class="action-btn" onclick="adminLogout()">🔒 Logout</button>
+      </div>
     </div>
     <div class="admin-tabs">
       <button class="admin-tab active" onclick="aTab('dashboard',this)">Dashboard</button>
@@ -298,6 +373,7 @@ tr:last-child td{border-bottom:none}
           <option value="">All Statuses</option>
           <option>Pending</option><option>Reviewed</option><option>Qualified</option><option>Not Qualified</option>
         </select>
+        <button class="add-btn" onclick="loadData()">🔄 Refresh</button>
       </div>
       <div class="table-wrap">
         <table>
@@ -338,6 +414,17 @@ tr:last-child td{border-bottom:none}
 </div>
 
 <script>
+// ── CONFIG ─────────────────────────────────────────────
+var JSONBIN_KEY = '$2a$10$V.2Sp7axXfgDWu1AJKTGbeaMonE53f1qPDRlSKMiss.JtupJHEd8C';
+var JSONBIN_BIN = '69fa47d136566621a82baca9';
+var JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN;
+
+var CLOUDINARY_CLOUD = 'dpoqbmvba';
+var CLOUDINARY_PRESET = 'MY WEBSITE UPLOAD';
+var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD + '/auto/upload';
+
+var ADMIN_PASSWORD = 'HomeNest@Admin2026';
+
 // ── STATE ──────────────────────────────────────────────
 var currentPage = 'home';
 var appStep = 1;
@@ -346,48 +433,248 @@ var payMethod = 'card';
 var properties = [];
 var applicants = [];
 var reviews = [];
+var adminAuthed = false;
+var isSaving = false;
 
-// ── SEED ───────────────────────────────────────────────
-function seedData() {
-  properties = [
-    {id:1,title:'3BR Family Home',location:'Austin, TX',price:'$1,850/mo',beds:3,baths:2,sqft:1400,type:'house',status:'available',desc:'Spacious ranch-style home in quiet neighborhood. Rent-to-own option available.',media:[]},
-    {id:2,title:'Modern 2BR Apartment',location:'Dallas, TX',price:'$1,200/mo',beds:2,baths:1,sqft:950,type:'apartment',status:'sold',desc:'Contemporary apartment with updated kitchen and in-unit laundry.',media:[]},
-    {id:3,title:'Charming Townhouse',location:'Houston, TX',price:'$1,550/mo',beds:3,baths:2,sqft:1250,type:'townhouse',status:'rented',desc:'End-unit townhouse with private patio and garage.',media:[]},
-    {id:4,title:'4BR Corner Lot Home',location:'San Antonio, TX',price:'$2,100/mo',beds:4,baths:3,sqft:1900,type:'house',status:'available',desc:'Large corner lot with mature trees. Excellent school district.',media:[]}
-  ];
-  reviews = [
-    {name:'Marcus J.',rating:5,text:'HomeNest made the process incredibly simple. We were qualified within 3 days and are now in our dream home!',date:'Mar 2025'},
-    {name:'Priya S.',rating:5,text:'Professional, transparent, and fast. Finally a housing program that actually responds to applicants.',date:'Feb 2025'},
-    {name:'David R.',rating:4,text:'Great experience overall. The team was helpful and the property matched exactly what we needed.',date:'Jan 2025'}
-  ];
-  var names = ['Jordan Williams','Aisha Thompson','Carlos Reyes','Megan O\'Brien','Kwame Asante','Liu Yang','Rachel Green','Omar Farooq','Sofia Hernandez','Tyler Brooks'];
-  var cities = ['Chicago, IL','Atlanta, GA','Phoenix, AZ','Seattle, WA','Miami, FL','Denver, CO','Nashville, TN','Portland, OR','Minneapolis, MN','Baltimore, MD'];
-  var statuses = ['Pending','Reviewed','Qualified','Not Qualified'];
-  var incomes = ['$3,000–$4,000','$4,000–$5,000','$5,000–$7,000','$7,000–$10,000'];
-  var credits = ['580–619','620–659','660–699','700–739','740+'];
-  for (var i = 0; i < 10; i++) {
-    applicants.push({
-      id: 'HN-' + (1000 + i),
-      name: names[i],
-      email: names[i].toLowerCase().replace(/[\s']/g,'.') + '@example.com',
-      city: cities[i],
-      income: incomes[i % 4],
-      credit: credits[i % 5],
-      status: statuses[i % 4],
-      date: '2025-0' + (Math.floor(i/4)+1) + '-' + (10+i),
-      phone: '(555) ' + (200+i) + '-' + (4000+i),
-      employment: 'Employed',
-      intent: 'Rent-to-own',
-      timeline: '1–3 months',
-      downpayment: '$5,000–$10,000',
-      score: Math.floor(65 + Math.random()*30),
-      notes: ''
-    });
+// Gallery state
+var galleryMedia = [];
+var galleryIdx = 0;
+
+// ── JSONBIN ────────────────────────────────────────────
+// Proxies that forward custom headers (needed for private JSONBin bins)
+var PROXIES = [
+  'https://corsproxy.io/?',
+  'https://api.codetabs.com/v1/proxy?quest='
+];
+
+async function jbRequest(method, url, body) {
+  var headers = {
+    'X-Master-Key': JSONBIN_KEY,
+    'X-Bin-Meta': 'false',
+    'X-Bin-Versioning': 'false'
+  };
+  if (body) headers['Content-Type'] = 'application/json';
+
+  var fetchOpts = {
+    method: method,
+    headers: headers,
+    body: body ? JSON.stringify(body) : undefined
+  };
+
+  // 1) Try direct (works when hosted on a real domain)
+  try {
+    var r = await fetch(url, fetchOpts);
+    if (r.ok) return await r.json();
+    // 401/403 = key issue, not a CORS issue — don't proxy
+    if (r.status === 401 || r.status === 403) throw new Error('Auth error ' + r.status);
+  } catch(e) {
+    if (e.message.startsWith('Auth')) throw e;
+    // Network/CORS error — fall through to proxies
+  }
+
+  // 2) Try each proxy in turn (they forward all headers)
+  for (var i = 0; i < PROXIES.length; i++) {
+    try {
+      var proxyUrl = PROXIES[i] + encodeURIComponent(url);
+      var pr = await fetch(proxyUrl, fetchOpts);
+      if (pr.ok) return await pr.json();
+    } catch(pe) {
+      // Try next proxy
+    }
+  }
+
+  throw new Error('All fetch attempts failed');
+}
+
+function applyData(data) {
+  // data could be the raw record or wrapped in {record:{…}}
+  var rec = data.record || data;
+  if (Array.isArray(rec.properties)) properties = rec.properties;
+  if (Array.isArray(rec.applicants)) applicants = rec.applicants;
+  if (Array.isArray(rec.reviews))    reviews    = rec.reviews;
+}
+
+async function loadData() {
+  setSyncStatus('loading');
+  try {
+    var data = await jbRequest('GET', JSONBIN_URL + '/latest');
+    applyData(data);
+    setSyncStatus('ok');
+    refreshCurrentPage();
+    updateStatCount();
+  } catch(e) {
+    console.warn('JSONBin load:', e.message);
+    setSyncStatus('offline');
+    // Site still works with seed/local data
   }
 }
 
+async function saveData() {
+  if (isSaving) return;
+  isSaving = true;
+  setSyncStatus('saving');
+  try {
+    await jbRequest('PUT', JSONBIN_URL, { properties, applicants, reviews });
+    setSyncStatus('ok');
+  } catch(e) {
+    console.warn('JSONBin save:', e.message);
+    setSyncStatus('offline');
+  }
+  isSaving = false;
+}
+
+function setSyncStatus(state) {
+  var el = document.getElementById('sync-status');
+  if (!el) return;
+  if (state === 'ok') { el.textContent = '✅ Synced'; el.className = 'sync-indicator sync-ok'; el.title = 'Data saved to cloud'; }
+  else if (state === 'err') { el.textContent = '⚠️ Sync Error'; el.className = 'sync-indicator sync-err'; el.title = 'Cloud sync failed'; }
+  else if (state === 'offline') { el.textContent = '📴 Local mode'; el.className = 'sync-indicator'; el.title = 'Host this file on GitHub Pages or Netlify for full cloud sync'; }
+  else if (state === 'saving') { el.textContent = '💾 Saving…'; el.className = 'sync-indicator'; }
+  else { el.textContent = '⏳ Loading…'; el.className = 'sync-indicator'; }
+}
+
+function refreshCurrentPage() {
+  if (currentPage === 'home') renderHomeReviews();
+  if (currentPage === 'listings') renderListings();
+  if (currentPage === 'sold') renderSold();
+  if (currentPage === 'admin') renderAdmin();
+}
+
+function updateStatCount() {
+  var el = document.getElementById('stat-apps');
+  if (el) el.textContent = (applicants.length + 2400) + '+';
+}
+
+// ── CLOUDINARY UPLOAD ──────────────────────────────────
+async function uploadToCloudinary(file, onProgress) {
+  var fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLOUDINARY_PRESET);
+
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', CLOUDINARY_UPLOAD_URL, true);
+    xhr.upload.onprogress = function(e) {
+      if (e.lengthComputable && onProgress) onProgress(Math.round(e.loaded/e.total*100));
+    };
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        var res = JSON.parse(xhr.responseText);
+        resolve({ url: res.secure_url, type: res.resource_type === 'video' ? 'video' : 'image' });
+      } else {
+        reject(new Error('Upload failed: ' + xhr.status));
+      }
+    };
+    xhr.onerror = function() { reject(new Error('Network error')); };
+    xhr.send(fd);
+  });
+}
+
+// ── AUTH ───────────────────────────────────────────────
+function requireAuth() {
+  if (adminAuthed) { go('admin'); return; }
+  document.getElementById('pw-gate').classList.remove('hidden');
+}
+
+function checkPw() {
+  var val = document.getElementById('pw-input').value;
+  if (val === ADMIN_PASSWORD) {
+    document.getElementById('pw-gate').classList.add('hidden');
+    document.getElementById('pw-err').style.display = 'none';
+    document.getElementById('pw-input').value = '';
+    adminAuthed = true;
+    go('admin');
+  } else {
+    document.getElementById('pw-err').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+function closePwGate() {
+  document.getElementById('pw-gate').classList.add('hidden');
+  document.getElementById('pw-err').style.display = 'none';
+  document.getElementById('pw-input').value = '';
+}
+
+function togglePwVis() {
+  var inp = document.getElementById('pw-input');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function adminLogout() {
+  adminAuthed = false;
+  go('home');
+}
+
+// ── GALLERY ────────────────────────────────────────────
+function openGallery(media) {
+  if (!media || !media.length) return;
+  galleryMedia = media;
+  galleryIdx = 0;
+  renderGalleryMain();
+  renderGalleryThumbs();
+  document.getElementById('gallery-overlay').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGallery() {
+  document.getElementById('gallery-overlay').classList.add('hidden');
+  document.body.style.overflow = '';
+  // Pause any videos
+  document.querySelectorAll('#gallery-main-content video').forEach(function(v){ v.pause(); });
+}
+
+function galleryNav(dir) {
+  galleryIdx = (galleryIdx + dir + galleryMedia.length) % galleryMedia.length;
+  renderGalleryMain();
+  renderGalleryThumbs();
+}
+
+function galleryGoTo(idx) {
+  galleryIdx = idx;
+  renderGalleryMain();
+  renderGalleryThumbs();
+}
+
+function renderGalleryMain() {
+  var m = galleryMedia[galleryIdx];
+  var el;
+  if (m.type === 'video') {
+    el = '<video src="' + m.url + '" controls autoplay style="max-width:100%;max-height:70vh;border-radius:10px"></video>';
+  } else {
+    el = '<img src="' + m.url + '" style="max-width:100%;max-height:70vh;border-radius:10px;object-fit:contain">';
+  }
+  document.getElementById('gallery-main-content').innerHTML = el;
+  document.getElementById('gallery-counter').textContent = (galleryIdx+1) + ' / ' + galleryMedia.length;
+  // Show/hide nav arrows
+  var prev = document.querySelector('.gallery-prev');
+  var next = document.querySelector('.gallery-next');
+  prev.style.display = galleryMedia.length > 1 ? '' : 'none';
+  next.style.display = galleryMedia.length > 1 ? '' : 'none';
+}
+
+function renderGalleryThumbs() {
+  var el = document.getElementById('gallery-thumbs');
+  el.innerHTML = galleryMedia.map(function(m, i) {
+    var content = m.type === 'video'
+      ? '<video src="' + m.url + '" muted style="width:100%;height:100%;object-fit:cover"></video>'
+      : '<img src="' + m.url + '" style="width:100%;height:100%;object-fit:cover">';
+    return '<div class="gallery-thumb' + (i===galleryIdx?' active':'') + '" onclick="galleryGoTo(' + i + ')">' + content + '</div>';
+  }).join('');
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('gallery-overlay').classList.contains('hidden')) return;
+  if (e.key === 'ArrowLeft') galleryNav(-1);
+  if (e.key === 'ArrowRight') galleryNav(1);
+  if (e.key === 'Escape') closeGallery();
+});
+
 // ── NAVIGATION ─────────────────────────────────────────
 function go(page) {
+  if (page === 'admin' && !adminAuthed) { requireAuth(); return; }
   ['home','listings','sold','apply','admin'].forEach(function(p) {
     document.getElementById('pg-' + p).classList.toggle('hidden', p !== page);
   });
@@ -395,20 +682,19 @@ function go(page) {
     b.classList.toggle('active', ['home','listings','sold','apply','admin'][i] === page);
   });
   currentPage = page;
-  if (page === 'home')     renderHomeReviews();
+  if (page === 'home')     { renderHomeReviews(); updateStatCount(); }
   if (page === 'listings') renderListings();
   if (page === 'sold')     renderSold();
   if (page === 'apply')    { appStep=1; formData={}; renderStep(); }
-  if (page === 'admin')    renderAdmin();
+  if (page === 'admin')    { loadData().then(renderAdmin); }
 }
 
 // ── LISTINGS ───────────────────────────────────────────
-function mediaEl(media) {
+function mediaCoverEl(media) {
   if (!media || !media.length) return '<span>📷 No image</span>';
   var m = media[0];
-  if (m.type === 'image') return '<img src="' + m.url + '" alt="property">';
-  if (m.type === 'video') return '<video src="' + m.url + '" muted autoplay loop></video>';
-  return '<span>📷</span>';
+  if (m.type === 'video') return '<video src="' + m.url + '" muted autoplay loop style="width:100%;height:100%;object-fit:cover"></video>';
+  return '<img src="' + m.url + '" alt="property" style="width:100%;height:100%;object-fit:cover">';
 }
 
 function renderListings() {
@@ -418,8 +704,13 @@ function renderListings() {
   if (!avail.length) { grid.innerHTML=''; none.classList.remove('hidden'); return; }
   none.classList.add('hidden');
   grid.innerHTML = avail.map(function(p) {
+    var hasMultiple = p.media && p.media.length > 1;
+    var mediaBadge = p.media && p.media.length > 0 ? '<div class="media-count-badge">📷 ' + p.media.length + '</div>' : '';
     return '<div class="prop-card">'
-      + '<div class="prop-media-box">' + mediaEl(p.media) + '</div>'
+      + '<div class="prop-media-box" onclick="' + (p.media&&p.media.length?'openGallery(properties['+properties.indexOf(p)+'].media)':'') + '">'
+      + mediaCoverEl(p.media)
+      + mediaBadge
+      + '</div>'
       + '<div class="prop-info">'
       + '<span class="prop-tag">Rent-to-Own</span>'
       + '<div class="prop-title">' + p.title + '</div>'
@@ -427,6 +718,7 @@ function renderListings() {
       + '<div class="prop-price">' + p.price + '</div>'
       + '<div class="prop-meta"><span>🛏 ' + p.beds + ' bed</span><span>🚿 ' + p.baths + ' bath</span><span>📐 ' + p.sqft + ' sqft</span></div>'
       + '<p style="font-size:13px;color:var(--muted);margin-top:8px">' + p.desc + '</p>'
+      + (hasMultiple ? '<div style="font-size:12px;color:var(--primary-light);margin-top:6px">👆 Tap photo to see all ' + p.media.length + ' images/videos</div>' : '')
       + '<button class="apply-btn" onclick="startApplyProp(' + p.id + ')">Apply for This Property →</button>'
       + '</div></div>';
   }).join('');
@@ -445,7 +737,7 @@ function renderSold() {
     var label = p.status === 'sold' ? 'SOLD' : 'RENTED';
     var cls = p.status === 'sold' ? '' : ' rented';
     return '<div class="sold-card">'
-      + '<div class="prop-media-box" style="height:160px">' + mediaEl(p.media) + '</div>'
+      + '<div class="prop-media-box" style="height:160px">' + mediaCoverEl(p.media) + '</div>'
       + '<div class="sold-overlay"><div class="sold-badge' + cls + '">' + label + '</div></div>'
       + '<div class="prop-info"><div class="prop-title">' + p.title + '</div>'
       + '<div class="prop-loc">📍 ' + p.location + '</div>'
@@ -485,7 +777,7 @@ function renderStep() {
     + (appStep > 1 ? '<button class="btn-back" onclick="prevStep()">← Back</button>' : '')
     + (appStep < 6
         ? '<button class="btn-next" onclick="nextStep()">Continue →</button>'
-        : '<button class="btn-next" onclick="submitApp()">Submit &amp; Pay $35 →</button>')
+        : '<button class="btn-next" id="submit-btn" onclick="submitApp()">Submit & Pay $35 →</button>')
     + '</div>';
   document.getElementById('form-body').innerHTML = html;
   bindRadios();
@@ -506,7 +798,7 @@ function getStepHTML() {
     + '<div class="field"><label>Phone Number *</label><input id="f-phone" value="' + (formData.phone||'') + '" placeholder="(555) 000-0000"></div>'
     + '</div>'
     + '<div class="field"><label>Email Address *</label><input id="f-email" type="email" value="' + (formData.email||'') + '" placeholder="jane@email.com"></div>'
-    + '<div class="field"><label>Current City &amp; State *</label><input id="f-city" value="' + (formData.city||'') + '" placeholder="e.g. Dallas, TX"></div>'
+    + '<div class="field"><label>Current City & State *</label><input id="f-city" value="' + (formData.city||'') + '" placeholder="e.g. Dallas, TX"></div>'
     + '<div class="form-row">'
     + '<div class="field"><label>Marital Status (optional)</label><select id="f-marital"><option>Prefer not to say</option><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select></div>'
     + '<div class="field"><label>Dependents (optional)</label><select id="f-deps"><option>0</option><option>1</option><option>2</option><option>3</option><option>4+</option></select></div>'
@@ -613,13 +905,13 @@ function getStepHTML() {
     + '<div>💼 ' + (formData.employment||'—') + ' · Income: ' + (formData.income||'—') + '</div>'
     + '<div>🏠 ' + (formData.intent||'—') + ' · ' + (formData.prop_type||'—') + '</div>'
     + '</div></div>'
-    + '<div style="font-weight:600;margin-bottom:6px">Processing &amp; Verification Fee — $35.00</div>'
+    + '<div style="font-weight:600;margin-bottom:6px">Processing & Verification Fee — $35.00</div>'
     + '<div style="font-size:12px;color:var(--muted);margin-bottom:10px">Secure payment via Stripe. No cash or off-platform payments accepted.</div>'
     + '<div class="pay-methods">' + payHTML + '</div>'
     + '<div id="pay-fields-wrap"></div>'
     + '<div class="secure-note">🔒 Payments secured by Stripe — 256-bit encryption</div>'
     + '<div class="check-row"><input type="checkbox" id="chk1"><span>I confirm all information provided is accurate and complete to the best of my knowledge.</span></div>'
-    + '<div class="check-row"><input type="checkbox" id="chk2"><span>I agree to the <a href="#" style="color:var(--primary-light)">Terms &amp; Conditions</a> and <a href="#" style="color:var(--primary-light)">Privacy Policy</a>. I understand submission does not guarantee approval.</span></div>';
+    + '<div class="check-row"><input type="checkbox" id="chk2"><span>I agree to the <a href="#" style="color:var(--primary-light)">Terms & Conditions</a> and <a href="#" style="color:var(--primary-light)">Privacy Policy</a>. I understand submission does not guarantee approval.</span></div>';
   }
   return '';
 }
@@ -708,11 +1000,15 @@ function prevStep() {
   renderStep();
 }
 
-function submitApp() {
+async function submitApp() {
   var c1 = document.getElementById('chk1');
   var c2 = document.getElementById('chk2');
   if (!c1 || !c1.checked || !c2 || !c2.checked) { alert('Please check both confirmation boxes to proceed.'); return; }
   saveCurrentStep();
+
+  var btn = document.getElementById('submit-btn');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Submitting…'; }
+
   var id = 'HN-' + Math.floor(1000 + Math.random()*9000);
   applicants.unshift({
     id: id, name: formData.name||'Applicant', email: formData.email||'',
@@ -723,9 +1019,12 @@ function submitApp() {
     downpayment: formData.dprange||'', score: Math.floor(65+Math.random()*30),
     notes: formData.notes||'', prop_type: formData.prop_type||''
   });
+
+  await saveData();
+
   document.getElementById('prog-fill').style.width = '100%';
   document.getElementById('form-body').innerHTML = ''
-    + '<div class="success-wrap" style="text-align:center;padding:52px 0;max-width:460px;margin:0 auto">'
+    + '<div style="text-align:center;padding:52px 0;max-width:460px;margin:0 auto">'
     + '<div style="width:66px;height:66px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px">✅</div>'
     + '<h2 style="font-size:24px;font-weight:700;margin-bottom:10px">Application Submitted!</h2>'
     + '<p style="color:var(--muted);margin-bottom:6px">Thank you, <strong>' + (formData.name||'Applicant') + '</strong>. Your application has been received and your $35 processing fee has been recorded.</p>'
@@ -791,7 +1090,7 @@ function renderApplicantsTable() {
   var q = (document.getElementById('srch')||{}).value||'';
   var sf = (document.getElementById('sf')||{}).value||'';
   var list = applicants.filter(function(a){
-    var mq = !q || a.name.toLowerCase().includes(q.toLowerCase()) || a.email.toLowerCase().includes(q.toLowerCase());
+    var mq = !q || a.name.toLowerCase().includes(q.toLowerCase()) || (a.email||'').toLowerCase().includes(q.toLowerCase());
     var ms = !sf || a.status === sf;
     return mq && ms;
   });
@@ -811,11 +1110,12 @@ function renderApplicantsTable() {
   }).join('') || '<tr><td colspan="6" style="text-align:center;padding:32px;color:var(--muted)">No applicants found.</td></tr>';
 }
 
-function setStatus(idx, status) {
+async function setStatus(idx, status) {
   applicants[idx].status = status;
   updateKPIs();
   renderDashRecent();
   renderApplicantsTable();
+  await saveData();
 }
 
 function viewApplicant(idx) {
@@ -851,10 +1151,11 @@ function detailRow(lbl, val) {
   return '<div><div style="color:var(--muted);font-size:11px">' + lbl + '</div><div>' + val + '</div></div>';
 }
 
-function saveNote(idx) {
+async function saveNote(idx) {
   var ta = document.getElementById('admin-note');
   if (ta) applicants[idx].notes = ta.value;
-  alert('Notes saved.');
+  await saveData();
+  alert('Notes saved and synced.');
 }
 
 function closeDetail() { document.getElementById('detail-overlay').classList.add('hidden'); }
@@ -865,11 +1166,15 @@ function renderPropAdminList() {
   if (!el) return;
   if (!properties.length) { el.innerHTML = '<p style="color:var(--muted)">No properties yet.</p>'; return; }
   el.innerHTML = properties.map(function(p, i) {
+    var thumb = p.media&&p.media.length
+      ? (p.media[0].type==='video' ? '<video src="'+p.media[0].url+'" muted style="width:100%;height:100%;object-fit:cover"></video>' : '<img src="'+p.media[0].url+'">')
+      : '📷';
     return '<div class="prop-admin-row">'
-      + '<div class="prop-thumb">' + (p.media&&p.media.length ? '<img src="'+p.media[0].url+'">' : '📷') + '</div>'
+      + '<div class="prop-thumb">' + thumb + '</div>'
       + '<div style="flex:1;min-width:120px">'
       + '<div style="font-weight:600;font-size:14px">' + p.title + '</div>'
       + '<div style="font-size:12px;color:var(--muted)">' + p.location + ' · ' + p.price + ' · ' + p.beds + 'bd ' + p.baths + 'ba</div>'
+      + (p.media&&p.media.length>1 ? '<div style="font-size:11px;color:var(--primary-light)">📷 ' + p.media.length + ' photos/videos</div>' : '')
       + sBadgeProp(p.status)
       + '</div>'
       + '<div style="display:flex;gap:6px;flex-wrap:wrap">'
@@ -885,24 +1190,27 @@ function sBadgeProp(s) {
   return '<span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;margin-top:4px;' + (styles[s]||'') + '">' + s + '</span>';
 }
 
-function toggleStatus(i) {
+async function toggleStatus(i) {
   properties[i].status = properties[i].status === 'available' ? 'sold' : 'available';
   renderPropAdminList();
+  await saveData();
 }
 
-function deleteProp(i) {
+async function deleteProp(i) {
   if (confirm('Delete "' + properties[i].title + '"?')) {
     properties.splice(i, 1);
     renderPropAdminList();
+    await saveData();
   }
 }
 
 var editingPropIdx = -1;
 var pendingMedia = [];
+var uploadingFiles = false;
 
 function openPropModal(idx) {
   editingPropIdx = idx;
-  pendingMedia = [];
+  pendingMedia = idx >= 0 ? (properties[idx].media || []).slice() : [];
   var p = idx >= 0 ? properties[idx] : null;
   document.getElementById('modal-inner').innerHTML = ''
     + '<button class="modal-close-btn" onclick="closeModal()">×</button>'
@@ -923,36 +1231,70 @@ function openPropModal(idx) {
     + '<div class="field"><label>Description</label><textarea id="mp-desc" rows="2">' + (p?p.desc:'') + '</textarea></div>'
     + '<div class="upload-zone" onclick="document.getElementById(\'mp-file\').click()">'
     + '<div style="font-size:32px;margin-bottom:8px">📁</div>'
-    + '<div style="font-weight:500;font-size:14px">Upload Photos or Videos</div>'
-    + '<div style="font-size:12px;color:var(--muted);margin-top:4px">JPG, PNG, MP4 accepted</div>'
+    + '<div style="font-weight:500;font-size:14px">Upload Photos or Videos to Cloudinary</div>'
+    + '<div style="font-size:12px;color:var(--muted);margin-top:4px">JPG, PNG, MP4, MOV accepted — hosted on Cloudinary CDN</div>'
     + '</div>'
     + '<input type="file" id="mp-file" accept="image/*,video/*" multiple style="display:none" onchange="handleUpload(event)">'
-    + '<div id="media-preview" style="display:flex;gap:8px;flex-wrap:wrap"></div>'
-    + '<button class="btn-next" onclick="saveProp()">Save Property</button>'
+    + '<div id="upload-status"></div>'
+    + '<div class="media-preview-grid" id="media-preview"></div>'
+    + '<button class="btn-next" id="save-prop-btn" onclick="saveProp()">Save Property</button>'
     + '</div>';
+
+  // Render existing media
+  renderModalMediaPreview();
   document.getElementById('modal-overlay').classList.remove('hidden');
 }
 
-function handleUpload(e) {
+function renderModalMediaPreview() {
   var preview = document.getElementById('media-preview');
-  Array.from(e.target.files).forEach(function(f) {
-    var url = URL.createObjectURL(f);
-    var type = f.type.startsWith('video') ? 'video' : 'image';
-    pendingMedia.push({url: url, type: type});
-    var el;
-    if (type === 'video') {
-      el = document.createElement('video');
-      el.muted = true; el.autoplay = true; el.loop = true;
-    } else {
-      el = document.createElement('img');
-    }
-    el.src = url;
-    el.style.cssText = 'width:72px;height:54px;object-fit:cover;border-radius:6px';
-    preview.appendChild(el);
-  });
+  if (!preview) return;
+  preview.innerHTML = pendingMedia.map(function(m, i) {
+    var content = m.type === 'video'
+      ? '<video src="' + m.url + '" muted style="width:100%;height:100%;object-fit:cover"></video>'
+      : '<img src="' + m.url + '" style="width:100%;height:100%;object-fit:cover">';
+    return '<div class="media-preview-item">' + content
+      + '<button class="media-remove" onclick="removePendingMedia(' + i + ')">×</button>'
+      + '</div>';
+  }).join('');
 }
 
-function saveProp() {
+function removePendingMedia(i) {
+  pendingMedia.splice(i, 1);
+  renderModalMediaPreview();
+}
+
+async function handleUpload(e) {
+  var files = Array.from(e.target.files);
+  if (!files.length) return;
+
+  var statusEl = document.getElementById('upload-status');
+  var saveBtn = document.getElementById('save-prop-btn');
+  if (saveBtn) saveBtn.disabled = true;
+  uploadingFiles = true;
+
+  for (var fi = 0; fi < files.length; fi++) {
+    var f = files[fi];
+    var idx = fi;
+    if (statusEl) statusEl.innerHTML = '<div class="upload-progress">⬆️ Uploading ' + (fi+1) + ' of ' + files.length + ': ' + f.name + '…</div>';
+    try {
+      var result = await uploadToCloudinary(f, function(pct) {
+        if (statusEl) statusEl.innerHTML = '<div class="upload-progress">⬆️ Uploading ' + (idx+1) + ' of ' + files.length + ': ' + pct + '%</div>';
+      });
+      pendingMedia.push(result);
+      renderModalMediaPreview();
+    } catch(err) {
+      if (statusEl) statusEl.innerHTML = '<div style="color:var(--danger);font-size:13px">❌ Upload failed for ' + f.name + ': ' + err.message + '</div>';
+    }
+  }
+
+  if (statusEl) statusEl.innerHTML = '<div style="color:var(--accent);font-size:13px">✅ All uploads complete — hosted on Cloudinary</div>';
+  if (saveBtn) saveBtn.disabled = false;
+  uploadingFiles = false;
+  e.target.value = '';
+}
+
+async function saveProp() {
+  if (uploadingFiles) { alert('Please wait for uploads to finish.'); return; }
   var title = document.getElementById('mp-title').value.trim();
   if (!title) { alert('Please enter a property title.'); return; }
   var np = {
@@ -966,12 +1308,13 @@ function saveProp() {
     type: document.getElementById('mp-type').value,
     status: document.getElementById('mp-status').value,
     desc: document.getElementById('mp-desc').value,
-    media: pendingMedia.length ? pendingMedia : (editingPropIdx >= 0 ? properties[editingPropIdx].media : [])
+    media: pendingMedia
   };
   if (editingPropIdx < 0) properties.push(np);
   else properties[editingPropIdx] = np;
   closeModal();
   renderPropAdminList();
+  await saveData();
 }
 
 // ── ADMIN REVIEWS ──────────────────────────────────────
@@ -988,8 +1331,13 @@ function renderReviewAdminList() {
   }).join('') || '<p style="color:var(--muted)">No reviews yet.</p>';
 }
 
-function deleteReview(i) {
-  if (confirm('Delete this review?')) { reviews.splice(i, 1); renderReviewAdminList(); renderHomeReviews(); }
+async function deleteReview(i) {
+  if (confirm('Delete this review?')) {
+    reviews.splice(i, 1);
+    renderReviewAdminList();
+    renderHomeReviews();
+    await saveData();
+  }
 }
 
 function openReviewModal() {
@@ -1006,7 +1354,7 @@ function openReviewModal() {
   document.getElementById('modal-overlay').classList.remove('hidden');
 }
 
-function saveReview() {
+async function saveReview() {
   reviews.push({
     name: document.getElementById('rv-name').value || 'Anonymous',
     rating: Math.min(5, Math.max(1, +document.getElementById('rv-rating').value || 5)),
@@ -1016,12 +1364,28 @@ function saveReview() {
   closeModal();
   renderReviewAdminList();
   renderHomeReviews();
+  await saveData();
 }
 
 function closeModal() { document.getElementById('modal-overlay').classList.add('hidden'); }
 
+// ── SEED REVIEWS (only if empty) ───────────────────────
+function seedReviewsIfEmpty() {
+  if (!reviews.length) {
+    reviews = [
+      {name:'Marcus J.',rating:5,text:'HomeNest made the process incredibly simple. We were qualified within 3 days and are now in our dream home!',date:'Mar 2025'},
+      {name:'Priya S.',rating:5,text:'Professional, transparent, and fast. Finally a housing program that actually responds to applicants.',date:'Feb 2025'},
+      {name:'David R.',rating:4,text:'Great experience overall. The team was helpful and the property matched exactly what we needed.',date:'Jan 2025'}
+    ];
+  }
+}
+
 // ── BOOT ───────────────────────────────────────────────
-seedData();
+loadData().then(function() {
+  seedReviewsIfEmpty();
+  renderHomeReviews();
+  updateStatCount();
+});
 go('home');
 </script>
 </body>
