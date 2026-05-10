@@ -10,6 +10,7 @@
   --primary:#1a3c5e;--primary-light:#2563a8;--accent:#10b981;--accent-light:#d1fae5;
   --danger:#ef4444;--warn:#f59e0b;--bg:#f8fafc;--card:#fff;--border:#e2e8f0;
   --text:#1e293b;--muted:#64748b;--radius:12px;
+  --btc-orange:#f7931a;--btc-light:#fff7ed;--gc-purple:#7c3aed;--gc-light:#f5f3ff;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
 button{cursor:pointer;font-family:inherit;font-size:14px}
@@ -113,13 +114,72 @@ nav{background:var(--primary);padding:14px 24px;display:flex;align-items:center;
 .btn-next:hover{background:var(--primary-light)}
 
 /* PAYMENT */
-.pay-methods{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+.pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.pay-methods-row2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 14px}
 .pay-btn{border:2px solid var(--border);background:#fff;padding:12px 8px;border-radius:10px;text-align:center;cursor:pointer;transition:.2s;font-size:13px;font-weight:500;color:var(--text)}
 .pay-btn:hover,.pay-btn.active{border-color:var(--primary);background:#eff6ff}
+.pay-btn.btc-btn:hover,.pay-btn.btc-btn.active{border-color:var(--btc-orange);background:var(--btc-light)}
+.pay-btn.gc-btn:hover,.pay-btn.gc-btn.active{border-color:var(--gc-purple);background:var(--gc-light)}
 .card-fields{display:grid;gap:11px;margin-top:14px;padding:14px;background:#f8fafc;border-radius:10px;border:1px solid var(--border)}
 .secure-note{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:8px}
 .check-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);margin-top:10px}
 .check-row input{width:auto;margin-top:3px}
+
+/* BITCOIN PANEL */
+.btc-panel{background:var(--btc-light);border:2px solid var(--btc-orange);border-radius:12px;padding:18px;margin-top:14px}
+.btc-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.btc-icon{font-size:28px}
+.btc-title{font-weight:700;font-size:16px;color:#92400e}
+.btc-subtitle{font-size:12px;color:#b45309}
+.btc-qr-wrap{background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:14px;border:1px solid #fed7aa}
+.btc-qr-canvas{width:140px;height:140px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.btc-address-box{background:#1a1a2e;color:#f7931a;font-family:monospace;font-size:12px;border-radius:8px;padding:10px 14px;word-break:break-all;letter-spacing:.5px;position:relative;margin-bottom:10px;border:1px solid #f7931a30}
+.copy-addr-btn{position:absolute;top:8px;right:8px;background:#f7931a;border:none;color:#fff;font-size:11px;border-radius:4px;padding:3px 8px;cursor:pointer;font-weight:600}
+.btc-amount-box{background:#fff;border:1px solid #fed7aa;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:10px}
+.btc-amount{font-weight:700;color:#92400e;font-size:15px}
+.btc-steps{display:grid;gap:8px;margin-bottom:12px}
+.btc-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#78350f}
+.btc-step-num{background:#f7931a;color:#fff;font-weight:700;font-size:10px;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.btc-confirm-note{background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:8px 12px;font-size:12px;color:#92400e;margin-bottom:10px}
+.btc-txid-input{font-family:monospace;font-size:12px}
+
+/* GIFT CARD PANEL */
+.gc-panel{background:var(--gc-light);border:2px solid var(--gc-purple);border-radius:12px;padding:18px;margin-top:14px}
+.gc-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.gc-icon{font-size:28px}
+.gc-title{font-weight:700;font-size:16px;color:#4c1d95}
+.gc-subtitle{font-size:12px;color:#6d28d9}
+.gc-brands{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.gc-brand{background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;color:#5b21b6;cursor:pointer;transition:.2s}
+.gc-brand:hover,.gc-brand.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
+.gc-upload-zone{border:2px dashed #c4b5fd;border-radius:10px;padding:22px;text-align:center;background:#faf5ff;cursor:pointer;transition:.2s;margin-bottom:12px}
+.gc-upload-zone:hover{border-color:#7c3aed;background:#f5f3ff}
+.gc-upload-icon{font-size:32px;margin-bottom:8px}
+.gc-preview-wrap{display:grid;gap:8px;margin-bottom:12px}
+.gc-preview-item{position:relative;border-radius:8px;overflow:hidden;border:2px solid #c4b5fd}
+.gc-preview-item img{width:100%;max-height:200px;object-fit:cover;display:block}
+.gc-remove-btn{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.7);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gc-note{background:#ede9fe;border:1px solid #c4b5fd;border-radius:6px;padding:8px 12px;font-size:12px;color:#4c1d95;margin-bottom:10px}
+.gc-fields{display:grid;gap:10px}
+.manual-pay-badge{display:inline-flex;align-items:center;gap:4px;background:#fef3c7;color:#92400e;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;margin-bottom:6px}
+
+/* ADMIN PAYMENT REVIEW */
+.pay-review-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;position:relative}
+.pay-review-card.btc-card{border-left:4px solid var(--btc-orange)}
+.pay-review-card.gc-card{border-left:4px solid var(--gc-purple)}
+.pay-method-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:8px}
+.btc-badge{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
+.gc-badge{background:#f5f3ff;color:#4c1d95;border:1px solid #c4b5fd}
+.pay-review-info{font-size:13px;color:var(--text);margin-bottom:10px;display:grid;gap:4px}
+.pay-review-info span{color:var(--muted)}
+.pay-action-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.approve-btn{background:var(--accent);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;transition:.2s}
+.approve-btn:hover{background:#059669}
+.reject-pay-btn{background:var(--danger);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;transition:.2s}
+.reject-pay-btn:hover{background:#dc2626}
+.gc-image-thumb{width:100%;max-height:160px;object-fit:cover;border-radius:8px;border:1px solid #c4b5fd;margin-bottom:8px;cursor:pointer}
+.pay-pending-dot{width:8px;height:8px;border-radius:50%;background:var(--warn);display:inline-block;margin-right:6px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* PASSWORD GATE */
 .pw-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.96);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px}
@@ -180,7 +240,7 @@ tr:last-child td{border-bottom:none}
 .row-sep{border-bottom:1px solid var(--border);padding:8px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px}
 .row-sep:last-child{border-bottom:none}
 
-/* Cloudinary upload progress */
+/* Cloudinary */
 .upload-progress{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:var(--primary);margin-top:8px}
 .media-preview-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .media-preview-item{position:relative;width:72px;height:54px;border-radius:6px;overflow:hidden}
@@ -199,9 +259,13 @@ tr:last-child td{border-bottom:none}
   .form-row{grid-template-columns:1fr}
   .kpi-row{grid-template-columns:1fr 1fr}
   .two-col{grid-template-columns:1fr}
-  .pay-methods{grid-template-columns:1fr 1fr}
+  .pay-methods{grid-template-columns:1fr 1fr 1fr}
+  .pay-methods-row2{grid-template-columns:1fr 1fr}
   .gallery-prev{left:-8px}
   .gallery-next{right:-8px}
+}
+@media(max-width:440px){
+  .pay-methods{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -349,6 +413,7 @@ tr:last-child td{border-bottom:none}
       <button class="admin-tab" onclick="aTab('applicants',this)">Applicants</button>
       <button class="admin-tab" onclick="aTab('properties',this)">Properties</button>
       <button class="admin-tab" onclick="aTab('reviews',this)">Reviews</button>
+      <button class="admin-tab" onclick="aTab('payments',this)" id="pay-tab-btn">💳 Payment Reviews <span id="pay-pending-count" style="display:none;background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px"></span></button>
     </div>
 
     <!-- DASHBOARD -->
@@ -377,7 +442,7 @@ tr:last-child td{border-bottom:none}
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Applicant</th><th>Location</th><th>Income</th><th>Credit</th><th>Status</th><th>Actions</th></tr></thead>
+          <thead><tr><th>Applicant</th><th>Location</th><th>Income</th><th>Credit</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody id="app-tbody"></tbody>
         </table>
       </div>
@@ -400,6 +465,32 @@ tr:last-child td{border-bottom:none}
       </div>
       <div id="review-admin-list"></div>
     </div>
+
+    <!-- PAYMENT REVIEWS -->
+    <div id="at-payments" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-weight:700;font-size:16px">Manual Payment Reviews</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:2px">Review Bitcoin transactions and Gift Card submissions from applicants.</div>
+        </div>
+        <button class="add-btn" onclick="loadData()">🔄 Refresh</button>
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+        <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px 16px;font-size:13px;flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">BITCOIN PENDING</div>
+          <div style="font-size:22px;font-weight:700;color:#92400e" id="kpi-btc-pending">0</div>
+        </div>
+        <div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:8px;padding:10px 16px;font-size:13px;flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">GIFT CARD PENDING</div>
+          <div style="font-size:22px;font-weight:700;color:#4c1d95" id="kpi-gc-pending">0</div>
+        </div>
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 16px;font-size:13px;flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--muted);font-weight:600;margin-bottom:2px">APPROVED THIS WEEK</div>
+          <div style="font-size:22px;font-weight:700;color:#065f46" id="kpi-pay-approved">0</div>
+        </div>
+      </div>
+      <div id="pay-review-list"></div>
+    </div>
   </div>
 </div>
 
@@ -411,6 +502,12 @@ tr:last-child td{border-bottom:none}
 <!-- DETAIL MODAL -->
 <div id="detail-overlay" class="modal-overlay hidden" onclick="if(event.target===this)closeDetail()">
   <div class="modal-box" id="detail-inner" style="max-width:560px"></div>
+</div>
+
+<!-- IMAGE LIGHTBOX (for gift card images in admin) -->
+<div id="img-lightbox" class="gallery-overlay hidden" onclick="document.getElementById('img-lightbox').classList.add('hidden');document.body.style.overflow=''">
+  <button class="gallery-close" onclick="document.getElementById('img-lightbox').classList.add('hidden');document.body.style.overflow=''">×</button>
+  <img id="img-lightbox-src" src="" style="max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain">
 </div>
 
 <script>
@@ -425,6 +522,9 @@ var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOU
 
 var ADMIN_PASSWORD = 'TriWealth3core1brothers';
 
+var BITCOIN_ADDRESS = 'bc1q6s678gzwp2ux5j7eymn7trvevl5f5e9l2k5ahx';
+var BITCOIN_FEE_USD = 35;
+
 // ── STATE ──────────────────────────────────────────────
 var currentPage = 'home';
 var appStep = 1;
@@ -433,15 +533,18 @@ var payMethod = 'card';
 var properties = [];
 var applicants = [];
 var reviews = [];
+var manualPayments = []; // {id, applicantId, applicantName, applicantEmail, method:'bitcoin'|'giftcard', status:'pending'|'approved'|'rejected', submittedAt, txId, gcBrand, gcImages, gcCodes, adminNote}
 var adminAuthed = false;
 var isSaving = false;
+
+// Gift card upload state (for apply form)
+var pendingGcImages = []; // base64 data urls for preview + upload
 
 // Gallery state
 var galleryMedia = [];
 var galleryIdx = 0;
 
 // ── JSONBIN ────────────────────────────────────────────
-// Proxies that forward custom headers (needed for private JSONBin bins)
 var PROXIES = [
   'https://corsproxy.io/?',
   'https://api.codetabs.com/v1/proxy?quest='
@@ -454,44 +557,29 @@ async function jbRequest(method, url, body) {
     'X-Bin-Versioning': 'false'
   };
   if (body) headers['Content-Type'] = 'application/json';
-
-  var fetchOpts = {
-    method: method,
-    headers: headers,
-    body: body ? JSON.stringify(body) : undefined
-  };
-
-  // 1) Try direct (works when hosted on a real domain)
+  var fetchOpts = { method: method, headers: headers, body: body ? JSON.stringify(body) : undefined };
   try {
     var r = await fetch(url, fetchOpts);
     if (r.ok) return await r.json();
-    // 401/403 = key issue, not a CORS issue — don't proxy
     if (r.status === 401 || r.status === 403) throw new Error('Auth error ' + r.status);
   } catch(e) {
     if (e.message.startsWith('Auth')) throw e;
-    // Network/CORS error — fall through to proxies
   }
-
-  // 2) Try each proxy in turn (they forward all headers)
   for (var i = 0; i < PROXIES.length; i++) {
     try {
-      var proxyUrl = PROXIES[i] + encodeURIComponent(url);
-      var pr = await fetch(proxyUrl, fetchOpts);
+      var pr = await fetch(PROXIES[i] + encodeURIComponent(url), fetchOpts);
       if (pr.ok) return await pr.json();
-    } catch(pe) {
-      // Try next proxy
-    }
+    } catch(pe) {}
   }
-
   throw new Error('All fetch attempts failed');
 }
 
 function applyData(data) {
-  // data could be the raw record or wrapped in {record:{…}}
   var rec = data.record || data;
-  if (Array.isArray(rec.properties)) properties = rec.properties;
-  if (Array.isArray(rec.applicants)) applicants = rec.applicants;
-  if (Array.isArray(rec.reviews))    reviews    = rec.reviews;
+  if (Array.isArray(rec.properties))    properties    = rec.properties;
+  if (Array.isArray(rec.applicants))    applicants    = rec.applicants;
+  if (Array.isArray(rec.reviews))       reviews       = rec.reviews;
+  if (Array.isArray(rec.manualPayments)) manualPayments = rec.manualPayments;
 }
 
 async function loadData() {
@@ -505,7 +593,6 @@ async function loadData() {
   } catch(e) {
     console.warn('JSONBin load:', e.message);
     setSyncStatus('offline');
-    // Site still works with seed/local data
   }
 }
 
@@ -514,7 +601,7 @@ async function saveData() {
   isSaving = true;
   setSyncStatus('saving');
   try {
-    await jbRequest('PUT', JSONBIN_URL, { properties, applicants, reviews });
+    await jbRequest('PUT', JSONBIN_URL, { properties, applicants, reviews, manualPayments });
     setSyncStatus('ok');
   } catch(e) {
     console.warn('JSONBin save:', e.message);
@@ -526,9 +613,8 @@ async function saveData() {
 function setSyncStatus(state) {
   var el = document.getElementById('sync-status');
   if (!el) return;
-  if (state === 'ok') { el.textContent = '✅ Synced'; el.className = 'sync-indicator sync-ok'; el.title = 'Data saved to cloud'; }
-  else if (state === 'err') { el.textContent = '⚠️ Sync Error'; el.className = 'sync-indicator sync-err'; el.title = 'Cloud sync failed'; }
-  else if (state === 'offline') { el.textContent = '📴 Local mode'; el.className = 'sync-indicator'; el.title = 'Host this file on GitHub Pages or Netlify for full cloud sync'; }
+  if (state === 'ok') { el.textContent = '✅ Synced'; el.className = 'sync-indicator sync-ok'; }
+  else if (state === 'offline') { el.textContent = '📴 Local mode'; el.className = 'sync-indicator'; }
   else if (state === 'saving') { el.textContent = '💾 Saving…'; el.className = 'sync-indicator'; }
   else { el.textContent = '⏳ Loading…'; el.className = 'sync-indicator'; }
 }
@@ -550,23 +636,26 @@ async function uploadToCloudinary(file, onProgress) {
   var fd = new FormData();
   fd.append('file', file);
   fd.append('upload_preset', CLOUDINARY_PRESET);
-
   return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', CLOUDINARY_UPLOAD_URL, true);
-    xhr.upload.onprogress = function(e) {
-      if (e.lengthComputable && onProgress) onProgress(Math.round(e.loaded/e.total*100));
-    };
+    xhr.upload.onprogress = function(e) { if (e.lengthComputable && onProgress) onProgress(Math.round(e.loaded/e.total*100)); };
     xhr.onload = function() {
-      if (xhr.status === 200) {
-        var res = JSON.parse(xhr.responseText);
-        resolve({ url: res.secure_url, type: res.resource_type === 'video' ? 'video' : 'image' });
-      } else {
-        reject(new Error('Upload failed: ' + xhr.status));
-      }
+      if (xhr.status === 200) { var res = JSON.parse(xhr.responseText); resolve({ url: res.secure_url, type: res.resource_type === 'video' ? 'video' : 'image' }); }
+      else reject(new Error('Upload failed: ' + xhr.status));
     };
     xhr.onerror = function() { reject(new Error('Network error')); };
     xhr.send(fd);
+  });
+}
+
+// Convert file to base64 for gift card previews stored locally
+function fileToBase64(file) {
+  return new Promise(function(resolve, reject) {
+    var r = new FileReader();
+    r.onload = function(e) { resolve(e.target.result); };
+    r.onerror = function() { reject(new Error('Read failed')); };
+    r.readAsDataURL(file);
   });
 }
 
@@ -602,10 +691,7 @@ function togglePwVis() {
   inp.type = inp.type === 'password' ? 'text' : 'password';
 }
 
-function adminLogout() {
-  adminAuthed = false;
-  go('home');
-}
+function adminLogout() { adminAuthed = false; go('home'); }
 
 // ── GALLERY ────────────────────────────────────────────
 function openGallery(media) {
@@ -621,37 +707,21 @@ function openGallery(media) {
 function closeGallery() {
   document.getElementById('gallery-overlay').classList.add('hidden');
   document.body.style.overflow = '';
-  // Pause any videos
   document.querySelectorAll('#gallery-main-content video').forEach(function(v){ v.pause(); });
 }
 
-function galleryNav(dir) {
-  galleryIdx = (galleryIdx + dir + galleryMedia.length) % galleryMedia.length;
-  renderGalleryMain();
-  renderGalleryThumbs();
-}
-
-function galleryGoTo(idx) {
-  galleryIdx = idx;
-  renderGalleryMain();
-  renderGalleryThumbs();
-}
+function galleryNav(dir) { galleryIdx = (galleryIdx + dir + galleryMedia.length) % galleryMedia.length; renderGalleryMain(); renderGalleryThumbs(); }
+function galleryGoTo(idx) { galleryIdx = idx; renderGalleryMain(); renderGalleryThumbs(); }
 
 function renderGalleryMain() {
   var m = galleryMedia[galleryIdx];
-  var el;
-  if (m.type === 'video') {
-    el = '<video src="' + m.url + '" controls autoplay style="max-width:100%;max-height:70vh;border-radius:10px"></video>';
-  } else {
-    el = '<img src="' + m.url + '" style="max-width:100%;max-height:70vh;border-radius:10px;object-fit:contain">';
-  }
+  var el = m.type === 'video'
+    ? '<video src="' + m.url + '" controls autoplay style="max-width:100%;max-height:70vh;border-radius:10px"></video>'
+    : '<img src="' + m.url + '" style="max-width:100%;max-height:70vh;border-radius:10px;object-fit:contain">';
   document.getElementById('gallery-main-content').innerHTML = el;
   document.getElementById('gallery-counter').textContent = (galleryIdx+1) + ' / ' + galleryMedia.length;
-  // Show/hide nav arrows
-  var prev = document.querySelector('.gallery-prev');
-  var next = document.querySelector('.gallery-next');
-  prev.style.display = galleryMedia.length > 1 ? '' : 'none';
-  next.style.display = galleryMedia.length > 1 ? '' : 'none';
+  document.querySelector('.gallery-prev').style.display = galleryMedia.length > 1 ? '' : 'none';
+  document.querySelector('.gallery-next').style.display = galleryMedia.length > 1 ? '' : 'none';
 }
 
 function renderGalleryThumbs() {
@@ -664,12 +734,12 @@ function renderGalleryThumbs() {
   }).join('');
 }
 
-// Keyboard navigation
 document.addEventListener('keydown', function(e) {
-  if (document.getElementById('gallery-overlay').classList.contains('hidden')) return;
-  if (e.key === 'ArrowLeft') galleryNav(-1);
-  if (e.key === 'ArrowRight') galleryNav(1);
-  if (e.key === 'Escape') closeGallery();
+  if (!document.getElementById('gallery-overlay').classList.contains('hidden')) {
+    if (e.key === 'ArrowLeft') galleryNav(-1);
+    if (e.key === 'ArrowRight') galleryNav(1);
+    if (e.key === 'Escape') closeGallery();
+  }
 });
 
 // ── NAVIGATION ─────────────────────────────────────────
@@ -685,7 +755,7 @@ function go(page) {
   if (page === 'home')     { renderHomeReviews(); updateStatCount(); }
   if (page === 'listings') renderListings();
   if (page === 'sold')     renderSold();
-  if (page === 'apply')    { appStep=1; formData={}; renderStep(); }
+  if (page === 'apply')    { appStep=1; formData={}; pendingGcImages=[]; renderStep(); }
   if (page === 'admin')    { loadData().then(renderAdmin); }
 }
 
@@ -708,11 +778,8 @@ function renderListings() {
     var mediaBadge = p.media && p.media.length > 0 ? '<div class="media-count-badge">📷 ' + p.media.length + '</div>' : '';
     return '<div class="prop-card">'
       + '<div class="prop-media-box" onclick="' + (p.media&&p.media.length?'openGallery(properties['+properties.indexOf(p)+'].media)':'') + '">'
-      + mediaCoverEl(p.media)
-      + mediaBadge
-      + '</div>'
-      + '<div class="prop-info">'
-      + '<span class="prop-tag">Rent-to-Own</span>'
+      + mediaCoverEl(p.media) + mediaBadge + '</div>'
+      + '<div class="prop-info"><span class="prop-tag">Rent-to-Own</span>'
       + '<div class="prop-title">' + p.title + '</div>'
       + '<div class="prop-loc">📍 ' + p.location + '</div>'
       + '<div class="prop-price">' + p.price + '</div>'
@@ -724,10 +791,7 @@ function renderListings() {
   }).join('');
 }
 
-function startApplyProp(id) {
-  formData.propId = id;
-  go('apply');
-}
+function startApplyProp(id) { formData.propId = id; go('apply'); }
 
 function renderSold() {
   var done = properties.filter(function(p){ return p.status !== 'available'; });
@@ -736,13 +800,9 @@ function renderSold() {
   grid.innerHTML = done.map(function(p) {
     var label = p.status === 'sold' ? 'SOLD' : 'RENTED';
     var cls = p.status === 'sold' ? '' : ' rented';
-    return '<div class="sold-card">'
-      + '<div class="prop-media-box" style="height:160px">' + mediaCoverEl(p.media) + '</div>'
+    return '<div class="sold-card"><div class="prop-media-box" style="height:160px">' + mediaCoverEl(p.media) + '</div>'
       + '<div class="sold-overlay"><div class="sold-badge' + cls + '">' + label + '</div></div>'
-      + '<div class="prop-info"><div class="prop-title">' + p.title + '</div>'
-      + '<div class="prop-loc">📍 ' + p.location + '</div>'
-      + '<div class="prop-price">' + p.price + '</div></div>'
-      + '</div>';
+      + '<div class="prop-info"><div class="prop-title">' + p.title + '</div><div class="prop-loc">📍 ' + p.location + '</div><div class="prop-price">' + p.price + '</div></div></div>';
   }).join('');
 }
 
@@ -752,8 +812,7 @@ function renderHomeReviews() {
     return '<div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px">'
       + '<div class="stars">' + '★'.repeat(r.rating) + '☆'.repeat(5-r.rating) + '</div>'
       + '<p style="font-size:14px;margin:8px 0">' + r.text + '</p>'
-      + '<div style="font-size:12px;color:var(--muted)">— ' + r.name + ' · ' + r.date + '</div>'
-      + '</div>';
+      + '<div style="font-size:12px;color:var(--muted)">— ' + r.name + ' · ' + r.date + '</div></div>';
   }).join('');
 }
 
@@ -777,7 +836,7 @@ function renderStep() {
     + (appStep > 1 ? '<button class="btn-back" onclick="prevStep()">← Back</button>' : '')
     + (appStep < 6
         ? '<button class="btn-next" onclick="nextStep()">Continue →</button>'
-        : '<button class="btn-next" id="submit-btn" onclick="submitApp()">Submit & Pay $35 →</button>')
+        : '<button class="btn-next" id="submit-btn" onclick="submitApp()">Submit Application →</button>')
     + '</div>';
   document.getElementById('form-body').innerHTML = html;
   bindRadios();
@@ -786,9 +845,7 @@ function renderStep() {
 function radioOpt(name, val, lbl, sel) {
   var checked = sel === val ? ' checked' : '';
   var cls = sel === val ? ' selected' : '';
-  return '<label class="radio-opt' + cls + '">'
-    + '<input type="radio" name="' + name + '" value="' + val + '"' + checked + '> ' + lbl
-    + '</label>';
+  return '<label class="radio-opt' + cls + '"><input type="radio" name="' + name + '" value="' + val + '"' + checked + '> ' + lbl + '</label>';
 }
 
 function getStepHTML() {
@@ -888,12 +945,6 @@ function getStepHTML() {
   }
 
   if (appStep === 6) {
-    var payBtns = ['card','apple','google','ach'];
-    var payLabels = {'card':'💳 Card','apple':' Apple Pay','google':'G Google Pay','ach':'🏦 ACH Transfer'};
-    var payHTML = payBtns.map(function(m) {
-      return '<div class="pay-btn' + (payMethod===m?' active':'') + '" onclick="selectPay(\''+m+'\')">'
-        + payLabels[m] + '</div>';
-    }).join('');
     return ''
     + '<div class="disclaimer-box">⚠️ <strong>Important:</strong> Submitting this form does not guarantee approval or placement. All applications are reviewed for eligibility. HomeNest complies with all Fair Housing regulations.</div>'
     + '<div class="success-box">🔒 Your data is encrypted and protected. We do not sell or share your information with third parties.</div>'
@@ -905,11 +956,26 @@ function getStepHTML() {
     + '<div>💼 ' + (formData.employment||'—') + ' · Income: ' + (formData.income||'—') + '</div>'
     + '<div>🏠 ' + (formData.intent||'—') + ' · ' + (formData.prop_type||'—') + '</div>'
     + '</div></div>'
-    + '<div style="font-weight:600;margin-bottom:6px">Processing & Verification Fee — $35.00</div>'
-    + '<div style="font-size:12px;color:var(--muted);margin-bottom:10px">Secure payment via Stripe. No cash or off-platform payments accepted.</div>'
-    + '<div class="pay-methods">' + payHTML + '</div>'
+    + '<div style="font-weight:600;margin-bottom:4px">Processing & Verification Fee — $35.00</div>'
+    + '<div style="font-size:12px;color:var(--muted);margin-bottom:12px">Choose your preferred payment method below.</div>'
+
+    // Row 1: Card, Apple Pay, Google Pay
+    + '<div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Online Payments</div>'
+    + '<div class="pay-methods">'
+    + '<div class="pay-btn' + (payMethod==='card'?' active':'') + '" onclick="selectPay(\'card\')">💳 Card</div>'
+    + '<div class="pay-btn' + (payMethod==='apple'?' active':'') + '" onclick="selectPay(\'apple\')"> Apple Pay</div>'
+    + '<div class="pay-btn' + (payMethod==='google'?' active':'') + '" onclick="selectPay(\'google\')">G Pay</div>'
+    + '</div>'
+
+    // Row 2: Bitcoin, Gift Card
+    + '<div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Manual Payments</div>'
+    + '<div class="pay-methods-row2">'
+    + '<div class="pay-btn btc-btn' + (payMethod==='bitcoin'?' active':'') + '" onclick="selectPay(\'bitcoin\')">₿ Bitcoin</div>'
+    + '<div class="pay-btn gc-btn' + (payMethod==='giftcard'?' active':'') + '" onclick="selectPay(\'giftcard\')">🎁 Gift Card</div>'
+    + '</div>'
+
     + '<div id="pay-fields-wrap"></div>'
-    + '<div class="secure-note">🔒 Payments secured by Stripe — 256-bit encryption</div>'
+    + '<div class="secure-note">🔒 All payment information is securely processed and protected.</div>'
     + '<div class="check-row"><input type="checkbox" id="chk1"><span>I confirm all information provided is accurate and complete to the best of my knowledge.</span></div>'
     + '<div class="check-row"><input type="checkbox" id="chk2"><span>I agree to the <a href="#" style="color:var(--primary-light)">Terms & Conditions</a> and <a href="#" style="color:var(--primary-light)">Privacy Policy</a>. I understand submission does not guarantee approval.</span></div>';
   }
@@ -943,6 +1009,7 @@ function selectPay(m) {
 function renderPayFields() {
   var el = document.getElementById('pay-fields-wrap');
   if (!el) return;
+
   if (payMethod === 'card') {
     el.innerHTML = '<div class="card-fields">'
       + '<div class="field"><label>Card Number</label><input placeholder="•••• •••• •••• ••••" maxlength="19"></div>'
@@ -954,12 +1021,184 @@ function renderPayFields() {
       + '<div class="field"><label>Routing Number</label><input placeholder="9-digit routing number"></div>'
       + '<div class="field"><label>Account Number</label><input placeholder="Account number"></div>'
       + '</div>';
-  } else {
+  } else if (payMethod === 'apple' || payMethod === 'google') {
     var name = payMethod === 'apple' ? 'Apple Pay' : 'Google Pay';
     el.innerHTML = '<div style="text-align:center;padding:18px;color:var(--muted);font-size:13px;background:#f8fafc;border-radius:10px;border:1px solid var(--border)">You will be redirected to complete ' + name + ' checkout after submission.</div>';
+  } else if (payMethod === 'bitcoin') {
+    el.innerHTML = renderBitcoinPanel();
+  } else if (payMethod === 'giftcard') {
+    el.innerHTML = renderGiftCardPanel();
+    // Re-attach file input handler after DOM inject
+    var inp = document.getElementById('gc-file-input');
+    if (inp) inp.addEventListener('change', handleGcFileUpload);
+    renderGcImagePreviews();
   }
 }
 
+// ── BITCOIN PANEL ──────────────────────────────────────
+function renderBitcoinPanel() {
+  // Simple SVG QR-like placeholder (real implementation would use a QR library)
+  var qrSvg = '<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect width="120" height="120" fill="white"/>'
+    // Position detection patterns
+    + '<rect x="8" y="8" width="28" height="28" rx="2" fill="#111"/>'
+    + '<rect x="12" y="12" width="20" height="20" rx="1" fill="white"/>'
+    + '<rect x="15" y="15" width="14" height="14" rx="1" fill="#111"/>'
+    + '<rect x="84" y="8" width="28" height="28" rx="2" fill="#111"/>'
+    + '<rect x="88" y="12" width="20" height="20" rx="1" fill="white"/>'
+    + '<rect x="91" y="15" width="14" height="14" rx="1" fill="#111"/>'
+    + '<rect x="8" y="84" width="28" height="28" rx="2" fill="#111"/>'
+    + '<rect x="12" y="88" width="20" height="20" rx="1" fill="white"/>'
+    + '<rect x="15" y="91" width="14" height="14" rx="1" fill="#111"/>'
+    // Data modules pattern
+    + '<rect x="44" y="8" width="6" height="6" fill="#111"/><rect x="56" y="8" width="6" height="6" fill="#111"/>'
+    + '<rect x="50" y="14" width="6" height="6" fill="#111"/><rect x="62" y="8" width="6" height="6" fill="#111"/>'
+    + '<rect x="68" y="14" width="6" height="6" fill="#111"/>'
+    + '<rect x="8" y="44" width="6" height="6" fill="#111"/><rect x="8" y="56" width="6" height="6" fill="#111"/>'
+    + '<rect x="8" y="62" width="6" height="6" fill="#111"/><rect x="14" y="50" width="6" height="6" fill="#111"/>'
+    + '<rect x="44" y="44" width="6" height="6" fill="#111"/><rect x="50" y="50" width="6" height="6" fill="#111"/>'
+    + '<rect x="56" y="44" width="6" height="6" fill="#111"/><rect x="62" y="56" width="6" height="6" fill="#111"/>'
+    + '<rect x="68" y="44" width="6" height="6" fill="#111"/><rect x="44" y="56" width="6" height="6" fill="#111"/>'
+    + '<rect x="50" y="62" width="6" height="6" fill="#111"/><rect x="56" y="68" width="6" height="6" fill="#111"/>'
+    + '<rect x="62" y="62" width="6" height="6" fill="#111"/><rect x="68" y="68" width="6" height="6" fill="#111"/>'
+    + '<rect x="44" y="68" width="6" height="6" fill="#111"/><rect x="50" y="74" width="6" height="6" fill="#111"/>'
+    + '<rect x="74" y="44" width="6" height="6" fill="#111"/><rect x="80" y="50" width="6" height="6" fill="#111"/>'
+    + '<rect x="74" y="56" width="6" height="6" fill="#111"/><rect x="80" y="62" width="6" height="6" fill="#111"/>'
+    + '<rect x="74" y="68" width="6" height="6" fill="#111"/><rect x="80" y="74" width="6" height="6" fill="#111"/>'
+    + '<rect x="86" y="44" width="6" height="6" fill="#111"/><rect x="92" y="50" width="6" height="6" fill="#111"/>'
+    + '<rect x="86" y="62" width="6" height="6" fill="#111"/><rect x="98" y="44" width="6" height="6" fill="#111"/>'
+    + '<rect x="104" y="50" width="6" height="6" fill="#111"/><rect x="98" y="62" width="6" height="6" fill="#111"/>'
+    + '<rect x="104" y="68" width="6" height="6" fill="#111"/>'
+    + '<text x="60" y="113" text-anchor="middle" font-size="6" fill="#f7931a" font-family="monospace">₿ BTC</text>'
+    + '</svg>';
+
+  return '<div class="btc-panel">'
+    + '<div class="btc-header">'
+    + '<div class="btc-icon">₿</div>'
+    + '<div><div class="btc-title">Bitcoin Payment</div><div class="btc-subtitle">Send exactly $35 USD worth of BTC to the address below</div></div>'
+    + '</div>'
+    + '<div class="manual-pay-badge">⏳ Requires Manual Approval</div>'
+    + '<div class="btc-qr-wrap">'
+    + '<div class="btc-qr-canvas">' + qrSvg + '</div>'
+    + '<div style="font-size:12px;color:var(--muted);text-align:center">Scan to pay or copy address below</div>'
+    + '</div>'
+    + '<div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600">Bitcoin Wallet Address:</div>'
+    + '<div class="btc-address-box" id="btc-addr-box">'
+    + BITCOIN_ADDRESS
+    + '<button class="copy-addr-btn" onclick="copyBtcAddress()" id="copy-btn">Copy</button>'
+    + '</div>'
+    + '<div class="btc-amount-box">'
+    + '<span style="color:var(--muted)">Amount to send (USD equivalent):</span>'
+    + '<span class="btc-amount">$35.00 USD in BTC</span>'
+    + '</div>'
+    + '<div class="btc-steps">'
+    + '<div class="btc-step"><div class="btc-step-num">1</div><span>Open your Bitcoin wallet app (Coinbase, Cash App, Trust Wallet, etc.)</span></div>'
+    + '<div class="btc-step"><div class="btc-step-num">2</div><span>Send exactly <strong>$35 USD worth of BTC</strong> to the wallet address above.</span></div>'
+    + '<div class="btc-step"><div class="btc-step-num">3</div><span>Copy your <strong>Transaction ID (TxID/Hash)</strong> from your wallet after sending.</span></div>'
+    + '<div class="btc-step"><div class="btc-step-num">4</div><span>Paste the Transaction ID in the field below and submit your application.</span></div>'
+    + '</div>'
+    + '<div class="btc-confirm-note">⚠️ Your application will be placed in <strong>Pending Review</strong> status until our team confirms receipt of your Bitcoin payment. This usually takes 1–3 business days.</div>'
+    + '<div class="field"><label>Bitcoin Transaction ID (TxID) *</label><input id="btc-txid" class="btc-txid-input" placeholder="e.g. 3a1b2c3d4e5f6789abcdef..." value="' + (formData.btcTxId||'') + '"></div>'
+    + '</div>';
+}
+
+function copyBtcAddress() {
+  navigator.clipboard.writeText(BITCOIN_ADDRESS).then(function() {
+    var btn = document.getElementById('copy-btn');
+    if (btn) { btn.textContent = '✓ Copied!'; setTimeout(function(){ if(btn) btn.textContent = 'Copy'; }, 2000); }
+  }).catch(function() {
+    // Fallback: select the text
+    var box = document.getElementById('btc-addr-box');
+    if (box) {
+      var range = document.createRange();
+      range.selectNodeContents(box);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+    }
+  });
+}
+
+// ── GIFT CARD PANEL ────────────────────────────────────
+var gcBrandSelected = '';
+
+function renderGiftCardPanel() {
+  var brands = ['Amazon','Walmart','Target','Best Buy','Google Play','iTunes','eBay','Steam','Vanilla Visa','PayPal'];
+  var brandsHTML = brands.map(function(b) {
+    return '<div class="gc-brand' + (gcBrandSelected===b?' selected':'') + '" onclick="selectGcBrand(\''+b+'\')">' + b + '</div>';
+  }).join('');
+
+  return '<div class="gc-panel">'
+    + '<div class="gc-header"><div class="gc-icon">🎁</div>'
+    + '<div><div class="gc-title">Gift Card Payment</div><div class="gc-subtitle">$35 value gift card required</div></div>'
+    + '</div>'
+    + '<div class="manual-pay-badge">⏳ Requires Manual Approval</div>'
+    + '<div class="gc-note">📋 <strong>Accepted brands:</strong> Amazon, Walmart, Target, Best Buy, Google Play, iTunes, and other major retailers. Our team will verify the card and confirm it is valid and unused before approving your application.</div>'
+    + '<div class="field" style="margin-bottom:14px"><label>Select Gift Card Brand *</label>'
+    + '<div class="gc-brands" id="gc-brands-wrap">' + brandsHTML + '</div>'
+    + '<div class="field" style="margin-top:6px"><label>Or type brand name</label><input id="gc-brand-other" placeholder="Other brand…" oninput="gcBrandOtherInput(this.value)" value="' + (gcBrandSelected && !brands.includes(gcBrandSelected) ? gcBrandSelected : '') + '"></div>'
+    + '</div>'
+    + '<div class="field"><label>Card Code / PIN *</label><input id="gc-code" placeholder="Enter the card number and PIN/code" value="' + (formData.gcCode||'') + '"></div>'
+    + '<div class="field" style="margin-top:12px"><label>Upload Photo(s) of Gift Card *</label>'
+    + '<div class="gc-upload-zone" onclick="document.getElementById(\'gc-file-input\').click()">'
+    + '<div class="gc-upload-icon">📸</div>'
+    + '<div style="font-weight:600;font-size:14px">Tap to upload gift card photo</div>'
+    + '<div style="font-size:12px;color:var(--muted);margin-top:4px">Front and back photos recommended · JPG, PNG accepted</div>'
+    + '</div>'
+    + '<input type="file" id="gc-file-input" accept="image/*" multiple style="display:none">'
+    + '<div id="gc-image-previews"></div>'
+    + '</div>'
+    + '<div class="gc-note" style="margin-top:10px">🔒 Your gift card information is reviewed only by our verification team and never shared. Please do not spend or scratch the card until your application is confirmed.</div>'
+    + '</div>';
+}
+
+function selectGcBrand(brand) {
+  gcBrandSelected = brand;
+  formData.gcBrand = brand;
+  // Re-render brand pills
+  document.querySelectorAll('.gc-brand').forEach(function(el) {
+    el.classList.toggle('selected', el.textContent === brand);
+  });
+  var otherInput = document.getElementById('gc-brand-other');
+  if (otherInput) otherInput.value = '';
+}
+
+function gcBrandOtherInput(val) {
+  gcBrandSelected = val;
+  formData.gcBrand = val;
+  document.querySelectorAll('.gc-brand').forEach(function(el){ el.classList.remove('selected'); });
+}
+
+async function handleGcFileUpload(e) {
+  var files = Array.from(e.target.files);
+  if (!files.length) return;
+  for (var i = 0; i < files.length; i++) {
+    try {
+      var b64 = await fileToBase64(files[i]);
+      pendingGcImages.push(b64);
+    } catch(err) { console.warn('GC image read error:', err); }
+  }
+  renderGcImagePreviews();
+  e.target.value = '';
+}
+
+function renderGcImagePreviews() {
+  var el = document.getElementById('gc-image-previews');
+  if (!el) return;
+  if (!pendingGcImages.length) { el.innerHTML = ''; return; }
+  el.innerHTML = '<div class="gc-preview-wrap" style="margin-top:10px">'
+    + pendingGcImages.map(function(src, i) {
+      return '<div class="gc-preview-item"><img src="' + src + '" alt="Gift card">'
+        + '<button class="gc-remove-btn" onclick="removeGcImage(' + i + ')">×</button></div>';
+    }).join('')
+    + '</div>';
+}
+
+function removeGcImage(i) {
+  pendingGcImages.splice(i, 1);
+  renderGcImagePreviews();
+}
+
+// ── FORM SAVE / NAV ────────────────────────────────────
 function saveCurrentStep() {
   if (appStep === 1) {
     var n = document.getElementById('f-name'); if (n) formData.name = n.value;
@@ -979,6 +1218,12 @@ function saveCurrentStep() {
     var tl = document.getElementById('f-timeline'); if (tl) formData.timeline = tl.value;
   } else if (appStep === 5) {
     var nt = document.getElementById('f-notes'); if (nt) formData.notes = nt.value;
+  } else if (appStep === 6) {
+    // Capture bitcoin TxID
+    var txid = document.getElementById('btc-txid'); if (txid) formData.btcTxId = txid.value;
+    // Capture gift card code
+    var gcc = document.getElementById('gc-code'); if (gcc) formData.gcCode = gcc.value;
+    var gcbo = document.getElementById('gc-brand-other'); if (gcbo && gcbo.value) formData.gcBrand = gcbo.value;
   }
 }
 
@@ -1006,31 +1251,86 @@ async function submitApp() {
   if (!c1 || !c1.checked || !c2 || !c2.checked) { alert('Please check both confirmation boxes to proceed.'); return; }
   saveCurrentStep();
 
+  // Validate manual payment fields
+  if (payMethod === 'bitcoin') {
+    var txid = document.getElementById('btc-txid');
+    if (!txid || !txid.value.trim()) { alert('Please enter your Bitcoin Transaction ID (TxID) before submitting.'); return; }
+    formData.btcTxId = txid.value.trim();
+  }
+  if (payMethod === 'giftcard') {
+    if (!formData.gcBrand && !gcBrandSelected) { alert('Please select or enter the gift card brand.'); return; }
+    var gcc = document.getElementById('gc-code');
+    if (!gcc || !gcc.value.trim()) { alert('Please enter the gift card code/PIN.'); return; }
+    if (!pendingGcImages.length) { alert('Please upload at least one photo of your gift card.'); return; }
+    formData.gcCode = gcc.value.trim();
+    formData.gcBrand = gcBrandSelected || formData.gcBrand;
+  }
+
   var btn = document.getElementById('submit-btn');
   if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Submitting…'; }
 
   var id = 'HN-' + Math.floor(1000 + Math.random()*9000);
-  applicants.unshift({
+
+  // Build applicant record
+  var newApp = {
     id: id, name: formData.name||'Applicant', email: formData.email||'',
     city: formData.city||'', income: formData.income||'', credit: formData.credit||'',
     status: 'Pending', date: new Date().toISOString().split('T')[0],
     phone: formData.phone||'', employment: formData.employment||'',
     intent: formData.intent||'', timeline: formData.timeline||'',
     downpayment: formData.dprange||'', score: Math.floor(65+Math.random()*30),
-    notes: formData.notes||'', prop_type: formData.prop_type||''
-  });
+    notes: formData.notes||'', prop_type: formData.prop_type||'',
+    paymentMethod: payMethod
+  };
+
+  applicants.unshift(newApp);
+
+  // If manual payment — create a payment review record
+  if (payMethod === 'bitcoin' || payMethod === 'giftcard') {
+    var payRecord = {
+      id: 'PAY-' + Date.now(),
+      applicantId: id,
+      applicantName: formData.name||'Applicant',
+      applicantEmail: formData.email||'',
+      applicantPhone: formData.phone||'',
+      method: payMethod,
+      status: 'pending',
+      submittedAt: new Date().toISOString()
+    };
+    if (payMethod === 'bitcoin') {
+      payRecord.txId = formData.btcTxId;
+      payRecord.amount = '$35 USD in BTC';
+      payRecord.walletAddress = BITCOIN_ADDRESS;
+    } else {
+      payRecord.gcBrand = formData.gcBrand || gcBrandSelected;
+      payRecord.gcCode = formData.gcCode;
+      payRecord.gcImages = pendingGcImages.slice(); // base64 images
+      payRecord.amount = '$35 Gift Card';
+    }
+    manualPayments.unshift(payRecord);
+  }
 
   await saveData();
+
+  var payConfirmMsg = '';
+  if (payMethod === 'bitcoin') {
+    payConfirmMsg = '<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px;margin:12px 0;font-size:13px;color:#92400e">₿ <strong>Bitcoin Payment Received</strong><br>Your TxID has been recorded. Our team will verify the transaction (1–3 business days) and update your application status.</div>';
+  } else if (payMethod === 'giftcard') {
+    payConfirmMsg = '<div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:8px;padding:12px;margin:12px 0;font-size:13px;color:#4c1d95">🎁 <strong>Gift Card Submission Received</strong><br>Our team will verify your ' + (formData.gcBrand||'gift card') + ' card within 1–3 business days and update your application status.</div>';
+  } else {
+    payConfirmMsg = '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;margin:12px 0;font-size:13px;color:#166534">✅ <strong>Payment processed</strong></div>';
+  }
 
   document.getElementById('prog-fill').style.width = '100%';
   document.getElementById('form-body').innerHTML = ''
     + '<div style="text-align:center;padding:52px 0;max-width:460px;margin:0 auto">'
     + '<div style="width:66px;height:66px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px">✅</div>'
     + '<h2 style="font-size:24px;font-weight:700;margin-bottom:10px">Application Submitted!</h2>'
-    + '<p style="color:var(--muted);margin-bottom:6px">Thank you, <strong>' + (formData.name||'Applicant') + '</strong>. Your application has been received and your $35 processing fee has been recorded.</p>'
-    + '<p style="color:var(--muted);margin-bottom:16px">Your application ID:</p>'
-    + '<div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-weight:700;font-size:18px;letter-spacing:2px;display:inline-block;margin-bottom:16px">' + id + '</div>'
-    + '<p style="color:var(--muted);margin-bottom:24px">We will review your application within 2–3 business days and contact you at <strong>' + (formData.email||'your email') + '</strong>.</p>'
+    + '<p style="color:var(--muted);margin-bottom:6px">Thank you, <strong>' + (formData.name||'Applicant') + '</strong>. Your application has been received.</p>'
+    + '<p style="color:var(--muted);margin-bottom:8px">Your application ID:</p>'
+    + '<div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-weight:700;font-size:18px;letter-spacing:2px;display:inline-block;margin-bottom:12px">' + id + '</div>'
+    + payConfirmMsg
+    + '<p style="color:var(--muted);margin-bottom:24px">We will contact you at <strong>' + (formData.email||'your email') + '</strong> once your application and payment are confirmed.</p>'
     + '<button class="btn-primary" onclick="go(\'home\')">Return Home</button>'
     + '</div>';
 }
@@ -1043,10 +1343,12 @@ function renderAdmin() {
   renderApplicantsTable();
   renderPropAdminList();
   renderReviewAdminList();
+  renderPaymentReviews();
+  updatePayPendingBadge();
 }
 
 function aTab(name, btn) {
-  ['dashboard','applicants','properties','reviews'].forEach(function(t){
+  ['dashboard','applicants','properties','reviews','payments'].forEach(function(t){
     document.getElementById('at-' + t).classList.toggle('hidden', t !== name);
   });
   document.querySelectorAll('.admin-tab').forEach(function(b){ b.classList.remove('active'); });
@@ -1060,9 +1362,22 @@ function updateKPIs() {
   document.getElementById('kpi-notq').textContent = applicants.filter(function(a){ return a.status==='Not Qualified'; }).length;
 }
 
+function updatePayPendingBadge() {
+  var pending = manualPayments.filter(function(p){ return p.status === 'pending'; });
+  var badge = document.getElementById('pay-pending-count');
+  if (!badge) return;
+  if (pending.length > 0) { badge.textContent = pending.length; badge.style.display = 'inline'; }
+  else badge.style.display = 'none';
+}
+
 function sBadge(s) {
   var cls = {Pending:'s-pending',Reviewed:'s-reviewed',Qualified:'s-qualified','Not Qualified':'s-not'}[s] || 's-pending';
   return '<span class="status-badge ' + cls + '">' + s + '</span>';
+}
+
+function payMethodLabel(m) {
+  var map = {card:'💳 Card',apple:' Apple Pay',google:'G Pay',ach:'🏦 ACH',bitcoin:'₿ Bitcoin',giftcard:'🎁 Gift Card'};
+  return map[m] || m || '—';
 }
 
 function renderDashRecent() {
@@ -1079,11 +1394,13 @@ function renderDashStats() {
   var total = applicants.length;
   var qual = applicants.filter(function(a){ return a.status==='Qualified'; }).length;
   var avgScore = total ? Math.round(applicants.reduce(function(s,a){ return s+(a.score||0); },0)/total) : 0;
+  var payPending = manualPayments.filter(function(p){ return p.status==='pending'; }).length;
   el.innerHTML = '<div class="row-sep"><span style="color:var(--muted)">Total Applications</span><strong>' + total + '</strong></div>'
     + '<div class="row-sep"><span style="color:var(--muted)">Qualification Rate</span><strong style="color:var(--accent)">' + (total?Math.round(qual/total*100):0) + '%</strong></div>'
     + '<div class="row-sep"><span style="color:var(--muted)">Avg. Score</span><strong>' + avgScore + '</strong></div>'
     + '<div class="row-sep"><span style="color:var(--muted)">Active Listings</span><strong>' + properties.filter(function(p){ return p.status==='available'; }).length + '</strong></div>'
-    + '<div class="row-sep"><span style="color:var(--muted)">Sold / Rented</span><strong>' + properties.filter(function(p){ return p.status!=='available'; }).length + '</strong></div>';
+    + '<div class="row-sep"><span style="color:var(--muted)">Sold / Rented</span><strong>' + properties.filter(function(p){ return p.status!=='available'; }).length + '</strong></div>'
+    + '<div class="row-sep"><span style="color:var(--muted)">⏳ Manual Pay Pending</span><strong style="color:var(--warn)">' + payPending + '</strong></div>';
 }
 
 function renderApplicantsTable() {
@@ -1096,18 +1413,23 @@ function renderApplicantsTable() {
   });
   document.getElementById('app-tbody').innerHTML = list.map(function(a) {
     var idx = applicants.indexOf(a);
+    var payInfo = a.paymentMethod ? payMethodLabel(a.paymentMethod) : '—';
+    // Check if has pending manual payment
+    var hasPayPending = (a.paymentMethod === 'bitcoin' || a.paymentMethod === 'giftcard')
+      && manualPayments.some(function(p){ return p.applicantId === a.id && p.status === 'pending'; });
     return '<tr>'
       + '<td><div style="font-weight:500">' + a.name + '</div><div style="font-size:11px;color:var(--muted)">' + a.id + ' · ' + a.email + '</div></td>'
       + '<td>' + a.city + '</td>'
       + '<td>' + (a.income||'—') + '</td>'
       + '<td>' + (a.credit||'—') + '</td>'
+      + '<td>' + payInfo + (hasPayPending ? ' <span class="pay-pending-dot" title="Manual payment pending review"></span>' : '') + '</td>'
       + '<td>' + sBadge(a.status) + '</td>'
       + '<td style="white-space:nowrap">'
       + '<button class="action-btn" onclick="viewApplicant(' + idx + ')">View</button>'
       + '<button class="action-btn" onclick="setStatus(' + idx + ',\'Qualified\')">✓ Qualify</button>'
       + '<button class="action-btn" onclick="setStatus(' + idx + ',\'Not Qualified\')">✗ Reject</button>'
       + '</td></tr>';
-  }).join('') || '<tr><td colspan="6" style="text-align:center;padding:32px;color:var(--muted)">No applicants found.</td></tr>';
+  }).join('') || '<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted)">No applicants found.</td></tr>';
 }
 
 async function setStatus(idx, status) {
@@ -1120,6 +1442,27 @@ async function setStatus(idx, status) {
 
 function viewApplicant(idx) {
   var a = applicants[idx];
+  // Find associated manual payment if any
+  var manualPay = manualPayments.find(function(p){ return p.applicantId === a.id; });
+  var manualPayHtml = '';
+  if (manualPay) {
+    var payStatusColor = manualPay.status === 'approved' ? 'var(--accent)' : manualPay.status === 'rejected' ? 'var(--danger)' : 'var(--warn)';
+    if (manualPay.method === 'bitcoin') {
+      manualPayHtml = '<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px;margin-bottom:14px;font-size:13px">'
+        + '<div style="font-weight:700;color:#92400e;margin-bottom:6px">₿ Bitcoin Payment</div>'
+        + '<div style="color:var(--muted)">TxID: <span style="font-family:monospace;font-size:11px;color:var(--text)">' + (manualPay.txId||'—') + '</span></div>'
+        + '<div style="color:var(--muted);margin-top:4px">Status: <strong style="color:' + payStatusColor + '">' + manualPay.status.toUpperCase() + '</strong></div>'
+        + '</div>';
+    } else {
+      manualPayHtml = '<div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:8px;padding:12px;margin-bottom:14px;font-size:13px">'
+        + '<div style="font-weight:700;color:#4c1d95;margin-bottom:6px">🎁 Gift Card Payment</div>'
+        + '<div style="color:var(--muted)">Brand: <strong>' + (manualPay.gcBrand||'—') + '</strong></div>'
+        + '<div style="color:var(--muted)">Code: <span style="font-family:monospace;color:var(--text)">' + (manualPay.gcCode||'—') + '</span></div>'
+        + '<div style="color:var(--muted);margin-top:4px">Status: <strong style="color:' + payStatusColor + '">' + manualPay.status.toUpperCase() + '</strong></div>'
+        + '</div>';
+    }
+  }
+
   document.getElementById('detail-inner').innerHTML = ''
     + '<button class="modal-close-btn" onclick="closeDetail()">×</button>'
     + '<h3>' + a.name + '</h3>'
@@ -1134,7 +1477,9 @@ function viewApplicant(idx) {
     + detailRow('Employment', a.employment||'—') + detailRow('Income', a.income||'—')
     + detailRow('Credit Range', a.credit||'—') + detailRow('Down Payment', a.downpayment||'—')
     + detailRow('Intent', a.intent||'—') + detailRow('Timeline', a.timeline||'—')
+    + detailRow('Payment Method', payMethodLabel(a.paymentMethod))
     + '</div>'
+    + manualPayHtml
     + (a.notes ? '<div style="font-size:13px;margin-bottom:14px"><div style="color:var(--muted);margin-bottom:4px">Notes</div><div>' + a.notes + '</div></div>' : '')
     + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">'
     + '<button class="action-btn" style="background:var(--accent);color:#fff;border-color:var(--accent)" onclick="setStatus(' + idx + ',\'Qualified\');closeDetail()">✓ Qualify</button>'
@@ -1159,6 +1504,145 @@ async function saveNote(idx) {
 }
 
 function closeDetail() { document.getElementById('detail-overlay').classList.add('hidden'); }
+
+// ── PAYMENT REVIEWS (Admin) ────────────────────────────
+function renderPaymentReviews() {
+  var el = document.getElementById('pay-review-list');
+  if (!el) return;
+
+  // KPIs
+  var btcPending = manualPayments.filter(function(p){ return p.method==='bitcoin' && p.status==='pending'; }).length;
+  var gcPending = manualPayments.filter(function(p){ return p.method==='giftcard' && p.status==='pending'; }).length;
+  var approvedThisWeek = manualPayments.filter(function(p){
+    if (p.status !== 'approved') return false;
+    var d = new Date(p.approvedAt||p.submittedAt);
+    return (Date.now() - d.getTime()) < 7*24*60*60*1000;
+  }).length;
+  var kBtc = document.getElementById('kpi-btc-pending');
+  var kGc = document.getElementById('kpi-gc-pending');
+  var kAp = document.getElementById('kpi-pay-approved');
+  if (kBtc) kBtc.textContent = btcPending;
+  if (kGc) kGc.textContent = gcPending;
+  if (kAp) kAp.textContent = approvedThisWeek;
+
+  if (!manualPayments.length) {
+    el.innerHTML = '<div style="text-align:center;padding:44px;color:var(--muted)">'
+      + '<div style="font-size:40px;margin-bottom:12px">💳</div>'
+      + '<p>No manual payment submissions yet.</p>'
+      + '<p style="font-size:13px;margin-top:6px">Bitcoin and Gift Card payments submitted by applicants will appear here for review.</p>'
+      + '</div>';
+    return;
+  }
+
+  el.innerHTML = manualPayments.map(function(pay, i) {
+    var isBtc = pay.method === 'bitcoin';
+    var cardCls = isBtc ? 'btc-card' : 'gc-card';
+    var badgeCls = isBtc ? 'btc-badge' : 'gc-badge';
+    var methodLabel = isBtc ? '₿ Bitcoin' : '🎁 Gift Card';
+    var statusColor = pay.status === 'approved' ? 'var(--accent)' : pay.status === 'rejected' ? 'var(--danger)' : 'var(--warn)';
+    var statusLabel = pay.status === 'approved' ? '✅ Approved' : pay.status === 'rejected' ? '❌ Rejected' : '⏳ Pending Review';
+
+    var detailsHtml = '';
+    if (isBtc) {
+      detailsHtml = '<div class="pay-review-info">'
+        + '<div><span>Applicant:</span> <strong>' + pay.applicantName + '</strong> (' + pay.applicantEmail + ')</div>'
+        + '<div><span>App ID:</span> ' + pay.applicantId + '</div>'
+        + '<div><span>Amount:</span> ' + pay.amount + '</div>'
+        + '<div><span>Wallet Address:</span> <span style="font-family:monospace;font-size:11px;word-break:break-all">' + (pay.walletAddress||BITCOIN_ADDRESS) + '</span></div>'
+        + '<div><span>Transaction ID:</span></div>'
+        + '<div style="font-family:monospace;font-size:12px;background:#1a1a2e;color:#f7931a;padding:8px 12px;border-radius:6px;word-break:break-all;margin-top:4px">' + (pay.txId||'Not provided') + '</div>'
+        + '<div style="margin-top:6px"><span>Submitted:</span> ' + new Date(pay.submittedAt).toLocaleString() + '</div>'
+        + '</div>';
+    } else {
+      var imagesHtml = (pay.gcImages && pay.gcImages.length)
+        ? pay.gcImages.map(function(src, ii) {
+            return '<img src="' + src + '" class="gc-image-thumb" onclick="openImgLightbox(\'' + src.replace(/'/g,"\\'") + '\')" title="Click to enlarge">';
+          }).join('')
+        : '<div style="color:var(--muted);font-size:13px">No images uploaded.</div>';
+
+      detailsHtml = '<div class="pay-review-info">'
+        + '<div><span>Applicant:</span> <strong>' + pay.applicantName + '</strong> (' + pay.applicantEmail + ')</div>'
+        + '<div><span>App ID:</span> ' + pay.applicantId + '</div>'
+        + '<div><span>Brand:</span> <strong>' + (pay.gcBrand||'—') + '</strong></div>'
+        + '<div><span>Amount:</span> ' + pay.amount + '</div>'
+        + '<div><span>Card Code / PIN:</span></div>'
+        + '<div style="font-family:monospace;font-size:13px;background:#f5f3ff;color:#4c1d95;padding:8px 12px;border-radius:6px;font-weight:600;margin-top:4px;word-break:break-all">' + (pay.gcCode||'—') + '</div>'
+        + '<div style="margin-top:8px"><span>Card Photo(s):</span></div>'
+        + '<div style="margin-top:6px">' + imagesHtml + '</div>'
+        + '<div style="margin-top:6px"><span>Submitted:</span> ' + new Date(pay.submittedAt).toLocaleString() + '</div>'
+        + '</div>';
+    }
+
+    var actionBtns = '';
+    if (pay.status === 'pending') {
+      actionBtns = '<button class="approve-btn" onclick="approveManualPayment(' + i + ')">✅ Approve & Qualify Applicant</button>'
+        + '<button class="reject-pay-btn" onclick="rejectManualPayment(' + i + ')">❌ Reject Payment</button>';
+    } else {
+      actionBtns = '<span style="font-size:13px;font-weight:600;color:' + statusColor + '">' + statusLabel + '</span>'
+        + (pay.status !== 'pending' ? '<button class="action-btn" onclick="resetManualPayment(' + i + ')" style="margin-left:8px">Reset to Pending</button>' : '');
+    }
+
+    if (pay.adminNote) {
+      detailsHtml += '<div style="background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:13px;margin-top:8px"><strong>Admin Note:</strong> ' + pay.adminNote + '</div>';
+    }
+
+    return '<div class="pay-review-card ' + cardCls + '">'
+      + '<div class="pay-method-badge ' + badgeCls + '">' + methodLabel + '</div>'
+      + detailsHtml
+      + '<div class="pay-action-row">' + actionBtns + '</div>'
+      + '<div style="margin-top:10px;display:flex;gap:8px;align-items:center">'
+      + '<input id="pay-note-' + i + '" placeholder="Add admin note…" style="flex:1;padding:7px 10px;font-size:13px" value="' + (pay.adminNote||'') + '">'
+      + '<button class="action-btn" onclick="savePayNote(' + i + ')">Save Note</button>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+async function approveManualPayment(i) {
+  manualPayments[i].status = 'approved';
+  manualPayments[i].approvedAt = new Date().toISOString();
+  // Also qualify the applicant
+  var appIdx = applicants.findIndex(function(a){ return a.id === manualPayments[i].applicantId; });
+  if (appIdx >= 0) applicants[appIdx].status = 'Qualified';
+  renderPaymentReviews();
+  updateKPIs();
+  updatePayPendingBadge();
+  renderDashRecent();
+  renderApplicantsTable();
+  await saveData();
+}
+
+async function rejectManualPayment(i) {
+  if (!confirm('Reject this payment? The applicant will remain in Pending status.')) return;
+  manualPayments[i].status = 'rejected';
+  manualPayments[i].rejectedAt = new Date().toISOString();
+  renderPaymentReviews();
+  updatePayPendingBadge();
+  await saveData();
+}
+
+async function resetManualPayment(i) {
+  manualPayments[i].status = 'pending';
+  delete manualPayments[i].approvedAt;
+  delete manualPayments[i].rejectedAt;
+  renderPaymentReviews();
+  updatePayPendingBadge();
+  await saveData();
+}
+
+async function savePayNote(i) {
+  var inp = document.getElementById('pay-note-' + i);
+  if (inp) manualPayments[i].adminNote = inp.value;
+  await saveData();
+  var btn = inp ? inp.nextElementSibling : null;
+  if (btn) { var orig = btn.textContent; btn.textContent = '✓ Saved'; setTimeout(function(){ btn.textContent = orig; }, 1500); }
+}
+
+function openImgLightbox(src) {
+  document.getElementById('img-lightbox-src').src = src;
+  document.getElementById('img-lightbox').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
 
 // ── ADMIN PROPERTIES ───────────────────────────────────
 function renderPropAdminList() {
@@ -1232,15 +1716,13 @@ function openPropModal(idx) {
     + '<div class="upload-zone" onclick="document.getElementById(\'mp-file\').click()">'
     + '<div style="font-size:32px;margin-bottom:8px">📁</div>'
     + '<div style="font-weight:500;font-size:14px">Upload Photos or Videos to Cloudinary</div>'
-    + '<div style="font-size:12px;color:var(--muted);margin-top:4px">JPG, PNG, MP4, MOV accepted — hosted on Cloudinary CDN</div>'
+    + '<div style="font-size:12px;color:var(--muted);margin-top:4px">JPG, PNG, MP4, MOV accepted</div>'
     + '</div>'
     + '<input type="file" id="mp-file" accept="image/*,video/*" multiple style="display:none" onchange="handleUpload(event)">'
     + '<div id="upload-status"></div>'
     + '<div class="media-preview-grid" id="media-preview"></div>'
     + '<button class="btn-next" id="save-prop-btn" onclick="saveProp()">Save Property</button>'
     + '</div>';
-
-  // Render existing media
   renderModalMediaPreview();
   document.getElementById('modal-overlay').classList.remove('hidden');
 }
@@ -1252,26 +1734,19 @@ function renderModalMediaPreview() {
     var content = m.type === 'video'
       ? '<video src="' + m.url + '" muted style="width:100%;height:100%;object-fit:cover"></video>'
       : '<img src="' + m.url + '" style="width:100%;height:100%;object-fit:cover">';
-    return '<div class="media-preview-item">' + content
-      + '<button class="media-remove" onclick="removePendingMedia(' + i + ')">×</button>'
-      + '</div>';
+    return '<div class="media-preview-item">' + content + '<button class="media-remove" onclick="removePendingMedia(' + i + ')">×</button></div>';
   }).join('');
 }
 
-function removePendingMedia(i) {
-  pendingMedia.splice(i, 1);
-  renderModalMediaPreview();
-}
+function removePendingMedia(i) { pendingMedia.splice(i, 1); renderModalMediaPreview(); }
 
 async function handleUpload(e) {
   var files = Array.from(e.target.files);
   if (!files.length) return;
-
   var statusEl = document.getElementById('upload-status');
   var saveBtn = document.getElementById('save-prop-btn');
   if (saveBtn) saveBtn.disabled = true;
   uploadingFiles = true;
-
   for (var fi = 0; fi < files.length; fi++) {
     var f = files[fi];
     var idx = fi;
@@ -1286,8 +1761,7 @@ async function handleUpload(e) {
       if (statusEl) statusEl.innerHTML = '<div style="color:var(--danger);font-size:13px">❌ Upload failed for ' + f.name + ': ' + err.message + '</div>';
     }
   }
-
-  if (statusEl) statusEl.innerHTML = '<div style="color:var(--accent);font-size:13px">✅ All uploads complete — hosted on Cloudinary</div>';
+  if (statusEl) statusEl.innerHTML = '<div style="color:var(--accent);font-size:13px">✅ Uploads complete</div>';
   if (saveBtn) saveBtn.disabled = false;
   uploadingFiles = false;
   e.target.value = '';
@@ -1369,7 +1843,7 @@ async function saveReview() {
 
 function closeModal() { document.getElementById('modal-overlay').classList.add('hidden'); }
 
-// ── SEED REVIEWS (only if empty) ───────────────────────
+// ── SEED REVIEWS ───────────────────────────────────────
 function seedReviewsIfEmpty() {
   if (!reviews.length) {
     reviews = [
