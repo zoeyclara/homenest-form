@@ -9,215 +9,1794 @@
 <meta property="og:type" content="website">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{\r
-  --primary:#1a3a6b;--primary-light:#2156a8;--accent:#c9a84c;--accent-light:#f5edd6;\r
-  --danger:#ef4444;--warn:#f59e0b;--bg:#f7f9fc;--card:#ffffff;--border:#dce8f5;\r
-  --text:#0f2346;--muted:#4a6080;--radius:12px;\r
-  --btc-orange:#f7931a;--btc-light:#fff7ed;--gc-purple:#7c3aed;--gc-light:#f5f3ff;\r
+:root{
+  --primary:#1a3a6b;--primary-light:#2156a8;--accent:#c9a84c;--accent-light:#f5edd6;
+  --danger:#ef4444;--warn:#f59e0b;--bg:#f7f9fc;--card:#ffffff;--border:#dce8f5;
+  --text:#0f2346;--muted:#4a6080;--radius:12px;
+  --btc-orange:#f7931a;--btc-light:#fff7ed;--gc-purple:#7c3aed;--gc-light:#f5f3ff;
 }
-body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}\r
-button{cursor:pointer;font-family:inherit;font-size:14px;border:none;border-radius:6px;transition:all 0.2s}\r
-input,select,textarea{font-family:inherit;font-size:14px;padding:10px;border:1px solid var(--border);border-radius:6px;width:100%;outline:none;background:#fff;color:var(--text)}\r
-input:focus,select:focus,textarea:focus{border-color:var(--primary-light)}\r
-h1,h2,h3,h4{font-weight:700;color:var(--primary);margin-bottom:10px}\r
-\r
-.container{max-width:1200px;margin:0 auto;padding:20px}\r
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px;box-shadow:0 4px 12px rgba(15,35,70,0.03)}\r
-.hidden{display:none !important}\r
-.flex{display:flex;gap:15px;align-items:center}\r
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}\r
-@media(max-width:768px){.grid-2{grid-template-columns:1fr}}\r
-\r
-/* Header */\r
-header{background:var(--primary);color:#fff;padding:15px 0;border-bottom:4px solid var(--accent)}\r
-.header-wrap{display:flex;justify-content:between;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px;justify-content:space-between;}\r
-.logo{font-size:20px;font-weight:900;letter-spacing:1px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px}\r
-.logo span{color:var(--accent)}\r
-.nav-btn{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.3);padding:6px 12px}\r
-.nav-btn:hover{background:rgba(255,255,255,0.1)}\r
-\r
-/* Hero Gallery */\r
-.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:160px 160px;gap:10px;margin-bottom:24px;border-radius:var(--radius);overflow:hidden}\r
-.gallery-item{width:100%;height:100%;object-fit:cover;background:#e2e8f0;cursor:pointer;transition:transform 0.3s}\r
-.gallery-item:hover{transform:scale(1.02)}\r
-.gi-main{grid-row:span 2}\r
-@media(max-width:768px){\r
-  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:180px}\r
-  .gi-main{grid-column:span 2;grid-row:span 1}\r
-  .gi-hide{display:none}\r
-}\r
-\r
-/* Badges */\r
-.badge{display:inline-block;padding:4px 8px;font-size:12px;font-weight:600;border-radius:4px;text-transform:uppercase}\r
-.badge-success{background:#dcfce7;color:#15803d}\r
-.badge-warn{background:var(--accent-light);color:#854d0e}\r
-.badge-danger{background:#fee2e2;color:#b91c1c}\r
-.badge-info{background:#e0f2fe;color:#0369a1}\r
-\r
-/* Main Content Splits */\r
-.main-layout{display:grid;grid-template-columns:7fr 5fr;gap:24px}\r
-@media(max-width:992px){.main-layout{grid-template-columns:1fr}}\r
-\r
-.prop-title{font-size:28px;margin-bottom:6px}\r
-.prop-loc{color:var(--muted);margin-bottom:15px;display:flex;align-items:center;gap:5px}\r
-.prop-features{display:flex;gap:20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:15px 0;margin-bottom:20px}\r
-.feat-item{font-size:14px;color:var(--muted)}\r
-.feat-item strong{color:var(--text);font-size:16px;display:block}\r
-\r
-/* Sidebar Box */\r
-.sidebar-box{position:sticky;top:20px;background:var(--card);border:2px solid var(--primary);border-radius:var(--radius);padding:24px;box-shadow:0 10px 25px rgba(15,35,70,0.08)}\r
-.price-tag{font-size:32px;font-weight:900;color:var(--primary);margin-bottom:2px}\r
-.price-sub{font-size:13px;color:var(--muted);margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid var(--border)}\r
-.btn-primary{background:var(--primary);color:#fff;width:100%;padding:14px;font-size:16px;font-weight:700}\r
-.btn-primary:hover{background:var(--primary-light)}\r
-.btn-accent{background:var(--accent);color:var(--primary);width:100%;padding:12px;font-size:15px;font-weight:700}\r
-.btn-accent:hover{opacity:0.9}\r
-\r
-/* Payment Options Tabs */\r
-.pay-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:20px}\r
-.pay-tab{flex:1;text-align:center;padding:12px;font-weight:700;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px}\r
-.pay-tab.active{color:var(--primary);border-bottom-color:var(--primary)}\r
-.method-box{border:1px solid var(--border);border-radius:8px;padding:15px;margin-bottom:15px;display:flex;align-items:center;gap:12px;cursor:pointer}\r
-.method-box.selected{border-color:var(--primary);background:#f0f5ff}\r
-.method-icon{width:40px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:18px}\r
-\r
-/* Reviews */\r
-.rev-row{border-bottom:1px solid var(--border);padding:15px 0}\r
-.rev-row:last-child{border-bottom:none}\r
-.rev-meta{display:flex;justify-content:between;margin-bottom:5px;font-size:13px;color:var(--muted);justify-content:space-between;}\r
-.stars{color:var(--accent);font-size:14px}\r
-\r
-/* Modal Overlay */\r
-#modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,35,70,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;padding:15px}\r
-.modal-body{background:#fff;border-radius:var(--radius);width:100%;max-width:550px;max-height:90vh;overflow-y:auto;padding:24px;position:relative}\r
-.close-x{position:absolute;top:15px;right:15px;font-size:24px;background:none;color:var(--muted)}\r
-\r
-/* Admin Tables */\r
-table{width:100%;border-collapse:collapse;margin-top:15px;font-size:14px}\r
-th,td{padding:12px;text-align:left;border-bottom:1px solid var(--border)}\r
-th{background:var(--bg);color:var(--primary);font-weight:700}\r
-tr:hover td{background:rgba(216,232,245,0.2)}\r
-.admin-grid{display:grid;grid-template-columns:250px 1fr;gap:20px;min-height:80vh}\r
-.admin-nav{border-right:1px solid var(--border);padding-right:15px}\r
-.admin-nav-item{display:block;padding:10px 15px;border-radius:6px;color:var(--muted);text-decoration:none;font-weight:600;margin-bottom:5px}\r
-.admin-nav-item.active{background:var(--primary);color:#fff}\r
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+button{cursor:pointer;font-family:inherit;font-size:14px}
+input,select,textarea{font-family:inherit;font-size:14px;width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;background:#fff;color:var(--text);outline:none;transition:border .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--primary-light)}
+label{font-size:13px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;letter-spacing:.3px}
+.hidden{display:none!important}
+
+/* NAV */
+nav{background:#ffffff;border-bottom:2px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px;min-height:72px;box-shadow:0 2px 16px rgba(26,58,107,.07)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;padding:10px 0}
+.logo-text-wrap{display:flex;flex-direction:column;line-height:1.1}
+.logo-brand{font-size:18px;font-weight:700;color:var(--primary);letter-spacing:2px;font-family:'Georgia',serif}
+.logo-sub{font-size:8.5px;letter-spacing:3.5px;color:var(--accent);font-weight:600;text-transform:uppercase;margin-top:1px}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap}
+.nav-btn{background:transparent;border:1.5px solid var(--border);color:var(--primary);padding:7px 16px;border-radius:8px;transition:.2s;font-size:13px;font-weight:600;letter-spacing:.4px}
+.nav-btn:hover{background:#eef3fa;border-color:var(--primary-light)}
+.nav-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f2346 0%,#1a3a6b 55%,#2156a8 100%);color:#fff;padding:80px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.hero h1{font-size:clamp(24px,4.5vw,46px);font-weight:700;margin-bottom:16px;line-height:1.2;font-family:'Georgia',serif;letter-spacing:.5px;position:relative}
+.hero p{font-size:17px;opacity:.85;max-width:560px;margin:0 auto 32px;position:relative}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#b8943f);color:#fff;border:none;padding:14px 36px;border-radius:10px;font-size:15px;font-weight:700;transition:.2s;display:inline-block;letter-spacing:.5px;box-shadow:0 4px 18px rgba(201,168,76,.35)}
+.btn-primary:hover{background:linear-gradient(135deg,#b8943f,#9e7c2e);transform:translateY(-2px);box-shadow:0 6px 24px rgba(201,168,76,.45)}
+.stats-row{display:flex;justify-content:center;gap:44px;margin-top:48px;flex-wrap:wrap;position:relative}
+.stat{text-align:center}
+.stat-num{font-size:28px;font-weight:700;color:var(--accent)}
+.stat-lbl{font-size:12px;opacity:.7;margin-top:3px;letter-spacing:.5px}
+
+/* TRUST BAR */
+.trust-bar{background:var(--primary);border-bottom:1px solid rgba(255,255,255,.1);padding:13px 24px;display:flex;justify-content:center;gap:30px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.8);font-weight:500;letter-spacing:.3px}
+
+/* SECTION */
+.section{padding:52px 24px;max-width:1100px;margin:0 auto}
+.section-title{font-size:26px;font-weight:700;margin-bottom:8px;font-family:'Georgia',serif;color:var(--primary)}
+.section-sub{color:var(--muted);margin-bottom:30px;font-size:15px}
+
+/* PROPERTY CARDS */
+.prop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px}
+.prop-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.2s;box-shadow:0 2px 8px rgba(26,58,107,.06)}
+.prop-card:hover{box-shadow:0 8px 28px rgba(26,58,107,.14);transform:translateY(-3px)}
+.prop-media-box{width:100%;height:195px;background:#dce8f5;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;overflow:hidden;position:relative;cursor:pointer}
+.prop-media-box img,.prop-media-box video{width:100%;height:100%;object-fit:cover}
+.media-count-badge{position:absolute;bottom:8px;right:8px;background:rgba(15,35,70,.75);color:#fff;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;pointer-events:none}
+.prop-info{padding:18px}
+.prop-tag{display:inline-block;background:var(--accent-light);color:#7a5200;font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;margin-bottom:8px;letter-spacing:.4px}
+.prop-tag.sold{background:#fee2e2;color:#991b1b}
+.prop-tag.rented{background:#fef3c7;color:#92400e}
+.prop-title{font-weight:700;font-size:16px;margin-bottom:4px;font-family:'Georgia',serif;color:var(--primary)}
+.prop-loc{color:var(--muted);font-size:13px;margin-bottom:8px}
+.prop-price{font-size:19px;font-weight:700;color:var(--primary);font-family:'Georgia',serif}
+.prop-meta{display:flex;gap:14px;margin-top:8px;font-size:12px;color:var(--muted)}
+.apply-btn{width:100%;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;padding:11px;border-radius:8px;font-weight:700;margin-top:14px;transition:.2s;letter-spacing:.4px;font-size:13px}
+.apply-btn:hover{opacity:.92;transform:translateY(-1px)}
+
+/* SHARE BUTTON */
+.share-btn{width:100%;background:#fff;border:1.5px solid var(--accent);color:#7a5200;padding:9px;border-radius:8px;font-weight:700;margin-top:8px;transition:.2s;letter-spacing:.4px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px}
+.share-btn:hover{background:var(--accent-light);border-color:#b8943f;transform:translateY(-1px)}
+.share-btn svg{flex-shrink:0}
+
+/* SHARE MODAL */
+.share-modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,20,45,.65);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.share-modal{background:#fff;border-radius:20px;padding:28px;width:100%;max-width:440px;box-shadow:0 24px 64px rgba(10,20,45,.28);animation:shareIn .25s cubic-bezier(.34,1.56,.64,1)}
+@keyframes shareIn{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.share-modal h3{font-size:18px;font-weight:700;margin-bottom:4px;font-family:'Georgia',serif;color:var(--primary)}
+.share-modal-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+.share-link-box{background:#f0f5fb;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:12px;font-family:monospace;word-break:break-all;color:var(--primary);position:relative;margin-bottom:14px;line-height:1.5}
+.share-copy-btn{display:block;width:100%;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.4px;transition:.2s;margin-bottom:10px}
+.share-copy-btn:hover{opacity:.9}
+.share-native-btn{display:block;width:100%;background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.4px;transition:.2s;margin-bottom:10px}
+.share-native-btn:hover{opacity:.9}
+.share-apps-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.share-app-btn{flex:1;min-width:80px;border:1.5px solid var(--border);background:#fff;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;transition:.2s;font-size:11px;font-weight:700;color:var(--text)}
+.share-app-btn:hover{border-color:var(--primary-light);background:#eef3fa;transform:translateY(-2px)}
+.share-app-icon{font-size:22px;display:block;margin-bottom:4px}
+.share-expiry-note{background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:9px 12px;font-size:12px;color:#92400e;display:flex;align-items:center;gap:7px}
+.share-close-btn{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1;margin-top:-4px}
+.share-prop-preview{display:flex;align-items:center;gap:12px;background:#f7f9fc;border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:16px}
+.share-prop-thumb{width:52px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;background:#dce8f5;display:flex;align-items:center;justify-content:center;font-size:18px}
+.share-prop-thumb img,.share-prop-thumb video{width:100%;height:100%;object-fit:cover}
+.share-copied-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#0f2346;color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:600;z-index:9999;animation:toastIn .3s ease;pointer-events:none}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* SHARED PROPERTY VIEW (locked) */
+.shared-view-wrap{min-height:100vh;background:var(--bg)}
+.shared-header{background:linear-gradient(135deg,#0f2346,#1a3a6b);color:#fff;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.shared-badge{background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.5);color:#f5edd6;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:.5px;display:flex;align-items:center;gap:6px}
+.shared-expiry-bar{background:rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.1);padding:10px 24px;display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75)}
+.shared-prop-detail{max-width:800px;margin:0 auto;padding:32px 24px}
+.shared-gallery{border-radius:16px;overflow:hidden;margin-bottom:24px;position:relative;box-shadow:0 8px 32px rgba(26,58,107,.14)}
+.shared-gallery-main{width:100%;height:340px;object-fit:cover;display:block;cursor:pointer}
+.shared-gallery-main video{width:100%;height:340px;object-fit:cover}
+.shared-gallery-thumbs{display:flex;gap:6px;padding:8px;background:#f0f5fb;overflow-x:auto}
+.shared-gallery-thumb{width:64px;height:48px;border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid transparent;flex-shrink:0;transition:.2s}
+.shared-gallery-thumb.active{border-color:var(--accent)}
+.shared-gallery-thumb img,.shared-gallery-thumb video{width:100%;height:100%;object-fit:cover}
+.shared-prop-title{font-size:28px;font-weight:700;font-family:'Georgia',serif;color:var(--primary);margin-bottom:6px}
+.shared-prop-loc{color:var(--muted);font-size:15px;margin-bottom:12px}
+.shared-prop-price{font-size:32px;font-weight:700;color:var(--primary);font-family:'Georgia',serif;margin-bottom:16px}
+.shared-prop-meta{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.shared-meta-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 16px;text-align:center;min-width:80px}
+.shared-meta-val{font-size:18px;font-weight:700;color:var(--primary)}
+.shared-meta-lbl{font-size:11px;color:var(--muted);margin-top:2px}
+.shared-desc{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}
+.shared-apply-btn{width:100%;background:linear-gradient(135deg,var(--accent),#b8943f);color:#fff;border:none;padding:16px;border-radius:12px;font-weight:700;font-size:16px;transition:.2s;letter-spacing:.5px;box-shadow:0 4px 18px rgba(201,168,76,.35)}
+.shared-apply-btn:hover{opacity:.92;transform:translateY(-2px)}
+.shared-lock-note{display:flex;align-items:center;gap:8px;background:#eef3fa;border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--primary);margin-bottom:20px}
+.shared-expired-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.shared-expired-box{background:#fff;border-radius:20px;padding:44px 36px;max-width:400px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(10,20,45,.12)}
+
+/* COUNTDOWN TIMER */
+.countdown-wrap{display:flex;gap:8px;align-items:center;font-size:12px;color:rgba(255,255,255,.7)}
+.countdown-unit{background:rgba(255,255,255,.1);border-radius:6px;padding:3px 8px;font-family:monospace;font-weight:700;font-size:13px;color:#fff}
+
+/* SOLD */
+.sold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.sold-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:0 2px 8px rgba(26,58,107,.06)}
+.sold-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,35,70,.48);display:flex;align-items:center;justify-content:center}
+.sold-badge{background:#ef4444;color:#fff;font-size:18px;font-weight:700;padding:8px 22px;border-radius:8px;transform:rotate(-8deg);letter-spacing:1px}
+.sold-badge.rented{background:#d97706}
+
+/* GALLERY LIGHTBOX */
+.gallery-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,20,45,.95);z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:16px}
+.gallery-main{max-width:900px;max-height:70vh;width:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.gallery-main img,.gallery-main video{max-width:100%;max-height:70vh;border-radius:10px;object-fit:contain}
+.gallery-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.13);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
+.gallery-nav:hover{background:rgba(255,255,255,.28)}
+.gallery-prev{left:-54px}
+.gallery-next{right:-54px}
+.gallery-thumbs{display:flex;gap:8px;margin-top:14px;overflow-x:auto;max-width:900px;padding-bottom:4px}
+.gallery-thumb{width:70px;height:52px;border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid transparent;flex-shrink:0;transition:.2s}
+.gallery-thumb.active{border-color:var(--accent)}
+.gallery-thumb img,.gallery-thumb video{width:100%;height:100%;object-fit:cover}
+.gallery-close{position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:30px;cursor:pointer;z-index:1001;line-height:1;opacity:.8}
+.gallery-close:hover{opacity:1}
+.gallery-counter{color:rgba(255,255,255,.55);font-size:13px;margin-top:8px}
+
+/* FORM */
+.form-wrap{max-width:640px;margin:0 auto;padding:40px 24px}
+.prog-bar{background:var(--border);border-radius:99px;height:6px;margin-bottom:32px}
+.prog-fill{background:linear-gradient(90deg,var(--primary),var(--accent));height:6px;border-radius:99px;transition:width .4s ease}
+.step-label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.step-title{font-size:22px;font-weight:700;margin-bottom:26px;font-family:'Georgia',serif;color:var(--primary)}
+.form-grid{display:grid;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column}
+.radio-group{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.radio-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:.2s;font-size:14px;color:var(--text)}
+.radio-opt:hover{border-color:var(--primary-light);background:#eef3fa}
+.radio-opt.selected{border-color:var(--primary);background:#eef3fa}
+.radio-opt input[type=radio]{width:auto;margin:0}
+.scale-row{display:flex;gap:6px;margin-top:4px}
+.scale-btn{flex:1;padding:8px 4px;border:1.5px solid var(--border);border-radius:6px;background:#fff;font-size:13px;transition:.2s;text-align:center;color:var(--text)}
+.scale-btn:hover{border-color:var(--primary-light)}
+.scale-btn.active{border-color:var(--primary);background:#eef3fa;color:var(--primary);font-weight:700}
+.disclaimer-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:14px;font-size:13px;color:#92400e;margin-bottom:14px}
+.success-box{background:#eef3fa;border:1px solid var(--border);border-radius:8px;padding:14px;font-size:13px;color:var(--primary);margin-bottom:14px}
+.form-nav{display:flex;gap:10px;margin-top:26px}
+.btn-back{flex:1;background:#fff;border:1.5px solid var(--border);color:var(--text);padding:12px;border-radius:10px;font-weight:600}
+.btn-next{flex:2;background:linear-gradient(135deg,var(--primary),var(--primary-light));border:none;color:#fff;padding:12px;border-radius:10px;font-weight:700;transition:.2s;letter-spacing:.4px}
+.btn-next:hover{opacity:.92}
+
+/* PAYMENT */
+.pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.pay-methods-row2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 14px}
+.pay-btn{border:2px solid var(--border);background:#fff;padding:12px 8px;border-radius:10px;text-align:center;cursor:pointer;transition:.2s;font-size:13px;font-weight:600;color:var(--text)}
+.pay-btn:hover,.pay-btn.active{border-color:var(--primary);background:#eef3fa;color:var(--primary)}
+.pay-btn.btc-btn:hover,.pay-btn.btc-btn.active{border-color:var(--btc-orange);background:var(--btc-light)}
+.pay-btn.gc-btn:hover,.pay-btn.gc-btn.active{border-color:var(--gc-purple);background:var(--gc-light)}
+.card-fields{display:grid;gap:11px;margin-top:14px;padding:14px;background:#f7f9fc;border-radius:10px;border:1px solid var(--border)}
+.secure-note{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:8px}
+.check-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);margin-top:10px}
+.check-row input{width:auto;margin-top:3px}
+
+/* BITCOIN PANEL */
+.btc-panel{background:var(--btc-light);border:2px solid var(--btc-orange);border-radius:12px;padding:18px;margin-top:14px}
+.btc-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.btc-icon{font-size:28px}
+.btc-title{font-weight:700;font-size:16px;color:#92400e}
+.btc-subtitle{font-size:12px;color:#b45309}
+.btc-qr-wrap{background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:14px;border:1px solid #fed7aa}
+.btc-address-box{background:#1a1a2e;color:#f7931a;font-family:monospace;font-size:12px;border-radius:8px;padding:10px 14px;word-break:break-all;letter-spacing:.5px;position:relative;margin-bottom:10px;border:1px solid #f7931a30}
+.copy-addr-btn{position:absolute;top:8px;right:8px;background:#f7931a;border:none;color:#fff;font-size:11px;border-radius:4px;padding:3px 8px;cursor:pointer;font-weight:600}
+.btc-amount-box{background:#fff;border:1px solid #fed7aa;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:10px}
+.btc-amount{font-weight:700;color:#92400e;font-size:15px}
+.btc-steps{display:grid;gap:8px;margin-bottom:12px}
+.btc-step{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#78350f}
+.btc-step-num{background:#f7931a;color:#fff;font-weight:700;font-size:10px;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.btc-confirm-note{background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:8px 12px;font-size:12px;color:#92400e;margin-bottom:10px}
+.btc-txid-input{font-family:monospace;font-size:12px}
+
+/* GIFT CARD PANEL */
+.gc-panel{background:var(--gc-light);border:2px solid var(--gc-purple);border-radius:12px;padding:18px;margin-top:14px}
+.gc-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.gc-icon{font-size:28px}
+.gc-title{font-weight:700;font-size:16px;color:#4c1d95}
+.gc-subtitle{font-size:12px;color:#6d28d9}
+.gc-brands{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.gc-brand{background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;color:#5b21b6;cursor:pointer;transition:.2s}
+.gc-brand:hover,.gc-brand.selected{background:#7c3aed;color:#fff;border-color:#7c3aed}
+.gc-upload-zone{border:2px dashed #c4b5fd;border-radius:10px;padding:22px;text-align:center;background:#faf5ff;cursor:pointer;transition:.2s;margin-bottom:12px}
+.gc-upload-zone:hover{border-color:#7c3aed;background:#f5f3ff}
+.gc-upload-icon{font-size:32px;margin-bottom:8px}
+.gc-preview-wrap{display:grid;gap:8px;margin-bottom:12px}
+.gc-preview-item{position:relative;border-radius:8px;overflow:hidden;border:2px solid #c4b5fd}
+.gc-preview-item img{width:100%;max-height:200px;object-fit:cover;display:block}
+.gc-remove-btn{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.7);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gc-note{background:#ede9fe;border:1px solid #c4b5fd;border-radius:6px;padding:8px 12px;font-size:12px;color:#4c1d95;margin-bottom:10px}
+.gc-fields{display:grid;gap:10px}
+.manual-pay-badge{display:inline-flex;align-items:center;gap:4px;background:#fef3c7;color:#92400e;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;margin-bottom:6px}
+
+/* ADMIN PAYMENT REVIEW */
+.pay-review-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;position:relative}
+.pay-review-card.btc-card{border-left:4px solid var(--btc-orange)}
+.pay-review-card.gc-card{border-left:4px solid var(--gc-purple)}
+.pay-method-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:8px}
+.btc-badge{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
+.gc-badge{background:#f5f3ff;color:#4c1d95;border:1px solid #c4b5fd}
+.pay-review-info{font-size:13px;color:var(--text);margin-bottom:10px;display:grid;gap:4px}
+.pay-review-info span{color:var(--muted)}
+.pay-action-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.approve-btn{background:var(--primary);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;transition:.2s}
+.approve-btn:hover{background:var(--primary-light)}
+.reject-pay-btn{background:var(--danger);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;transition:.2s}
+.reject-pay-btn:hover{background:#dc2626}
+.gc-image-thumb{width:100%;max-height:160px;object-fit:cover;border-radius:8px;border:1px solid #c4b5fd;margin-bottom:8px;cursor:pointer}
+.pay-pending-dot{width:8px;height:8px;border-radius:50%;background:var(--warn);display:inline-block;margin-right:6px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* PASSWORD GATE */
+.pw-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,20,45,.97);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px}
+.pw-box{background:#fff;border-radius:20px;padding:44px 38px;max-width:400px;width:100%;text-align:center;box-shadow:0 28px 70px rgba(0,0,0,.35)}
+.pw-box h2{font-size:22px;font-weight:700;margin-bottom:8px;font-family:'Georgia',serif;color:var(--primary)}
+.pw-box p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.pw-input-wrap{position:relative;margin-bottom:16px;text-align:left}
+.pw-input-wrap input{padding-right:44px;font-size:16px}
+.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;width:auto;padding:0}
+.pw-err{color:var(--danger);font-size:13px;margin-bottom:12px;display:none}
+.pw-submit{width:100%;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;padding:13px;border-radius:10px;font-weight:700;font-size:15px;transition:.2s;letter-spacing:.4px}
+.pw-submit:hover{opacity:.92}
+.pw-lock-icon{width:60px;height:60px;background:#eef3fa;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px;border:2px solid var(--border)}
+
+/* ADMIN */
+.admin-wrap{max-width:1100px;margin:0 auto;padding:30px 24px}
+.admin-tabs{display:flex;gap:4px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:4px;width:fit-content;margin-bottom:22px;flex-wrap:wrap}
+.admin-tab{padding:8px 16px;border-radius:7px;border:none;background:transparent;font-weight:600;font-size:13px;color:var(--muted);transition:.2s;letter-spacing:.3px}
+.admin-tab.active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(26,58,107,.2)}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 2px 8px rgba(26,58,107,.05)}
+.kpi-num{font-size:28px;font-weight:700;margin-bottom:2px;font-family:'Georgia',serif}
+.kpi-lbl{font-size:12px;color:var(--muted);letter-spacing:.3px}
+.kpi.green .kpi-num{color:var(--primary-light)}
+.kpi.blue .kpi-num{color:var(--primary)}
+.kpi.amber .kpi-num{color:var(--warn)}
+.kpi.red .kpi-num{color:var(--danger)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:22px}
+.admin-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 2px 8px rgba(26,58,107,.05)}
+.admin-card-title{font-weight:700;font-size:14px;margin-bottom:14px;color:var(--primary);letter-spacing:.3px}
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;box-shadow:0 2px 8px rgba(26,58,107,.05)}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th{background:#f0f5fb;padding:10px 14px;text-align:left;font-weight:700;color:var(--primary);border-bottom:1px solid var(--border);white-space:nowrap;letter-spacing:.3px}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.status-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.s-pending{background:#fef3c7;color:#92400e}
+.s-reviewed{background:#dbeafe;color:#1e40af}
+.s-qualified{background:#eef3fa;color:var(--primary)}
+.s-not{background:#fee2e2;color:#991b1b}
+.action-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:#fff;font-size:12px;cursor:pointer;margin-right:4px;transition:.2s;white-space:nowrap;font-weight:600}
+.action-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.filter-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.filter-select{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;width:auto;color:var(--text)}
+.search-input{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;flex:1;min-width:160px}
+.add-btn{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;padding:9px 18px;border-radius:8px;font-weight:700;font-size:13px;letter-spacing:.3px}
+.upload-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:28px;text-align:center;cursor:pointer;transition:.2s;background:#f7f9fc}
+.upload-zone:hover{border-color:var(--primary-light);background:#eef3fa}
+.prop-admin-row{background:#fff;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:14px;padding:12px 16px;margin-bottom:10px;flex-wrap:wrap}
+.prop-thumb{width:60px;height:46px;border-radius:6px;background:#dce8f5;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
+.prop-thumb img,.prop-thumb video{width:100%;height:100%;object-fit:cover}
+.review-card-a{background:#f7f9fc;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
+.stars{color:var(--accent);font-size:15px}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,20,45,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-box{background:#fff;border-radius:16px;padding:28px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(10,20,45,.25)}
+.modal-box h3{font-size:18px;font-weight:700;margin-bottom:18px;font-family:'Georgia',serif;color:var(--primary)}
+.modal-close-btn{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1;margin-top:-4px}
+.row-sep{border-bottom:1px solid var(--border);padding:8px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.row-sep:last-child{border-bottom:none}
+.upload-progress{background:#eef3fa;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--primary);margin-top:8px}
+.media-preview-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.media-preview-item{position:relative;width:72px;height:54px;border-radius:6px;overflow:hidden}
+.media-preview-item img,.media-preview-item video{width:100%;height:100%;object-fit:cover}
+.media-remove{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.6);border:none;color:#fff;border-radius:50%;width:18px;height:18px;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sync-indicator{font-size:12px;color:var(--muted);padding:4px 10px;background:#f0f5fb;border-radius:20px;margin-left:auto}
+.sync-ok{color:var(--primary-light)}
+.sync-err{color:var(--danger)}
+.how-card{text-align:center;padding:28px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 2px 8px rgba(26,58,107,.05);transition:.2s}
+.how-card:hover{box-shadow:0 6px 22px rgba(26,58,107,.1);transform:translateY(-2px)}
+.how-icon{font-size:36px;margin-bottom:12px}
+.how-title{font-weight:700;margin-bottom:6px;font-family:'Georgia',serif;color:var(--primary)}
+.how-desc{color:var(--muted);font-size:14px}
+
+/* Share links admin table */
+.share-links-wrap{margin-top:12px}
+.share-link-row{background:#f7f9fc;border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.share-link-token{font-family:monospace;font-size:11px;color:var(--primary);flex:1;min-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.share-link-exp{font-size:11px;color:var(--muted);white-space:nowrap}
+.share-link-active{color:#16a34a;font-size:11px;font-weight:700}
+.share-link-expired{color:var(--danger);font-size:11px;font-weight:700}
+
+@media(max-width:620px){
+  .form-row{grid-template-columns:1fr}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .two-col{grid-template-columns:1fr}
+  .pay-methods{grid-template-columns:1fr 1fr 1fr}
+  .pay-methods-row2{grid-template-columns:1fr 1fr}
+  .gallery-prev{left:-8px}
+  .gallery-next{right:-8px}
+  .shared-gallery-main,.shared-gallery-main video{height:220px}
+}
+@media(max-width:440px){.pay-methods{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-wrap">
-    <a href="#" class="logo" onclick="showView('home')">COLDWEII <span>BANKER</span></a>
-    <div>
-      <button class="nav-btn" id="portal-btn" onclick="showView('login')">Agent Portal</button>
-      <button class="nav-btn hidden" id="logout-btn" onclick="handleLogout()">Logout</button>
+<!-- PASSWORD GATE -->
+<div id="pw-gate" class="pw-gate hidden">
+  <div class="pw-box">
+    <div class="pw-lock-icon">🔐</div>
+    <h2>Agent Portal</h2>
+    <p>This area is restricted to authorized agents only. Enter your password to continue.</p>
+    <div class="pw-input-wrap">
+      <input type="password" id="pw-input" placeholder="Enter portal password" onkeydown="if(event.key==='Enter')checkPw()">
+      <button class="pw-eye" onclick="togglePwVis()">👁</button>
+    </div>
+    <div class="pw-err" id="pw-err">Incorrect password. Please try again.</div>
+    <button class="pw-submit" onclick="checkPw()">Access Portal →</button>
+    <div style="margin-top:16px">
+      <button style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer" onclick="closePwGate()">← Back to Site</button>
     </div>
   </div>
-</header>
+</div>
 
-<div class="container">
-  
-  <div id="view-home" class="view-section">
-    <div class="gallery-grid">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" class="gallery-item gi-main" alt="Main View" onclick="openLightBox(0)">
-      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" class="gallery-item" alt="Interior 1" onclick="openLightBox(1)">
-      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" class="gallery-item" alt="Interior 2" onclick="openLightBox(2)">
-      <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=600&q=80" class="gallery-item gi-hide" alt="Kitchen" onclick="openLightBox(3)">
-      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80" class="gallery-item gi-hide" alt="Bathroom" onclick="openLightBox(4)">
-    </div>
+<!-- GALLERY LIGHTBOX -->
+<div id="gallery-overlay" class="gallery-overlay hidden">
+  <button class="gallery-close" onclick="closeGallery()">×</button>
+  <div class="gallery-main">
+    <button class="gallery-nav gallery-prev" onclick="galleryNav(-1)">‹</button>
+    <div id="gallery-main-content"></div>
+    <button class="gallery-nav gallery-next" onclick="galleryNav(1)">›</button>
+  </div>
+  <div class="gallery-counter" id="gallery-counter"></div>
+  <div class="gallery-thumbs" id="gallery-thumbs"></div>
+</div>
 
-    <div class="main-layout">
-      <div>
-        <h1 class="prop-title">The Grandview Crest Manor</h1>
-        <div class="prop-loc">📍 4410 Northside Dr NW, Atlanta, GA 30327 &bull; <span class="badge badge-success">Available for Allocation</span></div>
-        
-        <div class="prop-features">
-          <div class="feat-item">Bedrooms<strong>5 Beds</strong></div>
-          <div class="feat-item">Bathrooms<strong>4.5 Baths</strong></div>
-          <div class="feat-item">Square Feet<strong>5,240 Sq Ft</strong></div>
-          <div class="feat-item">Property Type<strong>Single Family</strong></div>
-        </div>
+<!-- SHARE MODAL -->
+<div id="share-modal-overlay" class="share-modal-overlay hidden" onclick="if(event.target===this)closeShareModal()">
+  <div class="share-modal" id="share-modal-inner"></div>
+</div>
 
-        <div class="card">
-          <h3>Exclusive Rent-to-Own Program Overview</h3>
-          <p style="margin-bottom:12px">Welcome to our high-tier pathway to direct homeownership. This property participates in our accelerated qualification program, designed explicitly for individuals looking to bypass traditional, lengthy bank vetting pipelines.</p>
-          <p style="margin-bottom:12px">Through this layout, your initial equity commitment locks down your path-to-purchase options immediately. 100% of your verification down-payment counts directly toward your acquisition principal balance upon structural hand-off.</p>
-          <ul style="padding-left:20px;margin-bottom:12px">
-            <li>Guaranteed fix-rate configuration for 24 months.</li>
-            <li>No penalty parameters for advanced principal payoffs.</li>
-            <li>Immediate logistical allocation upon application vetting completion.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
-            <h3>Applicant Feedback & Reviews</h3>
-            <button class="nav-btn" style="background:var(--primary);color:#fff" onclick="openReviewModal()">Write a Review</button>
-          </div>
-          <div id="home-reviews-target">
-            </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="sidebar-box">
-          <div class="price-tag">$4,250 <span style="font-size:15px;font-weight:normal;color:var(--muted)">/ month</span></div>
-          <div class="price-sub">Required Verification Deposit: <strong>$2,500</strong> (100% Refundable)</div>
-          
-          <div style="background:var(--bg);border-radius:8px;padding:12px;margin-bottom:20px;font-size:13px">
-            ⚡ <strong>High Demand Warning:</strong> 7 alternative applicants have initiated eligibility review sweeps for this specific region in the last 24 hours.
-          </div>
-
-          <button class="btn-primary" style="border-radius:8px;margin-bottom:12px" onclick="openApplicationModal()">Apply Now & Secure Hold</button>
-          <button class="btn-accent" style="border-radius:8px;background:none;border:1px solid var(--accent);color:var(--primary)" onclick="alert('Brochure download initiated!')">Download Digital Inspection Ledger</button>
-        </div>
-      </div>
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="logo" onclick="go('home')" style="cursor:pointer">
+    <svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1a3a6b"/><stop offset="100%" style="stop-color:#2156a8"/></linearGradient></defs>
+      <rect x="2" y="2" width="48" height="48" rx="10" fill="url(#logoGrad)"/>
+      <rect x="3" y="3" width="46" height="46" rx="9" fill="none" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
+      <polygon points="26,5 27.2,8.6 31,8.6 28,10.8 29.2,14.4 26,12.2 22.8,14.4 24,10.8 21,8.6 24.8,8.6" fill="#c9a84c"/>
+      <text x="10" y="38" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="-1">CB</text>
+      <rect x="10" y="41" width="32" height="2" rx="1" fill="rgba(201,168,76,0.7)"/>
+    </svg>
+    <div class="logo-text-wrap">
+      <span class="logo-brand">COLDWEII BANKER</span>
+      <span class="logo-sub">Premier Real Estate</span>
     </div>
   </div>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="go('home')">Home</button>
+    <button class="nav-btn" onclick="go('listings')">Properties</button>
+    <button class="nav-btn" onclick="go('sold')">Sold</button>
+    <button class="nav-btn" onclick="go('apply')">Apply</button>
+    <button class="nav-btn" onclick="requireAuth()">Agent Portal</button>
+  </div>
+</nav>
 
-  <div id="view-login" class="view-section hidden">
-    <div style="max-width:400px;margin:60px auto" class="card">
-      <h2 style="text-align:center;margin-bottom:20px">Agent Portal Access</h2>
-      <div style="margin-bottom:15px">
-        <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px">Access Passcode</label>
-        <input type="password" id="login-pass" placeholder="Enter secure agent credential token">
-      </div>
-      <button class="btn-primary" onclick="handleLogin()">Authenticate Terminal</button>
-      <p id="login-error" style="color:var(--danger);font-size:13px;margin-top:10px;text-align:center" class="hidden">Invalid authentication credentials specified.</p>
+<!-- ═══════════════════ SHARED VIEW (shown when ?share= param) ═══════════════════ -->
+<div id="pg-shared" class="hidden shared-view-wrap">
+  <div id="shared-content"></div>
+</div>
+
+<!-- HOME -->
+<div id="pg-home">
+  <div class="hero">
+    <div style="margin-bottom:22px;position:relative">
+      <svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.18)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0.06)"/></linearGradient></defs>
+        <rect x="2" y="2" width="84" height="84" rx="18" fill="url(#heroGrad)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5"/>
+        <polygon points="44,6 46.2,12.8 53.4,12.8 47.8,17 50,23.8 44,19.6 38,23.8 40.2,17 34.6,12.8 41.8,12.8" fill="#c9a84c"/>
+        <text x="12" y="68" font-family="Georgia,serif" font-size="40" font-weight="700" fill="#ffffff" letter-spacing="-2">CB</text>
+        <rect x="12" y="72" width="60" height="2.5" rx="1.25" fill="rgba(201,168,76,0.6)"/>
+      </svg>
+    </div>
+    <h1>Your Path to<br>Premium Home Ownership</h1>
+    <p>COLDWEII BANKER connects qualified applicants with exclusive rent-to-own housing opportunities. Apply in minutes, move in sooner.</p>
+    <button class="btn-primary" onclick="go('apply')">Start Your Application →</button>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num" id="stat-apps">—</div><div class="stat-lbl">Applications Reviewed</div></div>
+      <div class="stat"><div class="stat-num">SSL</div><div class="stat-lbl">Encrypted &amp; Secure</div></div>
+      <div class="stat"><div class="stat-num">Fair Housing</div><div class="stat-lbl">Compliant Program</div></div>
     </div>
   </div>
+  <div class="trust-bar">
+    <div class="trust-item">🔒 SSL Encrypted</div>
+    <div class="trust-item">🏠 Fair Housing Act Compliant</div>
+    <div class="trust-item">✅ Verified Listings Only</div>
+    <div class="trust-item">🔐 No Data Sold</div>
+    <div class="trust-item">📋 Licensed Program</div>
+  </div>
+  <div class="section">
+    <div style="text-align:center;margin-bottom:38px">
+      <div class="section-title">How COLDWEII BANKER Works</div>
+      <div class="section-sub">A simple 3-step process to get you into your new home</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;margin-bottom:44px">
+      <div class="how-card"><div class="how-icon">📝</div><div class="how-title">1. Apply Online</div><div class="how-desc">Complete our qualification form in about 8–10 minutes.</div></div>
+      <div class="how-card"><div class="how-icon">🔍</div><div class="how-title">2. We Review</div><div class="how-desc">Our team reviews your application within 2–3 business days.</div></div>
+      <div class="how-card"><div class="how-icon">🏡</div><div class="how-title">3. View &amp; Move In</div><div class="how-desc">Qualified applicants are matched with available properties.</div></div>
+    </div>
+    <div id="home-reviews" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:36px"></div>
+    <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-align:center;box-shadow:0 2px 8px rgba(26,58,107,.05)">
+      <p style="font-size:13px;color:var(--muted);max-width:600px;margin:0 auto 8px"><strong>Fair Housing Statement:</strong> COLDWEII BANKER is committed to Fair Housing. We do not discriminate on the basis of race, color, religion, sex, national origin, disability, or familial status.</p>
+      <p style="font-size:12px;color:var(--muted)">Submitting an application does not guarantee approval or placement. All applications are subject to review and eligibility screening.</p>
+    </div>
+  </div>
+</div>
 
-  <div id="view-admin" class="view-section hidden">
-    <div class="admin-grid">
-      <div class="admin-nav">
-        <h3 style="font-size:14px;text-transform:uppercase;color:var(--muted);margin-bottom:15px">Navigation</h3>
-        <a href="#" class="admin-nav-item active" id="tab-link-apps" onclick="switchAdminTab('apps')">Applications (<span id="count-apps">0</span>)</a>
-        <a href="#" class="admin-nav-item" id="tab-link-revs" onclick="switchAdminTab('revs')">Review Moderation</a>
-        <a href="#" class="admin-nav-item" id="tab-link-settings" onclick="switchAdminTab('settings')">Configuration Engine</a>
+<!-- LISTINGS -->
+<div id="pg-listings" class="hidden">
+  <div class="section">
+    <div class="section-title">Available Properties</div>
+    <div class="section-sub">Browse current rent-to-own opportunities. Tap a photo to view all images. Use the Share button to send a private link.</div>
+    <div id="listings-grid" class="prop-grid"></div>
+    <div id="no-listings" style="text-align:center;padding:60px;color:var(--muted)" class="hidden">
+      <div style="font-size:48px;margin-bottom:14px">🏠</div>
+      <p>No properties listed yet. Check back soon.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SOLD -->
+<div id="pg-sold" class="hidden">
+  <div class="section">
+    <div class="section-title">Sold &amp; Rented Properties</div>
+    <div class="section-sub">These homes have been placed. Apply now to get first access to new listings.</div>
+    <div id="sold-grid" class="sold-grid"></div>
+    <div style="text-align:center;margin-top:36px;padding:30px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 2px 8px rgba(26,58,107,.05)">
+      <div style="font-size:22px;font-weight:700;margin-bottom:8px;font-family:'Georgia',serif;color:var(--primary)">Don't miss the next listing</div>
+      <p style="color:var(--muted);margin-bottom:14px">Apply now and be first in line when new properties are added.</p>
+      <button class="btn-primary" onclick="go('apply')">Start Application →</button>
+    </div>
+  </div>
+</div>
+
+<!-- APPLY -->
+<div id="pg-apply" class="hidden">
+  <div class="form-wrap">
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:16.67%"></div></div>
+    <div id="form-body"></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="pg-admin" class="hidden">
+  <div class="admin-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="var(--primary)"/><text x="4" y="26" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#fff">CB</text></svg>
+        <div style="font-size:20px;font-weight:700;font-family:'Georgia',serif;color:var(--primary)">Agent Portal</div>
       </div>
-      
-      <div class="admin-content">
-        <div id="admin-sub-apps">
-          <div style="display:flex;justify-content:between;align-items:center;margin-bottom:15px;justify-content:space-between;">
-            <h2>Incoming Program Submissions</h2>
-            <button class="nav-btn" style="background:var(--danger);color:#fff" onclick="clearAllApps()">Purge Ledger Records</button>
-          </div>
-          <div class="card" style="padding:0;overflow-x:auto;">
-            <table>
-              <thead>
-                <tr>
-                  <th>Timestamp</th>
-                  <th>Applicant Profile</th>
-                  <th>Contact Vector</th>
-                  <th>Verification Mode</th>
-                  <th>Status Workflow</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="admin-apps-target">
-                </tbody>
-            </table>
-          </div>
-        </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="sync-indicator" id="sync-status">⏳ Syncing…</span>
+        <div style="font-size:13px;color:var(--muted);font-weight:600">Admin Access</div>
+        <button class="action-btn" onclick="adminLogout()">🔒 Logout</button>
+      </div>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="aTab('dashboard',this)">Dashboard</button>
+      <button class="admin-tab" onclick="aTab('applicants',this)">Applicants</button>
+      <button class="admin-tab" onclick="aTab('properties',this)">Properties</button>
+      <button class="admin-tab" onclick="aTab('reviews',this)">Reviews</button>
+      <button class="admin-tab" onclick="aTab('payments',this)" id="pay-tab-btn">💳 Payment Reviews <span id="pay-pending-count" style="display:none;background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px"></span></button>
+      <button class="admin-tab" onclick="aTab('sharelinks',this)">🔗 Share Links</button>
+    </div>
 
-        <div id="admin-sub-revs" class="hidden">
+    <!-- DASHBOARD -->
+    <div id="at-dashboard">
+      <div class="kpi-row">
+        <div class="kpi blue"><div class="kpi-num" id="kpi-total">0</div><div class="kpi-lbl">Total Applicants</div></div>
+        <div class="kpi amber"><div class="kpi-num" id="kpi-pending">0</div><div class="kpi-lbl">Pending</div></div>
+        <div class="kpi green"><div class="kpi-num" id="kpi-qualified">0</div><div class="kpi-lbl">Qualified</div></div>
+        <div class="kpi red"><div class="kpi-num" id="kpi-notq">0</div><div class="kpi-lbl">Not Qualified</div></div>
+      </div>
+      <div class="two-col">
+        <div class="admin-card"><div class="admin-card-title">Recent Applications</div><div id="dash-recent"></div></div>
+        <div class="admin-card"><div class="admin-card-title">Quick Stats</div><div id="dash-stats"></div></div>
+      </div>
+    </div>
+
+    <!-- APPLICANTS -->
+    <div id="at-applicants" class="hidden">
+      <div class="filter-row">
+        <input class="search-input" id="srch" placeholder="Search name or email…" oninput="renderApplicantsTable()">
+        <select class="filter-select" id="sf" onchange="renderApplicantsTable()">
+          <option value="">All Statuses</option>
+          <option>Pending</option><option>Reviewed</option><option>Qualified</option><option>Not Qualified</option>
+        </select>
+        <button class="add-btn" onclick="loadData()">🔄 Refresh</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Applicant</th><th>Location</th><th>Income</th><th>Credit</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="app-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROPERTIES -->
+    <div id="at-properties" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <div style="font-weight:700;color:var(--primary)">Manage Listings</div>
+        <button class="add-btn" onclick="openPropModal(-1)">+ Add Property</button>
+      </div>
+      <div id="prop-admin-list"></div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div id="at-reviews" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <div style="font-weight:700;color:var(--primary)">Client Reviews</div>
+        <button class="add-btn" onclick="openReviewModal()">+ Add Review</button>
+      </div>
+      <div id="review-admin-list"></div>
+    </div>
+
+    <!-- PAYMENT REVIEWS -->
+    <div id="at-payments" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-weight:700;font-size:16px;color:var(--primary)">Manual Payment Reviews</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:2px">Review Bitcoin and Gift Card payments from applicants.</div>
+        </div>
+        <button class="add-btn" onclick="loadData()">🔄 Refresh</button>
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+        <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px 16px;font-size:13px;flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:2px;letter-spacing:.3px">BITCOIN PENDING</div>
+          <div style="font-size:22px;font-weight:700;color:#92400e;font-family:'Georgia',serif" id="kpi-btc-pending">0</div>
+        </div>
+        <div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:8px;padding:10px 16px;font-size:13px;flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:2px;letter-spacing:.3px">GIFT CARD PENDING</div>
+          <div style="font-size:22px;font-weight:700;color:#4c1d95;font-family:'Georgia',serif" id="kpi-gc-pending">0</div>
+        </div>
+        <div style="background:#eef3fa;border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;flex:1;min-width:160px">
+          <div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:2px;letter-spacing:.3px">APPROVED THIS WEEK</div>
+          <div style="font-size:22px;font-weight:700;color:var(--primary);font-family:'Georgia',serif" id="kpi-pay-approved">0</div>
+        </div>
+      </div>
+      <div id="pay-review-list"></div>
+    </div>
+
+    <!-- SHARE LINKS -->
+    <div id="at-sharelinks" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-weight:700;font-size:16px;color:var(--primary)">🔗 Share Links</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:2px">All property share links generated. Each link is unique and time-limited.</div>
+        </div>
+        <button class="add-btn" onclick="loadData().then(renderShareLinksAdmin)">🔄 Refresh</button>
+      </div>
+      <div style="background:#eef3fa;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:18px;font-size:13px;color:var(--primary)">
+        🔒 <strong>How it works:</strong> Each share link is unique, expires in 72 hours, and only shows the specific property it was generated for. Recipients cannot browse other listings. Links are tracked here.
+      </div>
+      <div id="share-links-admin"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" class="modal-overlay hidden" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box" id="modal-inner"></div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div id="detail-overlay" class="modal-overlay hidden" onclick="if(event.target===this)closeDetail()">
+  <div class="modal-box" id="detail-inner" style="max-width:560px"></div>
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+<div id="img-lightbox" class="gallery-overlay hidden" onclick="document.getElementById('img-lightbox').classList.add('hidden');document.body.style.overflow=''">
+  <button class="gallery-close" onclick="document.getElementById('img-lightbox').classList.add('hidden');document.body.style.overflow=''">×</button>
+  <img id="img-lightbox-src" src="" style="max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain">
+</div>
+
+<script>
+// ── CONFIG ─────────────────────────────────────────────
+var JSONBIN_KEY    = '$2a$10$V.2Sp7axXfgDWu1AJKTGbeaMonE53f1qPDRlSKMiss.JtupJHEd8C';
+var JSONBIN_BIN    = '69fa47d136566621a82baca9';
+var JSONBIN_URL    = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN;
+var CLOUDINARY_CLOUD   = 'dpoqbmvba';
+var CLOUDINARY_PRESET  = 'MY WEBSITE UPLOAD';
+var CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD + '/auto/upload';
+var ADMIN_PASSWORD = 'TriWealth3brothers1core';
+var BITCOIN_ADDRESS = 'bc1q6s678gzwp2ux5j7eymn7trvevl5f5e9l2k5ahx';
+var SHARE_EXPIRY_HOURS = 72; // how long a share link stays valid
+
+// ── STATE ──────────────────────────────────────────────
+var currentPage = 'home';
+var appStep = 1;
+var formData = {};
+var payMethod = 'card';
+var properties = [];
+var applicants = [];
+var reviews = [];
+var manualPayments = [];
+var shareLinks = [];       // { token, propId, createdAt, label }
+var adminAuthed = false;
+var isSaving = false;
+var pendingGcImages = [];
+var galleryMedia = [];
+var galleryIdx = 0;
+var sharedGalleryIdx = 0;
+var sharedGalleryMedia = [];
+var countdownInterval = null;
+
+// ── PROXIES ────────────────────────────────────────────
+var PROXIES = ['https://corsproxy.io/?','https://api.codetabs.com/v1/proxy?quest='];
+
+async function jbRequest(method, url, body) {
+  var headers = {'X-Master-Key':JSONBIN_KEY,'X-Bin-Meta':'false','X-Bin-Versioning':'false'};
+  if (body) headers['Content-Type'] = 'application/json';
+  var opts = {method:method,headers:headers,body:body?JSON.stringify(body):undefined};
+  try {
+    var r = await fetch(url, opts);
+    if (r.ok) return await r.json();
+    if (r.status===401||r.status===403) throw new Error('Auth error '+r.status);
+  } catch(e) { if (e.message.startsWith('Auth')) throw e; }
+  for (var i=0;i<PROXIES.length;i++) {
+    try { var pr=await fetch(PROXIES[i]+encodeURIComponent(url),opts); if (pr.ok) return await pr.json(); } catch(pe){}
+  }
+  throw new Error('All fetch attempts failed');
+}
+
+function applyData(data) {
+  var rec = data.record || data;
+  if (Array.isArray(rec.properties))     properties     = rec.properties;
+  if (Array.isArray(rec.applicants))     applicants     = rec.applicants;
+  if (Array.isArray(rec.reviews))        reviews        = rec.reviews;
+  if (Array.isArray(rec.manualPayments)) manualPayments = rec.manualPayments;
+  if (Array.isArray(rec.shareLinks))     shareLinks     = rec.shareLinks;
+}
+
+async function loadData() {
+  setSyncStatus('loading');
+  try {
+    var data = await jbRequest('GET', JSONBIN_URL + '/latest');
+    applyData(data);
+    setSyncStatus('ok');
+    refreshCurrentPage();
+    updateStatCount();
+  } catch(e) { console.warn('JSONBin load:', e.message); setSyncStatus('offline'); }
+}
+
+async function saveData() {
+  if (isSaving) return;
+  isSaving = true;
+  setSyncStatus('saving');
+  try {
+    await jbRequest('PUT', JSONBIN_URL, {properties,applicants,reviews,manualPayments,shareLinks});
+    setSyncStatus('ok');
+  } catch(e) { console.warn('JSONBin save:', e.message); setSyncStatus('offline'); }
+  isSaving = false;
+}
+
+function setSyncStatus(s) {
+  var el=document.getElementById('sync-status');
+  if (!el) return;
+  if (s==='ok') {el.textContent='✅ Synced';el.className='sync-indicator sync-ok';}
+  else if (s==='offline') {el.textContent='📴 Local mode';el.className='sync-indicator';}
+  else if (s==='saving') {el.textContent='💾 Saving…';el.className='sync-indicator';}
+  else {el.textContent='⏳ Loading…';el.className='sync-indicator';}
+}
+
+function refreshCurrentPage() {
+  if (currentPage==='home')     renderHomeReviews();
+  if (currentPage==='listings') renderListings();
+  if (currentPage==='sold')     renderSold();
+  if (currentPage==='admin')    renderAdmin();
+}
+function updateStatCount() {
+  var el=document.getElementById('stat-apps');
+  if (el) el.textContent=(applicants.length+2400)+'+';
+}
+
+// ── CLOUDINARY ─────────────────────────────────────────
+async function uploadToCloudinary(file, onProgress) {
+  var fd=new FormData();
+  fd.append('file',file);
+  fd.append('upload_preset',CLOUDINARY_PRESET);
+  return new Promise(function(resolve,reject){
+    var xhr=new XMLHttpRequest();
+    xhr.open('POST',CLOUDINARY_UPLOAD_URL,true);
+    xhr.upload.onprogress=function(e){if(e.lengthComputable&&onProgress)onProgress(Math.round(e.loaded/e.total*100));};
+    xhr.onload=function(){if(xhr.status===200){var res=JSON.parse(xhr.responseText);resolve({url:res.secure_url,type:res.resource_type==='video'?'video':'image'});}else reject(new Error('Upload failed: '+xhr.status));};
+    xhr.onerror=function(){reject(new Error('Network error'));};
+    xhr.send(fd);
+  });
+}
+function fileToBase64(file){return new Promise(function(resolve,reject){var r=new FileReader();r.onload=function(e){resolve(e.target.result);};r.onerror=function(){reject(new Error('Read failed'));};r.readAsDataURL(file);});}
+
+// ═══════════════════════════════════════════════════════
+// ── SHARE LINK SYSTEM ──────────────────────────────────
+// ═══════════════════════════════════════════════════════
+
+// Simple hash to prevent tampering
+function simpleHash(str) {
+  var h = 0;
+  for (var i = 0; i < str.length; i++) {
+    h = ((h << 5) - h) + str.charCodeAt(i);
+    h = h & h;
+  }
+  return Math.abs(h).toString(36);
+}
+
+// Generate a secure-enough share token
+function generateShareToken(propId) {
+  var now = Date.now();
+  var expiry = now + (SHARE_EXPIRY_HOURS * 60 * 60 * 1000);
+  var payload = propId + '|' + now + '|' + expiry;
+  var salt = Math.random().toString(36).slice(2, 10);
+  var hash = simpleHash(payload + salt + 'cb_secret_2024');
+  // encode as base64url-safe string
+  var token = btoa(payload + '|' + salt + '|' + hash)
+    .replace(/\+/g,'_').replace(/\//g,'-').replace(/=/g,'');
+  return token;
+}
+
+// Decode and validate a token
+function decodeShareToken(token) {
+  try {
+    var b64 = token.replace(/_/g,'+').replace(/-/g,'/');
+    var pad = b64.length % 4;
+    if (pad) b64 += '='.repeat(4 - pad);
+    var decoded = atob(b64);
+    var parts = decoded.split('|');
+    if (parts.length !== 5) return null;
+    var propId = parseInt(parts[0]);
+    var createdAt = parseInt(parts[1]);
+    var expiry = parseInt(parts[2]);
+    var salt = parts[3];
+    var hash = parts[4];
+    // Verify hash
+    var payload = parts[0] + '|' + parts[1] + '|' + parts[2];
+    var expectedHash = simpleHash(payload + salt + 'cb_secret_2024');
+    if (hash !== expectedHash) return null;
+    // Check expiry
+    if (Date.now() > expiry) return {expired: true, propId, createdAt, expiry};
+    return {valid: true, propId, createdAt, expiry};
+  } catch(e) {
+    return null;
+  }
+}
+
+// Build full share URL
+function buildShareUrl(token) {
+  var base = window.location.href.split('?')[0].split('#')[0];
+  return base + '?share=' + token;
+}
+
+// Open the share modal for a property
+function openShareModal(propIdx) {
+  var prop = properties[propIdx];
+  if (!prop) return;
+
+  var token = generateShareToken(prop.id);
+  var url = buildShareUrl(token);
+  var expiry = new Date(Date.now() + SHARE_EXPIRY_HOURS * 60 * 60 * 1000);
+  var expiryStr = expiry.toLocaleString();
+
+  // Save to shareLinks log
+  shareLinks.unshift({
+    token: token,
+    propId: prop.id,
+    propTitle: prop.title,
+    createdAt: new Date().toISOString(),
+    expiry: expiry.toISOString(),
+    views: 0
+  });
+  saveData();
+
+  var thumbHtml = '';
+  if (prop.media && prop.media.length) {
+    var m = prop.media[0];
+    thumbHtml = m.type === 'video'
+      ? '<video src="'+m.url+'" muted style="width:100%;height:100%;object-fit:cover"></video>'
+      : '<img src="'+m.url+'" style="width:100%;height:100%;object-fit:cover">';
+  } else { thumbHtml = '🏠'; }
+
+  var canNativeShare = !!navigator.share;
+
+  document.getElementById('share-modal-inner').innerHTML = ''
+    + '<button class="share-close-btn" onclick="closeShareModal()">×</button>'
+    + '<h3>Share This Property</h3>'
+    + '<p class="share-modal-sub">Send a private link — only the recipient can view this listing.</p>'
+    + '<div class="share-prop-preview">'
+    + '<div class="share-prop-thumb">' + thumbHtml + '</div>'
+    + '<div><div style="font-weight:700;font-size:14px;color:var(--primary)">' + prop.title + '</div>'
+    + '<div style="font-size:12px;color:var(--muted)">📍 ' + prop.location + ' · ' + prop.price + '</div></div>'
+    + '</div>'
+    + '<div class="share-link-box" id="share-link-display">' + url + '</div>'
+    + (canNativeShare
+       ? '<button class="share-native-btn" onclick="nativeShare(\'' + encodeURIComponent(url) + '\',\'' + escHtml(prop.title) + '\')">📤 Share via WhatsApp, SMS, Email…</button>'
+       : '')
+    + '<button class="share-copy-btn" id="share-copy-main" onclick="copyShareLink(\'' + encodeURIComponent(url) + '\')">📋 Copy Link</button>'
+    + '<div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Share directly to:</div>'
+    + '<div class="share-apps-row">'
+    + buildShareAppBtn('whatsapp','https://wa.me/?text='+encodeURIComponent('I found a property for you! View it here (link expires in 72h): '+url),'<span class="share-app-icon">💬</span>WhatsApp')
+    + buildShareAppBtn('telegram','https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent('Check out this exclusive property listing from COLDWEII BANKER'),'<span class="share-app-icon">✈️</span>Telegram')
+    + buildShareAppBtn('sms','sms:?body='+encodeURIComponent('Check out this property! View here (72h link): '+url),'<span class="share-app-icon">💬</span>SMS')
+    + buildShareAppBtn('email','mailto:?subject='+encodeURIComponent('Exclusive Property: '+prop.title)+'&body='+encodeURIComponent('Hi,\n\nI thought you might be interested in this property from COLDWEII BANKER:\n\n'+prop.title+'\n'+prop.location+' · '+prop.price+'\n\nView the listing here (link expires in 72 hours):\n'+url+'\n\nBest regards'),'<span class="share-app-icon">📧</span>Email')
+    + buildShareAppBtn('facebook','https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'<span class="share-app-icon">👤</span>Facebook')
+    + '</div>'
+    + '<div class="share-expiry-note">⏰ This link expires on <strong>' + expiryStr + '</strong> (' + SHARE_EXPIRY_HOURS + ' hours). After expiry, the page will show a notice and the recipient won\'t see the listing.</div>';
+
+  document.getElementById('share-modal-overlay').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function buildShareAppBtn(name, href, inner) {
+  return '<a class="share-app-btn" href="' + href + '" target="_blank" rel="noopener">' + inner + name.charAt(0).toUpperCase()+name.slice(1) + '</a>';
+}
+
+function escHtml(s) { return (s||'').replace(/'/g,"&#39;").replace(/"/g,"&quot;"); }
+
+function closeShareModal() {
+  document.getElementById('share-modal-overlay').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function copyShareLink(encodedUrl) {
+  var url = decodeURIComponent(encodedUrl);
+  navigator.clipboard.writeText(url).then(function() {
+    showToast('🔗 Link copied to clipboard!');
+    var btn = document.getElementById('share-copy-main');
+    if (btn) { btn.textContent = '✅ Copied!'; setTimeout(function(){btn.textContent='📋 Copy Link';}, 2500); }
+  }).catch(function() {
+    // fallback: select text
+    var box = document.getElementById('share-link-display');
+    if (box) {
+      var range = document.createRange();
+      range.selectNodeContents(box);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      showToast('Select & copy the link above');
+    }
+  });
+}
+
+function nativeShare(encodedUrl, title) {
+  var url = decodeURIComponent(encodedUrl);
+  if (navigator.share) {
+    navigator.share({
+      title: 'COLDWEII BANKER — ' + title,
+      text: 'Check out this exclusive property listing! Link expires in 72 hours.',
+      url: url
+    }).catch(function(){});
+  }
+}
+
+function showToast(msg) {
+  var old = document.getElementById('cb-toast');
+  if (old) old.remove();
+  var el = document.createElement('div');
+  el.id = 'cb-toast';
+  el.className = 'share-copied-toast';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(function(){ el.style.opacity='0'; el.style.transition='opacity .4s'; setTimeout(function(){el.remove();},400); }, 2500);
+}
+
+// ── SHARED PROPERTY VIEW ───────────────────────────────
+function showSharedView(token) {
+  var result = decodeShareToken(token);
+
+  // Hide nav & main pages
+  document.getElementById('main-nav').classList.add('hidden');
+  ['home','listings','sold','apply','admin'].forEach(function(p){
+    document.getElementById('pg-'+p).classList.add('hidden');
+  });
+  document.getElementById('pg-shared').classList.remove('hidden');
+
+  if (!result) {
+    renderInvalidShare();
+    return;
+  }
+  if (result.expired) {
+    renderExpiredShare(result);
+    return;
+  }
+
+  // Find the property — need to wait for data to load
+  loadData().then(function() {
+    // Track view
+    var sl = shareLinks.find(function(l){ return l.token === token; });
+    if (sl) { sl.views = (sl.views||0) + 1; saveData(); }
+
+    var prop = properties.find(function(p){ return p.id === result.propId; });
+    if (!prop) {
+      document.getElementById('shared-content').innerHTML = ''
+        + '<div class="shared-expired-wrap"><div class="shared-expired-box">'
+        + '<div style="font-size:52px;margin-bottom:16px">🏠</div>'
+        + '<h2 style="font-size:22px;font-weight:700;margin-bottom:8px;font-family:Georgia,serif;color:var(--primary)">Property Unavailable</h2>'
+        + '<p style="color:var(--muted);margin-bottom:24px">This property may have been removed or is no longer available.</p>'
+        + '<button class="btn-primary" onclick="goHome()">View All Listings</button>'
+        + '</div></div>';
+      return;
+    }
+    renderSharedProperty(prop, result.expiry);
+  });
+}
+
+function renderExpiredShare(result) {
+  document.getElementById('shared-content').innerHTML = ''
+    + '<div class="shared-expired-wrap"><div class="shared-expired-box">'
+    + '<div style="font-size:52px;margin-bottom:16px">⏰</div>'
+    + '<h2 style="font-size:22px;font-weight:700;margin-bottom:8px;font-family:Georgia,serif;color:var(--primary)">Link Expired</h2>'
+    + '<p style="color:var(--muted);margin-bottom:8px">This property share link has expired. Share links are valid for <strong>' + SHARE_EXPIRY_HOURS + ' hours</strong> from creation.</p>'
+    + '<p style="color:var(--muted);margin-bottom:24px;font-size:13px">If someone shared this with you, please ask them to generate a new link.</p>'
+    + '<button class="btn-primary" onclick="goHome()">Browse All Properties</button>'
+    + '</div></div>';
+}
+
+function renderInvalidShare() {
+  document.getElementById('shared-content').innerHTML = ''
+    + '<div class="shared-expired-wrap"><div class="shared-expired-box">'
+    + '<div style="font-size:52px;margin-bottom:16px">🔒</div>'
+    + '<h2 style="font-size:22px;font-weight:700;margin-bottom:8px;font-family:Georgia,serif;color:var(--primary)">Invalid Link</h2>'
+    + '<p style="color:var(--muted);margin-bottom:24px">This share link is invalid or has been tampered with.</p>'
+    + '<button class="btn-primary" onclick="goHome()">Go to COLDWEII BANKER</button>'
+    + '</div></div>';
+}
+
+function renderSharedProperty(prop, expiry) {
+  sharedGalleryMedia = prop.media || [];
+  sharedGalleryIdx = 0;
+  var expiryDate = new Date(expiry);
+  var mainMedia = sharedGalleryMedia.length
+    ? (sharedGalleryMedia[0].type==='video'
+        ? '<video id="shared-main-media" class="shared-gallery-main" src="'+sharedGalleryMedia[0].url+'" controls autoplay muted></video>'
+        : '<img id="shared-main-media" class="shared-gallery-main" src="'+sharedGalleryMedia[0].url+'" alt="'+prop.title+'" onclick="openGallery(sharedGalleryMedia)">')
+    : '<div style="width:100%;height:340px;background:#dce8f5;display:flex;align-items:center;justify-content:center;font-size:64px;border-radius:16px">🏠</div>';
+
+  var thumbsHtml = sharedGalleryMedia.length > 1
+    ? sharedGalleryMedia.map(function(m,i){
+        var t = m.type==='video'
+          ? '<video src="'+m.url+'" muted style="width:100%;height:100%;object-fit:cover"></video>'
+          : '<img src="'+m.url+'" style="width:100%;height:100%;object-fit:cover">';
+        return '<div class="shared-gallery-thumb'+(i===0?' active':'')+'" onclick="sharedGalleryGoTo('+i+')">'+t+'</div>';
+      }).join('')
+    : '';
+
+  document.getElementById('shared-content').innerHTML = ''
+    + '<div class="shared-header">'
+    + '<div style="display:flex;align-items:center;gap:12px">'
+    + '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="9" fill="rgba(255,255,255,0.12)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/><text x="4" y="27" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#fff" letter-spacing="-0.5">CB</text></svg>'
+    + '<div><div style="font-weight:700;font-size:16px;letter-spacing:.5px">COLDWEII BANKER</div><div style="font-size:11px;opacity:.65;letter-spacing:2px">PREMIER REAL ESTATE</div></div>'
+    + '</div>'
+    + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">'
+    + '<div class="shared-badge">🔗 Private Listing</div>'
+    + '<div class="countdown-wrap">Expires in: <span id="share-countdown" class="countdown-unit">—</span></div>'
+    + '</div>'
+    + '</div>'
+    + '<div class="shared-expiry-bar">🔒 This link was shared privately with you. It expires on <strong style="color:#fff;margin:0 4px">' + expiryDate.toLocaleString() + '</strong> and is only visible to you.</div>'
+    + '<div class="shared-prop-detail">'
+    + '<div class="shared-lock-note">🏠 You\'re viewing an exclusive property shared directly with you by a COLDWEII BANKER agent or client.</div>'
+    + '<div class="shared-gallery">'
+    + mainMedia
+    + (thumbsHtml ? '<div class="shared-gallery-thumbs" id="shared-thumbs-row">' + thumbsHtml + '</div>' : '')
+    + '</div>'
+    + '<div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">'
+    + '<div><div class="shared-prop-title">' + prop.title + '</div>'
+    + '<div class="shared-prop-loc">📍 ' + prop.location + '</div>'
+    + '<div class="shared-prop-price">' + prop.price + '</div></div>'
+    + '<span class="prop-tag" style="margin-top:4px">Rent-to-Own</span>'
+    + '</div>'
+    + '<div class="shared-prop-meta">'
+    + '<div class="shared-meta-item"><div class="shared-meta-val">' + prop.beds + '</div><div class="shared-meta-lbl">Bedrooms</div></div>'
+    + '<div class="shared-meta-item"><div class="shared-meta-val">' + prop.baths + '</div><div class="shared-meta-lbl">Bathrooms</div></div>'
+    + '<div class="shared-meta-item"><div class="shared-meta-val">' + (prop.sqft||'—') + '</div><div class="shared-meta-lbl">Sq Ft</div></div>'
+    + '<div class="shared-meta-item"><div class="shared-meta-val" style="font-size:13px">' + (prop.type||'Home') + '</div><div class="shared-meta-lbl">Type</div></div>'
+    + '</div>'
+    + '<div class="shared-desc">' + (prop.desc || 'Contact us for more details about this property.') + '</div>'
+    + '<button class="shared-apply-btn" onclick="goApply(' + prop.id + ')">Apply for This Property →</button>'
+    + '<div style="text-align:center;margin-top:16px;font-size:13px;color:var(--muted)">Want to browse more listings? <a href="#" onclick="goHome();return false;" style="color:var(--primary-light);font-weight:600">Visit COLDWEII BANKER →</a></div>'
+    + '</div>';
+
+  // Start countdown
+  startShareCountdown(expiry);
+}
+
+function sharedGalleryGoTo(idx) {
+  sharedGalleryIdx = idx;
+  var m = sharedGalleryMedia[idx];
+  var container = document.getElementById('shared-main-media');
+  if (!container) return;
+  if (m.type === 'video') {
+    container.outerHTML = '<video id="shared-main-media" class="shared-gallery-main" src="'+m.url+'" controls autoplay muted></video>';
+  } else {
+    var newEl = document.createElement('img');
+    newEl.id = 'shared-main-media';
+    newEl.className = 'shared-gallery-main';
+    newEl.src = m.url;
+    newEl.alt = 'Property image';
+    newEl.onclick = function(){ openGallery(sharedGalleryMedia); };
+    container.replaceWith ? container.replaceWith(newEl) : container.parentNode.replaceChild(newEl, container);
+  }
+  document.querySelectorAll('.shared-gallery-thumb').forEach(function(t,i){ t.classList.toggle('active', i===idx); });
+}
+
+function startShareCountdown(expiryTs) {
+  if (countdownInterval) clearInterval(countdownInterval);
+  function update() {
+    var el = document.getElementById('share-countdown');
+    if (!el) { clearInterval(countdownInterval); return; }
+    var remaining = expiryTs - Date.now();
+    if (remaining <= 0) { el.textContent = 'Expired'; el.style.background = 'rgba(239,68,68,.3)'; clearInterval(countdownInterval); return; }
+    var h = Math.floor(remaining / 3600000);
+    var m = Math.floor((remaining % 3600000) / 60000);
+    var s = Math.floor((remaining % 60000) / 1000);
+    el.textContent = h + 'h ' + (m<10?'0':'') + m + 'm ' + (s<10?'0':'') + s + 's';
+  }
+  update();
+  countdownInterval = setInterval(update, 1000);
+}
+
+function goHome() {
+  document.getElementById('main-nav').classList.remove('hidden');
+  document.getElementById('pg-shared').classList.add('hidden');
+  go('home');
+}
+
+function goApply(propId) {
+  document.getElementById('main-nav').classList.remove('hidden');
+  document.getElementById('pg-shared').classList.add('hidden');
+  formData = { propId: propId };
+  go('apply');
+}
+
+// ── ADMIN SHARE LINKS VIEW ─────────────────────────────
+function renderShareLinksAdmin() {
+  var el = document.getElementById('share-links-admin');
+  if (!el) return;
+  if (!shareLinks.length) {
+    el.innerHTML = '<div style="text-align:center;padding:48px;color:var(--muted)">'
+      + '<div style="font-size:44px;margin-bottom:12px">🔗</div>'
+      + '<p style="font-weight:600;color:var(--primary)">No share links generated yet.</p>'
+      + '<p style="font-size:13px;margin-top:6px">Go to Properties and tap the Share button on any listing to generate a private link.</p>'
+      + '</div>';
+    return;
+  }
+
+  // Group by property
+  var grouped = {};
+  shareLinks.forEach(function(sl) {
+    var key = sl.propId;
+    if (!grouped[key]) grouped[key] = {title: sl.propTitle||('Property #'+sl.propId), links:[]};
+    grouped[key].links.push(sl);
+  });
+
+  var html = '';
+  Object.keys(grouped).forEach(function(propId) {
+    var g = grouped[propId];
+    html += '<div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px">'
+      + '<div style="font-weight:700;font-size:14px;color:var(--primary);margin-bottom:10px">🏠 ' + g.title + '</div>'
+      + '<div class="share-links-wrap">'
+      + g.links.map(function(sl) {
+          var now = Date.now();
+          var exp = new Date(sl.expiry);
+          var isExpired = now > exp.getTime();
+          var shareUrl = buildShareUrl(sl.token);
+          return '<div class="share-link-row">'
+            + '<div style="font-size:11px;color:var(--muted);white-space:nowrap">'+new Date(sl.createdAt).toLocaleString()+'</div>'
+            + '<div class="share-link-token">' + shareUrl.replace(window.location.origin,'') + '</div>'
+            + (isExpired
+                ? '<span class="share-link-expired">Expired</span>'
+                : '<span class="share-link-active">● Active · exp '+exp.toLocaleDateString()+'</span>')
+            + '<span style="font-size:11px;color:var(--muted)">👁 ' + (sl.views||0) + ' views</span>'
+            + (!isExpired ? '<button class="action-btn" onclick="adminCopyLink(\''+encodeURIComponent(shareUrl)+'\',this)">Copy</button>' : '')
+            + '</div>';
+        }).join('')
+      + '</div></div>';
+  });
+  el.innerHTML = html;
+}
+
+function adminCopyLink(encodedUrl, btn) {
+  var url = decodeURIComponent(encodedUrl);
+  navigator.clipboard.writeText(url).then(function(){
+    btn.textContent = '✓ Copied!';
+    setTimeout(function(){btn.textContent='Copy';}, 2000);
+  });
+}
+
+// ── AUTH ───────────────────────────────────────────────
+function requireAuth() {
+  if (adminAuthed) { go('admin'); return; }
+  document.getElementById('pw-gate').classList.remove('hidden');
+}
+function checkPw() {
+  var val = document.getElementById('pw-input').value;
+  if (val === ADMIN_PASSWORD) {
+    document.getElementById('pw-gate').classList.add('hidden');
+    document.getElementById('pw-err').style.display = 'none';
+    document.getElementById('pw-input').value = '';
+    adminAuthed = true;
+    go('admin');
+  } else {
+    document.getElementById('pw-err').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+function closePwGate() {
+  document.getElementById('pw-gate').classList.add('hidden');
+  document.getElementById('pw-err').style.display = 'none';
+  document.getElementById('pw-input').value = '';
+}
+function togglePwVis() {
+  var inp = document.getElementById('pw-input');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+function adminLogout() { adminAuthed = false; go('home'); }
+
+// ── GALLERY ────────────────────────────────────────────
+function openGallery(media) {
+  if (!media||!media.length) return;
+  galleryMedia = media; galleryIdx = 0;
+  renderGalleryMain(); renderGalleryThumbs();
+  document.getElementById('gallery-overlay').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeGallery() {
+  document.getElementById('gallery-overlay').classList.add('hidden');
+  document.body.style.overflow = '';
+  document.querySelectorAll('#gallery-main-content video').forEach(function(v){v.pause();});
+}
+function galleryNav(dir) { galleryIdx=(galleryIdx+dir+galleryMedia.length)%galleryMedia.length; renderGalleryMain(); renderGalleryThumbs(); }
+function galleryGoTo(idx) { galleryIdx=idx; renderGalleryMain(); renderGalleryThumbs(); }
+function renderGalleryMain() {
+  var m = galleryMedia[galleryIdx];
+  var el = m.type==='video'
+    ? '<video src="'+m.url+'" controls autoplay style="max-width:100%;max-height:70vh;border-radius:10px"></video>'
+    : '<img src="'+m.url+'" style="max-width:100%;max-height:70vh;border-radius:10px;object-fit:contain">';
+  document.getElementById('gallery-main-content').innerHTML = el;
+  document.getElementById('gallery-counter').textContent = (galleryIdx+1)+' / '+galleryMedia.length;
+  document.querySelector('.gallery-prev').style.display = galleryMedia.length>1?'':'none';
+  document.querySelector('.gallery-next').style.display = galleryMedia.length>1?'':'none';
+}
+function renderGalleryThumbs() {
+  document.getElementById('gallery-thumbs').innerHTML = galleryMedia.map(function(m,i){
+    var c = m.type==='video'
+      ? '<video src="'+m.url+'" muted style="width:100%;height:100%;object-fit:cover"></video>'
+      : '<img src="'+m.url+'" style="width:100%;height:100%;object-fit:cover">';
+    return '<div class="gallery-thumb'+(i===galleryIdx?' active':'')+'" onclick="galleryGoTo('+i+')">'+c+'</div>';
+  }).join('');
+}
+document.addEventListener('keydown',function(e){
+  if (!document.getElementById('gallery-overlay').classList.contains('hidden')) {
+    if (e.key==='ArrowLeft') galleryNav(-1);
+    if (e.key==='ArrowRight') galleryNav(1);
+    if (e.key==='Escape') closeGallery();
+  }
+  if (!document.getElementById('share-modal-overlay').classList.contains('hidden') && e.key==='Escape') closeShareModal();
+});
+
+// ── NAVIGATION ─────────────────────────────────────────
+function go(page) {
+  if (page==='admin'&&!adminAuthed) { requireAuth(); return; }
+  ['home','listings','sold','apply','admin'].forEach(function(p){
+    document.getElementById('pg-'+p).classList.toggle('hidden', p!==page);
+  });
+  document.querySelectorAll('.nav-btn').forEach(function(b,i){
+    b.classList.toggle('active', ['home','listings','sold','apply','admin'][i]===page);
+  });
+  currentPage = page;
+  if (page==='home')     { renderHomeReviews(); updateStatCount(); }
+  if (page==='listings') renderListings();
+  if (page==='sold')     renderSold();
+  if (page==='apply')    { appStep=1; formData={}; pendingGcImages=[]; renderStep(); }
+  if (page==='admin')    { loadData().then(renderAdmin); }
+}
+
+// ── LISTINGS ───────────────────────────────────────────
+function mediaCoverEl(media) {
+  if (!media||!media.length) return '<span style="font-size:32px">🏠</span>';
+  var m=media[0];
+  if (m.type==='video') return '<video src="'+m.url+'" muted autoplay loop style="width:100%;height:100%;object-fit:cover"></video>';
+  return '<img src="'+m.url+'" alt="property" style="width:100%;height:100%;object-fit:cover">';
+}
+
+function renderListings() {
+  var avail = properties.filter(function(p){ return p.status==='available'; });
+  var grid = document.getElementById('listings-grid');
+  var none = document.getElementById('no-listings');
+  if (!avail.length) { grid.innerHTML=''; none.classList.remove('hidden'); return; }
+  none.classList.add('hidden');
+  grid.innerHTML = avail.map(function(p) {
+    var pi = properties.indexOf(p);
+    var hasMultiple = p.media&&p.media.length>1;
+    var mediaBadge = p.media&&p.media.length ? '<div class="media-count-badge">📷 '+p.media.length+'</div>' : '';
+    return '<div class="prop-card">'
+      + '<div class="prop-media-box" onclick="'+(p.media&&p.media.length?'openGallery(properties['+pi+'].media)':'')+'">'+mediaCoverEl(p.media)+mediaBadge+'</div>'
+      + '<div class="prop-info"><span class="prop-tag">Rent-to-Own</span>'
+      + '<div class="prop-title">'+p.title+'</div>'
+      + '<div class="prop-loc">📍 '+p.location+'</div>'
+      + '<div class="prop-price">'+p.price+'</div>'
+      + '<div class="prop-meta"><span>🛏 '+p.beds+' bed</span><span>🚿 '+p.baths+' bath</span><span>📐 '+p.sqft+' sqft</span></div>'
+      + '<p style="font-size:13px;color:var(--muted);margin-top:8px">'+p.desc+'</p>'
+      + (hasMultiple?'<div style="font-size:12px;color:var(--primary-light);margin-top:6px">👆 Tap photo to see all '+p.media.length+' images/videos</div>':'')
+      + '<button class="apply-btn" onclick="startApplyProp('+p.id+')">Apply for This Property →</button>'
+      + '<button class="share-btn" onclick="openShareModal('+pi+')">'
+      + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>'
+      + 'Share This Property</button>'
+      + '</div></div>';
+  }).join('');
+}
+
+function startApplyProp(id) { formData.propId=id; go('apply'); }
+
+function renderSold() {
+  var done = properties.filter(function(p){ return p.status!=='available'; });
+  var grid = document.getElementById('sold-grid');
+  if (!done.length) { grid.innerHTML='<p style="color:var(--muted)">No sold or rented properties yet.</p>'; return; }
+  grid.innerHTML = done.map(function(p){
+    var label = p.status==='sold'?'SOLD':'RENTED';
+    var cls = p.status==='sold'?'':' rented';
+    return '<div class="sold-card"><div class="prop-media-box" style="height:160px">'+mediaCoverEl(p.media)+'</div>'
+      + '<div class="sold-overlay"><div class="sold-badge'+cls+'">'+label+'</div></div>'
+      + '<div class="prop-info"><div class="prop-title">'+p.title+'</div><div class="prop-loc">📍 '+p.location+'</div><div class="prop-price">'+p.price+'</div></div></div>';
+  }).join('');
+}
+
+function renderHomeReviews() {
+  var el = document.getElementById('home-reviews');
+  el.innerHTML = reviews.map(function(r){
+    return '<div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:0 2px 8px rgba(26,58,107,.05)">'
+      +'<div class="stars">'+'★'.repeat(r.rating)+'☆'.repeat(5-r.rating)+'</div>'
+      +'<p style="font-size:14px;margin:8px 0;color:var(--text)">'+r.text+'</p>'
+      +'<div style="font-size:12px;color:var(--muted)">— '+r.name+' · '+r.date+'</div></div>';
+  }).join('');
+}
+
+// ── FORM ───────────────────────────────────────────────
+var stepTitles=[
+  {label:'Step 1 of 6',title:'Personal Information'},
+  {label:'Step 2 of 6',title:'Employment & Income'},
+  {label:'Step 3 of 6',title:'Financial Readiness'},
+  {label:'Step 4 of 6',title:'Housing Intent'},
+  {label:'Step 5 of 6',title:'Intent Verification'},
+  {label:'Step 6 of 6',title:'Review & Payment'}
+];
+
+function renderStep() {
+  document.getElementById('prog-fill').style.width=(appStep/6*100)+'%';
+  var s=stepTitles[appStep-1];
+  var html='<div class="step-label">'+s.label+'</div>'
+    +'<div class="step-title">'+s.title+'</div>'
+    +'<div class="form-grid">'+getStepHTML()+'</div>'
+    +'<div class="form-nav">'
+    +(appStep>1?'<button class="btn-back" onclick="prevStep()">← Back</button>':'')
+    +(appStep<6
+      ?'<button class="btn-next" onclick="nextStep()">Continue →</button>'
+      :'<button class="btn-next" id="submit-btn" onclick="submitApp()">Submit Application →</button>')
+    +'</div>';
+  document.getElementById('form-body').innerHTML=html;
+  bindRadios();
+}
+
+function radioOpt(name,val,lbl,sel){
+  var checked=sel===val?' checked':'';
+  var cls=sel===val?' selected':'';
+  return '<label class="radio-opt'+cls+'"><input type="radio" name="'+name+'" value="'+val+'"'+checked+'> '+lbl+'</label>';
+}
+
+function getStepHTML(){
+  if(appStep===1) return ''
+    +'<div class="form-row">'
+    +'<div class="field"><label>Full Name *</label><input id="f-name" value="'+(formData.name||'')+'" placeholder="Jane Smith"></div>'
+    +'<div class="field"><label>Phone Number *</label><input id="f-phone" value="'+(formData.phone||'')+'" placeholder="(555) 000-0000"></div>'
+    +'</div>'
+    +'<div class="field"><label>Email Address *</label><input id="f-email" type="email" value="'+(formData.email||'')+'" placeholder="jane@email.com"></div>'
+    +'<div class="field"><label>Current City &amp; State *</label><input id="f-city" value="'+(formData.city||'')+'" placeholder="e.g. Dallas, TX"></div>'
+    +'<div class="form-row">'
+    +'<div class="field"><label>Marital Status (optional)</label><select id="f-marital"><option>Prefer not to say</option><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select></div>'
+    +'<div class="field"><label>Dependents (optional)</label><select id="f-deps"><option>0</option><option>1</option><option>2</option><option>3</option><option>4+</option></select></div>'
+    +'</div>';
+
+  if(appStep===2) return ''
+    +'<div class="field"><label>Employment Status *</label><div class="radio-group">'
+    +radioOpt('employment','Employed','Employed',formData.employment)
+    +radioOpt('employment','Self-Employed','Self-Employed',formData.employment)
+    +radioOpt('employment','Unemployed','Unemployed',formData.employment)
+    +radioOpt('employment','Student','Student',formData.employment)
+    +'</div></div>'
+    +'<div class="field"><label>Job Title or Industry</label><input id="f-job" value="'+(formData.job||'')+'" placeholder="e.g. Registered Nurse / Healthcare"></div>'
+    +'<div class="field"><label>Monthly Income Range *</label><select id="f-income">'
+    +'<option>Select…</option><option>Under $2,000</option><option>$2,000–$3,000</option><option>$3,000–$4,000</option><option>$4,000–$5,000</option><option>$5,000–$7,000</option><option>$7,000–$10,000</option><option>$10,000+</option>'
+    +'</select></div>'
+    +'<div class="field"><label>Length of Employment</label><select id="f-emplen">'
+    +'<option>Select…</option><option>Less than 6 months</option><option>6–12 months</option><option>1–2 years</option><option>2–5 years</option><option>5+ years</option>'
+    +'</select></div>'
+    +'<div class="field"><label>Secondary Income (optional)</label><input id="f-income2" value="'+(formData.income2||'')+'" placeholder="e.g. freelance, rental income"></div>';
+
+  if(appStep===3) return ''
+    +'<div class="field"><label>Do you have savings for a down payment? *</label><div class="radio-group">'
+    +radioOpt('dp_ready','Yes','Yes, I have savings ready',formData.dp_ready)
+    +radioOpt('dp_ready','Planning','Planning to save',formData.dp_ready)
+    +radioOpt('dp_ready','No','Not at this time',formData.dp_ready)
+    +'</div></div>'
+    +'<div class="field"><label>Estimated Down Payment Range</label><select id="f-dprange">'
+    +'<option>Select…</option><option>Under $2,000</option><option>$2,000–$5,000</option><option>$5,000–$10,000</option><option>$10,000–$20,000</option><option>$20,000+</option>'
+    +'</select></div>'
+    +'<div class="field"><label>Monthly Housing Budget *</label><select id="f-budget">'
+    +'<option>Select…</option><option>Under $800</option><option>$800–$1,200</option><option>$1,200–$1,600</option><option>$1,600–$2,000</option><option>$2,000–$2,500</option><option>$2,500+</option>'
+    +'</select></div>'
+    +'<div class="field"><label>Credit Score Range *</label><div class="radio-group">'
+    +radioOpt('credit','Below 580','Below 580',formData.credit)
+    +radioOpt('credit','580–619','580–619',formData.credit)
+    +radioOpt('credit','620–659','620–659',formData.credit)
+    +radioOpt('credit','660–699','660–699',formData.credit)
+    +radioOpt('credit','700–739','700–739',formData.credit)
+    +radioOpt('credit','740+','740 or above',formData.credit)
+    +'</div></div>'
+    +'<div class="field"><label>Any past rental issues?</label><div class="radio-group">'
+    +radioOpt('rental_issues','No','No',formData.rental_issues)
+    +radioOpt('rental_issues','Yes','Yes (may be discussed during review)',formData.rental_issues)
+    +radioOpt('rental_issues','Prefer not to say','Prefer not to say',formData.rental_issues)
+    +'</div></div>';
+
+  if(appStep===4) return ''
+    +'<div class="field"><label>I am interested in… *</label><div class="radio-group">'
+    +radioOpt('intent','Rent-to-Own','Rent-to-Own',formData.intent)
+    +radioOpt('intent','Traditional Renting','Traditional Renting',formData.intent)
+    +radioOpt('intent','Exploring Options','Just Exploring Options',formData.intent)
+    +'</div></div>'
+    +'<div class="field"><label>Preferred Location(s)</label><input id="f-prefcity" value="'+(formData.prefcity||'')+'" placeholder="e.g. Austin, TX or Dallas metro area"></div>'
+    +'<div class="field"><label>Property Type Preference</label><div class="radio-group">'
+    +radioOpt('prop_type','House','Single Family Home',formData.prop_type)
+    +radioOpt('prop_type','Apartment','Apartment',formData.prop_type)
+    +radioOpt('prop_type','Townhouse','Townhouse',formData.prop_type)
+    +radioOpt('prop_type','Any','No Preference',formData.prop_type)
+    +'</div></div>'
+    +'<div class="form-row">'
+    +'<div class="field"><label>Bedrooms Required</label><select id="f-beds"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5+</option></select></div>'
+    +'<div class="field"><label>Move-In Timeline</label><select id="f-timeline"><option>ASAP</option><option>Within 30 days</option><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option></select></div>'
+    +'</div>';
+
+  if(appStep===5){
+    var scaleBtns='';
+    for(var n=1;n<=5;n++){scaleBtns+='<button type="button" class="scale-btn'+(formData.seriousness==n?' active':'')+'" onclick="setScale('+n+')">'+n+'</button>';}
+    return ''
+    +'<div class="field"><label>How serious are you about moving within 30–90 days?</label>'
+    +'<div class="scale-row" id="scale-row">'+scaleBtns+'</div>'
+    +'<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px"><span>Just browsing</span><span>Very ready to move</span></div>'
+    +'</div>'
+    +'<div class="field"><label>Approved by any housing program or lender? *</label><div class="radio-group">'
+    +radioOpt('lender_approved','Yes','Yes',formData.lender_approved)
+    +radioOpt('lender_approved','No','No',formData.lender_approved)
+    +radioOpt('lender_approved','In Progress','Application in progress',formData.lender_approved)
+    +'</div></div>'
+    +'<div class="field"><label>Working with any agent or housing company?</label><div class="radio-group">'
+    +radioOpt('has_agent','Yes','Yes',formData.has_agent)
+    +radioOpt('has_agent','No','No',formData.has_agent)
+    +'</div></div>'
+    +'<div class="field"><label>Anything else we should know? (optional)</label>'
+    +'<textarea id="f-notes" rows="3" placeholder="Additional context…">'+(formData.notes||'')+'</textarea></div>';
+  }
+
+  if(appStep===6){
+    return ''
+    +'<div class="disclaimer-box">⚠️ <strong>Important:</strong> Submitting this form does not guarantee approval or placement. All applications are reviewed for eligibility.</div>'
+    +'<div class="success-box">🔒 Your data is encrypted and protected. We do not sell or share your information with third parties.</div>'
+    +'<div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px">'
+    +'<div style="font-weight:700;font-size:14px;margin-bottom:10px;color:var(--primary)">Application Summary</div>'
+    +'<div style="font-size:13px;color:var(--muted);display:grid;gap:6px">'
+    +'<div>👤 '+(formData.name||'—')+' · '+(formData.email||'—')+'</div>'
+    +'<div>📍 '+(formData.city||'—')+'</div>'
+    +'<div>💼 '+(formData.employment||'—')+' · Income: '+(formData.income||'—')+'</div>'
+    +'<div>🏠 '+(formData.intent||'—')+' · '+(formData.prop_type||'—')+'</div>'
+    +'</div></div>'
+    +'<div style="font-weight:700;margin-bottom:4px;color:var(--primary)">Processing & Verification Fee — $35.00</div>'
+    +'<div style="font-size:12px;color:var(--muted);margin-bottom:12px">Choose your preferred payment method below.</div>'
+    +'<div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Online Payments</div>'
+    +'<div class="pay-methods">'
+    +'<div class="pay-btn'+(payMethod==='card'?' active':'')+'" onclick="selectPay(\'card\')">💳 Card</div>'
+    +'<div class="pay-btn'+(payMethod==='apple'?' active':'')+'" onclick="selectPay(\'apple\')"> Apple Pay</div>'
+    +'<div class="pay-btn'+(payMethod==='google'?' active':'')+'" onclick="selectPay(\'google\')">G Pay</div>'
+    +'</div>'
+    +'<div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">Manual Payments</div>'
+    +'<div class="pay-methods-row2">'
+    +'<div class="pay-btn btc-btn'+(payMethod==='bitcoin'?' active':'')+'" onclick="selectPay(\'bitcoin\')">₿ Bitcoin</div>'
+    +'<div class="pay-btn gc-btn'+(payMethod==='giftcard'?' active':'')+'" onclick="selectPay(\'giftcard\')">🎁 Gift Card</div>'
+    +'</div>'
+    +'<div id="pay-fields-wrap"></div>'
+    +'<div class="secure-note">🔒 All payment information is securely processed and protected.</div>'
+    +'<div class="check-row"><input type="checkbox" id="chk1"><span>I confirm all information provided is accurate and complete to the best of my knowledge.</span></div>'
+    +'<div class="check-row"><input type="checkbox" id="chk2"><span>I agree to the <a href="#" style="color:var(--primary-light)">Terms &amp; Conditions</a> and <a href="#" style="color:var(--primary-light)">Privacy Policy</a>. I understand submission does not guarantee approval.</span></div>';
+  }
+  return '';
+}
+
+function bindRadios(){
+  document.querySelectorAll('.radio-opt input[type=radio]').forEach(function(r){
+    r.addEventListener('change',function(){
+      var group=document.querySelectorAll('.radio-opt input[name="'+this.name+'"]');
+      group.forEach(function(x){x.parentElement.classList.remove('selected');});
+      this.parentElement.classList.add('selected');
+      formData[this.name]=this.value;
+    });
+  });
+  if(appStep===6) renderPayFields();
+}
+function setScale(n){formData.seriousness=n;document.querySelectorAll('.scale-btn').forEach(function(b,i){b.classList.toggle('active',i+1===n);});}
+function selectPay(m){payMethod=m;document.querySelectorAll('.pay-btn').forEach(function(b){b.classList.remove('active');});event.currentTarget.classList.add('active');renderPayFields();}
+
+function renderPayFields(){
+  var el=document.getElementById('pay-fields-wrap');
+  if(!el) return;
+  if(payMethod==='card'){
+    el.innerHTML='<div class="card-fields">'
+      +'<div class="field"><label>Card Number</label><input placeholder="•••• •••• •••• ••••" maxlength="19"></div>'
+      +'<div class="form-row"><div class="field"><label>Expiry</label><input placeholder="MM / YY" maxlength="7"></div><div class="field"><label>CVC</label><input placeholder="•••" maxlength="4"></div></div>'
+      +'<div class="field"><label>Cardholder Name</label><input placeholder="As on card"></div>'
+      +'</div>';
+  } else if(payMethod==='apple'||payMethod==='google'){
+    var n=payMethod==='apple'?'Apple Pay':'Google Pay';
+    el.innerHTML='<div style="text-align:center;padding:18px;color:var(--muted);font-size:13px;background:#f7f9fc;border-radius:10px;border:1px solid var(--border)">You will be redirected to complete '+n+' checkout after submission.</div>';
+  } else if(payMethod==='bitcoin'){
+    el.innerHTML=renderBitcoinPanel();
+  } else if(payMethod==='giftcard'){
+    el.innerHTML=renderGiftCardPanel();
+    var inp=document.getElementById('gc-file-input');
+    if(inp) inp.addEventListener('change',handleGcFileUpload);
+    renderGcImagePreviews();
+  }
+}
+
+// ── BITCOIN ────────────────────────────────────────────
+function renderBitcoinPanel(){
+  var qrSvg='<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" fill="white"/><rect x="8" y="8" width="28" height="28" rx="2" fill="#111"/><rect x="12" y="12" width="20" height="20" rx="1" fill="white"/><rect x="15" y="15" width="14" height="14" rx="1" fill="#111"/><rect x="84" y="8" width="28" height="28" rx="2" fill="#111"/><rect x="88" y="12" width="20" height="20" rx="1" fill="white"/><rect x="91" y="15" width="14" height="14" rx="1" fill="#111"/><rect x="8" y="84" width="28" height="28" rx="2" fill="#111"/><rect x="12" y="88" width="20" height="20" rx="1" fill="white"/><rect x="15" y="91" width="14" height="14" rx="1" fill="#111"/><rect x="44" y="8" width="6" height="6" fill="#111"/><rect x="56" y="8" width="6" height="6" fill="#111"/><rect x="50" y="14" width="6" height="6" fill="#111"/><rect x="62" y="8" width="6" height="6" fill="#111"/><rect x="68" y="14" width="6" height="6" fill="#111"/><rect x="8" y="44" width="6" height="6" fill="#111"/><rect x="8" y="56" width="6" height="6" fill="#111"/><rect x="8" y="62" width="6" height="6" fill="#111"/><rect x="14" y="50" width="6" height="6" fill="#111"/><rect x="44" y="44" width="6" height="6" fill="#111"/><rect x="50" y="50" width="6" height="6" fill="#111"/><rect x="56" y="44" width="6" height="6" fill="#111"/><rect x="62" y="56" width="6" height="6" fill="#111"/><rect x="68" y="44" width="6" height="6" fill="#111"/><rect x="44" y="56" width="6" height="6" fill="#111"/><rect x="50" y="62" width="6" height="6" fill="#111"/><rect x="56" y="68" width="6" height="6" fill="#111"/><rect x="62" y="62" width="6" height="6" fill="#111"/><rect x="68" y="68" width="6" height="6" fill="#111"/><rect x="44" y="68" width="6" height="6" fill="#111"/><rect x="50" y="74" width="6" height="6" fill="#111"/><rect x="74" y="44" width="6" height="6" fill="#111"/><rect x="80" y="50" width="6" height="6" fill="#111"/><rect x="74" y="56" width="6" height="6" fill="#111"/><rect x="80" y="62" width="6" height="6" fill="#111"/><rect x="74" y="68" width="6" height="6" fill="#111"/><rect x="80" y="74" width="6" height="6" fill="#111"/><rect x="86" y="44" width="6" height="6" fill="#111"/><rect x="92" y="50" width="6" height="6" fill="#111"/><rect x="86" y="62" width="6" height="6" fill="#111"/><rect x="98" y="44" width="6" height="6" fill="#111"/><rect x="104" y="50" width="6" height="6" fill="#111"/><rect x="98" y="62" width="6" height="6" fill="#111"/><rect x="104" y="68" width="6" height="6" fill="#111"/><text x="60" y="113" text-anchor="middle" font-size="6" fill="#f7931a" font-family="monospace">₿ BTC</text></svg>';
+  return '<div class="btc-panel">'
+    +'<div class="btc-header"><div class="btc-icon">₿</div><div><div class="btc-title">Bitcoin Payment</div><div class="btc-subtitle">Send exactly $35 USD worth of BTC to the address below</div></div></div>'
+    +'<div class="manual-pay-badge">⏳ Requires Manual Approval</div>'
+    +'<div class="btc-qr-wrap"><div style="width:140px;height:140px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden">'+qrSvg+'</div>'
+    +'<div style="font-size:12px;color:var(--muted);text-align:center">Scan to pay or copy address below</div></div>'
+    +'<div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:700">Bitcoin Wallet Address:</div>'
+    +'<div class="btc-address-box" id="btc-addr-box">'+BITCOIN_ADDRESS+'<button class="copy-addr-btn" onclick="copyBtcAddress()" id="copy-btn">Copy</button></div>'
+    +'<div class="btc-amount-box"><span style="color:var(--muted)">Amount to send:</span><span class="btc-amount">$35.00 USD in BTC</span></div>'
+    +'<div class="btc-steps">'
+    +'<div class="btc-step"><div class="btc-step-num">1</div><span>Open your Bitcoin wallet app</span></div>'
+    +'<div class="btc-step"><div class="btc-step-num">2</div><span>Send exactly <strong>$35 USD worth of BTC</strong> to the address above.</span></div>'
+    +'<div class="btc-step"><div class="btc-step-num">3</div><span>Copy your <strong>Transaction ID (TxID)</strong> from your wallet after sending.</span></div>'
+    +'<div class="btc-step"><div class="btc-step-num">4</div><span>Paste the Transaction ID below and submit.</span></div>'
+    +'</div>'
+    +'<div class="btc-confirm-note">⚠️ Your application will be in <strong>Pending Review</strong> until our team confirms your Bitcoin payment (1–3 business days).</div>'
+    +'<div class="field"><label>Bitcoin Transaction ID (TxID) *</label><input id="btc-txid" class="btc-txid-input" placeholder="e.g. 3a1b2c3d4e5f6789abcdef..." value="'+(formData.btcTxId||'')+'"></div>'
+    +'</div>';
+}
+function copyBtcAddress(){
+  navigator.clipboard.writeText(BITCOIN_ADDRESS).then(function(){
+    var btn=document.getElementById('copy-btn');
+    if(btn){btn.textContent='✓ Copied!';setTimeout(function(){if(btn)btn.textContent='Copy';},2000);}
+  }).catch(function(){
+    var box=document.getElementById('btc-addr-box');
+    if(box){var range=document.createRange();range.selectNodeContents(box);window.getSelection().removeAllRanges();window.getSelection().addRange(range);}
+  });
+}
+
+// ── GIFT CARD ──────────────────────────────────────────
+var gcBrandSelected='';
+function renderGiftCardPanel(){
+  var brands=['Amazon','Walmart','Target','Best Buy','Google Play','iTunes','eBay','Steam','Vanilla Visa','PayPal'];
+  var brandsHTML=brands.map(function(b){return '<div class="gc-brand'+(gcBrandSelected===b?' selected':'')+'" onclick="selectGcBrand(\''+b+'\')">'+b+'</div>';}).join('');
+  return '<div class="gc-panel">'
+    +'<div class="gc-header"><div class="gc-icon">🎁</div><div><div class="gc-title">Gift Card Payment</div><div class="gc-subtitle">$35 value gift card required</div></div></div>'
+    +'<div class="manual-pay-badge">⏳ Requires Manual Approval</div>'
+    +'<div class="gc-note">📋 <strong>Accepted brands:</strong> Amazon, Walmart, Target, Best Buy, Google Play, iTunes, and other major retailers.</div>'
+    +'<div class="field" style="margin-bottom:14px"><label>Select Gift Card Brand *</label>'
+    +'<div class="gc-brands" id="gc-brands-wrap">'+brandsHTML+'</div>'
+    +'<div class="field" style="margin-top:6px"><label>Or type brand name</label><input id="gc-brand-other" placeholder="Other brand…" oninput="gcBrandOtherInput(this.value)" value="'+(gcBrandSelected&&!brands.includes(gcBrandSelected)?gcBrandSelected:'')+'"></div>'
+    +'</div>'
+    +'<div class="field"><label>Card Code / PIN *</label><input id="gc-code" placeholder="Enter the card number and PIN/code" value="'+(formData.gcCode||'')+'"></div>'
+    +'<div class="field" style="margin-top:12px"><label>Upload Photo(s) of Gift Card *</label>'
+    +'<div class="gc-upload-zone" onclick="document.getElementById(\'gc-file-input\').click()">'
+    +'<div class="gc-upload-icon">📸</div>'
+    +'<div style="font-weight:700;font-size:14px">Tap to upload gift card photo</div>'
+    +'<div style="font-size:12px;color:var(--muted);margin-top:4px">Front and back photos recommended</div>'
+    +'</div>'
+    +'<input type="file" id="gc-file-input" accept="image/*" multiple style="display:none">'
+    +'<div id="gc-image-previews"></div>'
+    +'</div>'
+    +'<div class="gc-note" style="margin-top:10px">🔒 Your gift card information is only reviewed by our verification team.</div>'
+    +'</div>';
+}
+function selectGcBrand(brand){gcBrandSelected=brand;formData.gcBrand=brand;document.querySelectorAll('.gc-brand').forEach(function(el){el.classList.toggle('selected',el.textContent===brand);});var o=document.getElementById('gc-brand-other');if(o)o.value='';}
+function gcBrandOtherInput(val){gcBrandSelected=val;formData.gcBrand=val;document.querySelectorAll('.gc-brand').forEach(function(el){el.classList.remove('selected');});}
+async function handleGcFileUpload(e){
+  var files=Array.from(e.target.files);
+  if(!files.length) return;
+  for(var i=0;i<files.length;i++){try{var b64=await fileToBase64(files[i]);pendingGcImages.push(b64);}catch(err){}}
+  renderGcImagePreviews();e.target.value='';
+}
+function renderGcImagePreviews(){
+  var el=document.getElementById('gc-image-previews');
+  if(!el) return;
+  if(!pendingGcImages.length){el.innerHTML='';return;}
+  el.innerHTML='<div class="gc-preview-wrap" style="margin-top:10px">'+pendingGcImages.map(function(src,i){return '<div class="gc-preview-item"><img src="'+src+'" alt="Gift card"><button class="gc-remove-btn" onclick="removeGcImage('+i+')">×</button></div>';}).join('')+'</div>';
+}
+function removeGcImage(i){pendingGcImages.splice(i,1);renderGcImagePreviews();}
+
+// ── FORM NAV ───────────────────────────────────────────
+function saveCurrentStep(){
+  if(appStep===1){var n=document.getElementById('f-name');if(n)formData.name=n.value;var p=document.getElementById('f-phone');if(p)formData.phone=p.value;var e=document.getElementById('f-email');if(e)formData.email=e.value;var c=document.getElementById('f-city');if(c)formData.city=c.value;}
+  else if(appStep===2){var j=document.getElementById('f-job');if(j)formData.job=j.value;var i=document.getElementById('f-income');if(i)formData.income=i.value;var i2=document.getElementById('f-income2');if(i2)formData.income2=i2.value;}
+  else if(appStep===3){var dp=document.getElementById('f-dprange');if(dp)formData.dprange=dp.value;var bg=document.getElementById('f-budget');if(bg)formData.budget=bg.value;}
+  else if(appStep===4){var pc=document.getElementById('f-prefcity');if(pc)formData.prefcity=pc.value;var bd=document.getElementById('f-beds');if(bd)formData.beds=bd.value;var tl=document.getElementById('f-timeline');if(tl)formData.timeline=tl.value;}
+  else if(appStep===5){var nt=document.getElementById('f-notes');if(nt)formData.notes=nt.value;}
+  else if(appStep===6){var txid=document.getElementById('btc-txid');if(txid)formData.btcTxId=txid.value;var gcc=document.getElementById('gc-code');if(gcc)formData.gcCode=gcc.value;var gcbo=document.getElementById('gc-brand-other');if(gcbo&&gcbo.value)formData.gcBrand=gcbo.value;}
+}
+function nextStep(){
+  if(appStep===1){var n=document.getElementById('f-name');var e=document.getElementById('f-email');if(!n.value.trim()||!e.value.trim()){alert('Please enter your full name and email address.');return;}}
+  saveCurrentStep();appStep++;renderStep();
+  document.getElementById('pg-apply').scrollIntoView({behavior:'smooth'});
+}
+function prevStep(){saveCurrentStep();appStep--;renderStep();}
+
+async function submitApp(){
+  var c1=document.getElementById('chk1');var c2=document.getElementById('chk2');
+  if(!c1||!c1.checked||!c2||!c2.checked){alert('Please check both confirmation boxes to proceed.');return;}
+  saveCurrentStep();
+  if(payMethod==='bitcoin'){var txid=document.getElementById('btc-txid');if(!txid||!txid.value.trim()){alert('Please enter your Bitcoin Transaction ID (TxID) before submitting.');return;}formData.btcTxId=txid.value.trim();}
+  if(payMethod==='giftcard'){if(!formData.gcBrand&&!gcBrandSelected){alert('Please select or enter the gift card brand.');return;}var gcc=document.getElementById('gc-code');if(!gcc||!gcc.value.trim()){alert('Please enter the gift card code/PIN.');return;}if(!pendingGcImages.length){alert('Please upload at least one photo of your gift card.');return;}formData.gcCode=gcc.value.trim();formData.gcBrand=gcBrandSelected||formData.gcBrand;}
+  var btn=document.getElementById('submit-btn');if(btn){btn.disabled=true;btn.innerHTML='<span class="spin"></span> Submitting…';}
+  var id='CB-'+Math.floor(1000+Math.random()*9000);
+  var newApp={id:id,name:formData.name||'Applicant',email:formData.email||'',city:formData.city||'',income:formData.income||'',credit:formData.credit||'',status:'Pending',date:new Date().toISOString().split('T')[0],phone:formData.phone||'',employment:formData.employment||'',intent:formData.intent||'',timeline:formData.timeline||'',downpayment:formData.dprange||'',score:Math.floor(65+Math.random()*30),notes:formData.notes||'',prop_type:formData.prop_type||'',paymentMethod:payMethod};
+  applicants.unshift(newApp);
+  if(payMethod==='bitcoin'||payMethod==='giftcard'){
+    var payRecord={id:'PAY-'+Date.now(),applicantId:id,applicantName:formData.name||'Applicant',applicantEmail:formData.email||'',applicantPhone:formData.phone||'',method:payMethod,status:'pending',submittedAt:new Date().toISOString()};
+    if(payMethod==='bitcoin'){payRecord.txId=formData.btcTxId;payRecord.amount='$35 USD in BTC';payRecord.walletAddress=BITCOIN_ADDRESS;}
+    else{payRecord.gcBrand=formData.gcBrand||gcBrandSelected;payRecord.gcCode=formData.gcCode;payRecord.gcImages=pendingGcImages.slice();payRecord.amount='$35 Gift Card';}
+    manualPayments.unshift(payRecord);
+  }
+  await saveData();
+  var payConfirmMsg='';
+  if(payMethod==='bitcoin'){payConfirmMsg='<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px;margin:12px 0;font-size:13px;color:#92400e">₿ <strong>Bitcoin Payment Received</strong><br>Your TxID has been recorded. Our team will verify the transaction (1–3 business days).</div>';}
+  else if(payMethod==='giftcard'){payConfirmMsg='<div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:8px;padding:12px;margin:12px 0;font-size:13px;color:#4c1d95">🎁 <strong>Gift Card Submission Received</strong><br>Our team will verify your '+(formData.gcBrand||'gift card')+' card within 1–3 business days.</div>';}
+  else{payConfirmMsg='<div style="background:#eef3fa;border:1px solid var(--border);border-radius:8px;padding:12px;margin:12px 0;font-size:13px;color:var(--primary)">✅ <strong>Payment processed</strong></div>';}
+  document.getElementById('prog-fill').style.width='100%';
+  document.getElementById('form-body').innerHTML=''
+    +'<div style="text-align:center;padding:56px 0;max-width:460px;margin:0 auto">'
+    +'<div style="width:70px;height:70px;background:#eef3fa;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 18px;border:2px solid var(--border)">✅</div>'
+    +'<h2 style="font-size:24px;font-weight:700;margin-bottom:10px;font-family:Georgia,serif;color:var(--primary)">Application Submitted!</h2>'
+    +'<p style="color:var(--muted);margin-bottom:6px">Thank you, <strong>'+(formData.name||'Applicant')+'</strong>. Your application has been received.</p>'
+    +'<p style="color:var(--muted);margin-bottom:8px">Your application ID:</p>'
+    +'<div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-weight:700;font-size:18px;letter-spacing:2px;display:inline-block;margin-bottom:12px;color:var(--primary)">'+id+'</div>'
+    +payConfirmMsg
+    +'<p style="color:var(--muted);margin-bottom:24px">We will contact you at <strong>'+(formData.email||'your email')+'</strong> once your application and payment are confirmed.</p>'
+    +'<button class="btn-primary" onclick="go(\'home\')">Return Home</button>'
+    +'</div>';
+}
+
+// ── ADMIN ──────────────────────────────────────────────
+function renderAdmin(){updateKPIs();renderDashRecent();renderDashStats();renderApplicantsTable();renderPropAdminList();renderReviewAdminList();renderPaymentReviews();updatePayPendingBadge();renderShareLinksAdmin();}
+function aTab(name,btn){
+  ['dashboard','applicants','properties','reviews','payments','sharelinks'].forEach(function(t){document.getElementById('at-'+t).classList.toggle('hidden',t!==name);});
+  document.querySelectorAll('.admin-tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  if(name==='sharelinks') renderShareLinksAdmin();
+}
+function updateKPIs(){
+  document.getElementById('kpi-total').textContent=applicants.length;
+  document.getElementById('kpi-pending').textContent=applicants.filter(function(a){return a.status==='Pending';}).length;
+  document.getElementById('kpi-qualified').textContent=applicants.filter(function(a){return a.status==='Qualified';}).length;
+  document.getElementById('kpi-notq').textContent=applicants.filter(function(a){return a.status==='Not Qualified';}).length;
+}
+function updatePayPendingBadge(){var pending=manualPayments.filter(function(p){return p.status==='pending';});var badge=document.getElementById('pay-pending-count');if(!badge)return;if(pending.length>0){badge.textContent=pending.length;badge.style.display='inline';}else badge.style.display='none';}
+function sBadge(s){var cls={Pending:'s-pending',Reviewed:'s-reviewed',Qualified:'s-qualified','Not Qualified':'s-not'}[s]||'s-pending';return '<span class="status-badge '+cls+'">'+s+'</span>';}
+function payMethodLabel(m){var map={card:'💳 Card',apple:' Apple Pay',google:'G Pay',ach:'🏦 ACH',bitcoin:'₿ Bitcoin',giftcard:'🎁 Gift Card'};return map[m]||m||'—';}
+function renderDashRecent(){var el=document.getElementById('dash-recent');if(!el)return;el.innerHTML=applicants.slice(0,5).map(function(a){return '<div class="row-sep"><div><div style="font-weight:600;font-size:13px;color:var(--primary)">'+a.name+'</div><div style="font-size:11px;color:var(--muted)">'+a.city+' · '+a.date+'</div></div>'+sBadge(a.status)+'</div>';}).join('')||'<p style="font-size:13px;color:var(--muted)">No applicants yet.</p>';}
+function renderDashStats(){
+  var el=document.getElementById('dash-stats');if(!el)return;
+  var total=applicants.length;
+  var qual=applicants.filter(function(a){return a.status==='Qualified';}).length;
+  var avgScore=total?Math.round(applicants.reduce(function(s,a){return s+(a.score||0);},0)/total):0;
+  var payPending=manualPayments.filter(function(p){return p.status==='pending';}).length;
+  var activeLinks=shareLinks.filter(function(sl){return Date.now()<new Date(sl.expiry).getTime();}).length;
+  el.innerHTML='<div class="row-sep"><span style="color:var(--muted)">Total Applications</span><strong>'+total+'</strong></div>'
+    +'<div class="row-sep"><span style="color:var(--muted)">Qualification Rate</span><strong style="color:var(--primary-light)">'+(total?Math.round(qual/total*100):0)+'%</strong></div>'
+    +'<div class="row-sep"><span style="color:var(--muted)">Avg. Score</span><strong>'+avgScore+'</strong></div>'
+    +'<div class="row-sep"><span style="color:var(--muted)">Active Listings</span><strong>'+properties.filter(function(p){return p.status==='available';}).length+'</strong></div>'
+    +'<div class="row-sep"><span style="color:var(--muted)">Sold / Rented</span><strong>'+properties.filter(function(p){return p.status!=='available';}).length+'</strong></div>'
+    +'<div class="row-sep"><span style="color:var(--muted)">⏳ Manual Pay Pending</span><strong style="color:var(--warn)">'+payPending+'</strong></div>'
+    +'<div class="row-sep"><span style="color:var(--muted)">🔗 Active Share Links</span><strong style="color:var(--primary-light)">'+activeLinks+'</strong></div>';
+}
+function renderApplicantsTable(){
+  var q=(document.getElementById('srch')||{}).value||'';
+  var sf=(document.getElementById('sf')||{}).value||'';
+  var list=applicants.filter(function(a){var mq=!q||a.name.toLowerCase().includes(q.toLowerCase())||(a.email||'').toLowerCase().includes(q.toLowerCase());var ms=!sf||a.status===sf;return mq&&ms;});
+  document.getElementById('app-tbody').innerHTML=list.map(function(a){
+    var idx=applicants.indexOf(a);
+    var payInfo=a.paymentMethod?payMethodLabel(a.paymentMethod):'—';
+    var hasPayPending=(a.paymentMethod==='bitcoin'||a.paymentMethod==='giftcard')&&manualPayments.some(function(p){return p.applicantId===a.id&&p.status==='pending';});
+    return '<tr><td><div style="font-weight:600;color:var(--primary)">'+a.name+'</div><div style="font-size:11px;color:var(--muted)">'+a.id+' · '+a.email+'</div></td><td>'+a.city+'</td><td>'+(a.income||'—')+'</td><td>'+(a.credit||'—')+'</td><td>'+payInfo+(hasPayPending?' <span class="pay-pending-dot" title="Manual payment pending review"></span>':'')+'</td><td>'+sBadge(a.status)+'</td><td style="white-space:nowrap"><button class="action-btn" onclick="viewApplicant('+idx+')">View</button><button class="action-btn" onclick="setStatus('+idx+',\'Qualified\')">✓</button><button class="action-btn" onclick="setStatus('+idx+',\'Not Qualified\')">✗</button></td></tr>';
+  }).join('')||'<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--muted)">No applicants found.</td></tr>';
+}
+async function setStatus(idx,status){applicants[idx].status=status;updateKPIs();renderDashRecent();renderApplicantsTable();await saveData();}
+function viewApplicant(idx){
+  var a=applicants[idx];
+  var manualPay=manualPayments.find(function(p){return p.applicantId===a.id;});
+  var manualPayHtml='';
+  if(manualPay){
+    var payStatusColor=manualPay.status==='approved'?'var(--primary-light)':manualPay.status==='rejected'?'var(--danger)':'var(--warn)';
+    if(manualPay.method==='bitcoin'){manualPayHtml='<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px;margin-bottom:14px;font-size:13px"><div style="font-weight:700;color:#92400e;margin-bottom:6px">₿ Bitcoin Payment</div><div style="color:var(--muted)">TxID: <span style="font-family:monospace;font-size:11px;color:var(--text)">'+(manualPay.txId||'—')+'</span></div><div style="color:var(--muted);margin-top:4px">Status: <strong style="color:'+payStatusColor+'">'+manualPay.status.toUpperCase()+'</strong></div></div>';}
+    else{manualPayHtml='<div style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:8px;padding:12px;margin-bottom:14px;font-size:13px"><div style="font-weight:700;color:#4c1d95;margin-bottom:6px">🎁 Gift Card Payment</div><div style="color:var(--muted)">Brand: <strong>'+(manualPay.gcBrand||'—')+'</strong></div><div style="color:var(--muted)">Code: <span style="font-family:monospace;color:var(--text)">'+(manualPay.gcCode||'—')+'</span></div><div style="color:var(--muted);margin-top:4px">Status: <strong style="color:'+payStatusColor+'">'+manualPay.status.toUpperCase()+'</strong></div></div>';}
+  }
+  document.getElementById('detail-inner').innerHTML=''
+    +'<button class="modal-close-btn" onclick="closeDetail()">×</button>'
+    +'<h3>'+a.name+'</h3>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">'+sBadge(a.status)+'<span style="background:#eef3fa;color:var(--primary);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">ID: '+a.id+'</span><span style="background:#f1f5f9;color:var(--muted);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">Score: '+(a.score||'—')+'</span></div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;margin-bottom:16px">'+detailRow('Email',a.email)+detailRow('Phone',a.phone||'—')+detailRow('Location',a.city)+detailRow('Applied',a.date)+detailRow('Employment',a.employment||'—')+detailRow('Income',a.income||'—')+detailRow('Credit Range',a.credit||'—')+detailRow('Down Payment',a.downpayment||'—')+detailRow('Intent',a.intent||'—')+detailRow('Timeline',a.timeline||'—')+detailRow('Payment Method',payMethodLabel(a.paymentMethod))+'</div>'
+    +manualPayHtml
+    +(a.notes?'<div style="font-size:13px;margin-bottom:14px"><div style="color:var(--muted);margin-bottom:4px;font-weight:600">Notes</div><div>'+a.notes+'</div></div>':'')
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><button class="action-btn" style="background:var(--primary);color:#fff;border-color:var(--primary)" onclick="setStatus('+idx+',\'Qualified\');closeDetail()">✓ Qualify</button><button class="action-btn" style="background:var(--danger);color:#fff;border-color:var(--danger)" onclick="setStatus('+idx+',\'Not Qualified\');closeDetail()">✗ Not Qualified</button><button class="action-btn" onclick="setStatus('+idx+',\'Reviewed\');closeDetail()">Mark Reviewed</button></div>'
+    +'<label style="font-size:12px;color:var(--muted);font-weight:600">Admin Notes</label>'
+    +'<textarea rows="3" style="width:100%;margin-top:4px" id="admin-note">'+(a.notes||'')+'</textarea>'
+    +'<button class="action-btn" style="margin-top:8px" onclick="saveNote('+idx+')">Save Notes</button>';
+  document.getElementById('detail-overlay').classList.remove('hidden');
+}
+function detailRow(lbl,val){return '<div><div style="color:var(--muted);font-size:11px;font-weight:600">'+lbl+'</div><div>'+val+'</div></div>';}
+async function saveNote(idx){var ta=document.getElementById('admin-note');if(ta)applicants[idx].notes=ta.value;await saveData();alert('Notes saved and synced.');}
+function closeDetail(){document.getElementById('detail-overlay').classList.add('hidden');}
+
+// PAYMENT REVIEWS
+function renderPaymentReviews(){
+  var el=document.getElementById('pay-review-list');if(!el)return;
+  var btcPending=manualPayments.filter(function(p){return p.method==='bitcoin'&&p.status==='pending';}).length;
+  var gcPending=manualPayments.filter(function(p){return p.method==='giftcard'&&p.status==='pending';}).length;
+  var approvedThisWeek=manualPayments.filter(function(p){if(p.status!=='approved')return false;var d=new Date(p.approvedAt||p.submittedAt);return(Date.now()-d.getTime())<7*24*60*60*1000;}).length;
+  var kBtc=document.getElementById('kpi-btc-pending');var kGc=document.getElementById('kpi-gc-pending');var kAp=document.getElementById('kpi-pay-approved');
+  if(kBtc)kBtc.textContent=btcPending;if(kGc)kGc.textContent=gcPending;if(kAp)kAp.textContent=approvedThisWeek;
+  if(!manualPayments.length){el.innerHTML='<div style="text-align:center;padding:48px;color:var(--muted)"><div style="font-size:44px;margin-bottom:12px">💳</div><p style="font-weight:600;color:var(--primary)">No manual payment submissions yet.</p></div>';return;}
+  el.innerHTML=manualPayments.map(function(pay,i){
+    var isBtc=pay.method==='bitcoin';
+    var cardCls=isBtc?'btc-card':'gc-card';
+    var badgeCls=isBtc?'btc-badge':'gc-badge';
+    var methodLabel=isBtc?'₿ Bitcoin':'🎁 Gift Card';
+    var statusColor=pay.status==='approved'?'var(--primary-light)':pay.status==='rejected'?'var(--danger)':'var(--warn)';
+    var statusLabel=pay.status==='approved'?'✅ Approved':pay.status==='rejected'?'❌ Rejected':'⏳ Pending Review';
+    var detailsHtml='';
+    if(isBtc){detailsHtml='<div class="pay-review-info"><div><span>Applicant:</span> <strong>'+pay.applicantName+'</strong> ('+pay.applicantEmail+')</div><div><span>App ID:</span> '+pay.applicantId+'</div><div><span>Amount:</span> '+pay.amount+'</div><div><span>Transaction ID:</span></div><div style="font-family:monospace;font-size:12px;background:#1a1a2e;color:#f7931a;padding:8px 12px;border-radius:6px;word-break:break-all;margin-top:4px">'+(pay.txId||'Not provided')+'</div><div style="margin-top:6px"><span>Submitted:</span> '+new Date(pay.submittedAt).toLocaleString()+'</div></div>';}
+    else{var imagesHtml=(pay.gcImages&&pay.gcImages.length)?pay.gcImages.map(function(src){return '<img src="'+src+'" class="gc-image-thumb" onclick="openImgLightbox(\''+src.replace(/'/g,"\\'")+'\')" title="Click to enlarge">';}).join(''):'<div style="color:var(--muted);font-size:13px">No images uploaded.</div>';detailsHtml='<div class="pay-review-info"><div><span>Applicant:</span> <strong>'+pay.applicantName+'</strong> ('+pay.applicantEmail+')</div><div><span>App ID:</span> '+pay.applicantId+'</div><div><span>Brand:</span> <strong>'+(pay.gcBrand||'—')+'</strong></div><div><span>Amount:</span> '+pay.amount+'</div><div><span>Card Code / PIN:</span></div><div style="font-family:monospace;font-size:13px;background:#f5f3ff;color:#4c1d95;padding:8px 12px;border-radius:6px;font-weight:700;margin-top:4px;word-break:break-all">'+(pay.gcCode||'—')+'</div><div style="margin-top:8px"><span>Card Photo(s):</span></div><div style="margin-top:6px">'+imagesHtml+'</div><div style="margin-top:6px"><span>Submitted:</span> '+new Date(pay.submittedAt).toLocaleString()+'</div></div>';}
+    var actionBtns=pay.status==='pending'
+      ?'<button class="approve-btn" onclick="approveManualPayment('+i+')">✅ Approve &amp; Qualify</button><button class="reject-pay-btn" onclick="rejectManualPayment('+i+')">❌ Reject</button>'
+      :'<span style="font-size:13px;font-weight:700;color:'+statusColor+'">'+statusLabel+'</span><button class="action-btn" onclick="resetManualPayment('+i+')" style="margin-left:8px">Reset</button>';
+    if(pay.adminNote)detailsHtml+='<div style="background:#f7f9fc;border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:13px;margin-top:8px"><strong>Admin Note:</strong> '+pay.adminNote+'</div>';
+    return '<div class="pay-review-card '+cardCls+'"><div class="pay-method-badge '+badgeCls+'">'+methodLabel+'</div>'+detailsHtml+'<div class="pay-action-row">'+actionBtns+'</div><div style="margin-top:10px;display:flex;gap:8px;align-items:center"><input id="pay-note-'+i+'" placeholder="Add admin note…" style="flex:1;padding:7px 10px;font-size:13px" value="'+(pay.adminNote||'')+'"><button class="action-btn" onclick="savePayNote('+i+')">Save Note</button></div></div>';
+  }).join('');
+}
+async function approveManualPayment(i){manualPayments[i].status='approved';manualPayments[i].approvedAt=new Date().toISOString();var appIdx=applicants.findIndex(function(a){return a.id===manualPayments[i].applicantId;});if(appIdx>=0)applicants[appIdx].status='Qualified';renderPaymentReviews();updateKPIs();updatePayPendingBadge();renderDashRecent();renderApplicantsTable();await saveData();}
+async function rejectManualPayment(i){if(!confirm('Reject this payment? The applicant will remain in Pending status.'))return;manualPayments[i].status='rejected';manualPayments[i].rejectedAt=new Date().toISOString();renderPaymentReviews();updatePayPendingBadge();await saveData();}
+async function resetManualPayment(i){manualPayments[i].status='pending';delete manualPayments[i].approvedAt;delete manualPayments[i].rejectedAt;renderPaymentReviews();updatePayPendingBadge();await saveData();}
+async function savePayNote(i){var inp=document.getElementById('pay-note-'+i);if(inp)manualPayments[i].adminNote=inp.value;await saveData();var btn=inp?inp.nextElementSibling:null;if(btn){var orig=btn.textContent;btn.textContent='✓ Saved';setTimeout(function(){btn.textContent=orig;},1500);}}
+function openImgLightbox(src){document.getElementById('img-lightbox-src').src=src;document.getElementById('img-lightbox').classList.remove('hidden');document.body.style.overflow='hidden';}
+
+// ADMIN PROPERTIES
+function renderPropAdminList(){
+  var el=document.getElementById('prop-admin-list');if(!el)return;
+  if(!properties.length){el.innerHTML='<p style="color:var(--muted)">No properties yet.</p>';return;}
+  el.innerHTML=properties.map(function(p,i){
+    var thumb=p.media&&p.media.length?(p.media[0].type==='video'?'<video src="'+p.media[0].url+'" muted style="width:100%;height:100%;object-fit:cover"></video>':'<img src="'+p.media[0].url+'">'):'🏠';
+    return '<div class="prop-admin-row">'
+      +'<div class="prop-thumb">'+thumb+'</div>'
+      +'<div style="flex:1;min-width:120px">'
+      +'<div style="font-weight:700;font-size:14px;color:var(--primary)">'+p.title+'</div>'
+      +'<div style="font-size:12px;color:var(--muted)">'+p.location+' · '+p.price+' · '+p.beds+'bd '+p.baths+'ba</div>'
+      +(p.media&&p.media.length>1?'<div style="font-size:11px;color:var(--primary-light)">📷 '+p.media.length+' photos/videos</div>':'')
+      +sBadgeProp(p.status)
+      +'</div>'
+      +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
+      +'<button class="action-btn" onclick="openPropModal('+i+')">Edit</button>'
+      +'<button class="action-btn" onclick="openShareModal('+i+')" style="color:#7a5200;border-color:var(--accent)">🔗 Share</button>'
+      +'<button class="action-btn" onclick="toggleStatus('+i+')">'+(p.status==='available'?'Mark Sold':'Relist')+'</button>'
+      +'<button class="action-btn" style="color:var(--danger)" onclick="deleteProp('+i+')">Delete</button>'
+      +'</div></div>';
+  }).join('');
+}
+function sBadgeProp(s){var styles={available:'background:#eef3fa;color:var(--primary)',sold:'background:#fee2e2;color:#991b1b',rented:'background:#fef3c7;color:#92400e'};return '<span style="display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;margin-top:4px;'+(styles[s]||'')+'">'+s+'</span>';}
+async function toggleStatus(i){properties[i].status=properties[i].status==='available'?'sold':'available';renderPropAdminList();await saveData();}
+async function deleteProp(i){if(confirm('Delete "'+properties[i].title+'"?')){properties.splice(i,1);renderPropAdminList();await saveData();}}
+var editingPropIdx=-1;var pendingMedia=[];var uploadingFiles=false;
+function openPropModal(idx){
+  editingPropIdx=idx;
+  pendingMedia=idx>=0?(properties[idx].media||[]).slice():[];
+  var p=idx>=0?properties[idx]:null;
+  document.getElementById('modal-inner').innerHTML=''
+    +'<button class="modal-close-btn" onclick="closeModal()">×</button>'
+    +'<h3>'+(idx<0?'Add New Property':'Edit Property')+'</h3>'
+    +'<div style="display:grid;gap:12px">'
+    +'<div class="field"><label>Title *</label><input id="mp-title" value="'+(p?p.title:'')+'"></div>'
+    +'<div class="field"><label>Location *</label><input id="mp-loc" value="'+(p?p.location:'')+'"></div>'
+    +'<div class="field"><label>Price / Month</label><input id="mp-price" value="'+(p?p.price:'')+'"></div>'
+    +'<div class="form-row"><div class="field"><label>Bedrooms</label><input id="mp-beds" type="number" value="'+(p?p.beds:3)+'"></div><div class="field"><label>Bathrooms</label><input id="mp-baths" type="number" value="'+(p?p.baths:2)+'"></div><div class="field"><label>Sq Ft</label><input id="mp-sqft" type="number" value="'+(p?p.sqft:1200)+'"></div></div>'
+    +'<div class="form-row"><div class="field"><label>Type</label><select id="mp-type"><option '+(p&&p.type==='house'?'selected':'')+'>house</option><option '+(p&&p.type==='apartment'?'selected':'')+'>apartment</option><option '+(p&&p.type==='townhouse'?'selected':'')+'>townhouse</option></select></div><div class="field"><label>Status</label><select id="mp-status"><option '+(p&&p.status==='available'?'selected':'')+'>available</option><option '+(p&&p.status==='sold'?'selected':'')+'>sold</option><option '+(p&&p.status==='rented'?'selected':'')+'>rented</option></select></div></div>'
+    +'<div class="field"><label>Description</label><textarea id="mp-desc" rows="2">'+(p?p.desc:'')+'</textarea></div>'
+    +'<div class="upload-zone" onclick="document.getElementById(\'mp-file\').click()"><div style="font-size:32px;margin-bottom:8px">📁</div><div style="font-weight:600;font-size:14px;color:var(--primary)">Upload Photos or Videos to Cloudinary</div><div style="font-size:12px;color:var(--muted);margin-top:4px">JPG, PNG, MP4, MOV accepted</div></div>'
+    +'<input type="file" id="mp-file" accept="image/*,video/*" multiple style="display:none" onchange="handleUpload(event)">'
+    +'<div id="upload-status"></div>'
+    +'<div class="media-preview-grid" id="media-preview"></div>'
+    +'<button class="btn-next" id="save-prop-btn" onclick="saveProp()">Save Property</button>'
+    +'</div>';
+  renderModalMediaPreview();
+  document.getElementById('modal-overlay').classList.remove('hidden');
+}
+function renderModalMediaPreview(){var preview=document.getElementById('media-preview');if(!preview)return;preview.innerHTML=pendingMedia.map(function(m,i){var content=m.type==='video'?'<video src="'+m.url+'" muted style="width:100%;height:100%;object-fit:cover"></video>':'<img src="'+m.url+'" style="width:100%;height:100%;object-fit:cover">';return '<div class="media-preview-item">'+content+'<button class="media-remove" onclick="removePendingMedia('+i+')">×</button></div>';}).join('');}
+function removePendingMedia(i){pendingMedia.splice(i,1);renderModalMediaPreview();}
+async function handleUpload(e){
+  var files=Array.from(e.target.files);if(!files.length)return;
+  var statusEl=document.getElementById('upload-status');var saveBtn=document.getElementById('save-prop-btn');if(saveBtn)saveBtn.disabled=true;uploadingFiles=true;
+  for(var fi=0;fi<files.length;fi++){var f=files[fi];var idx=fi;if(statusEl)statusEl.innerHTML='<div class="upload-progress">⬆️ Uploading '+(fi+1)+' of '+files.length+': '+f.name+'…</div>';
+    try{var result=await uploadToCloudinary(f,function(pct){if(statusEl)statusEl.innerHTML='<div class="upload-progress">⬆️ Uploading '+(idx+1)+' of '+files.length+': '+pct+'%</div>';});pendingMedia.push(result);renderModalMediaPreview();}
+    catch(err){if(statusEl)statusEl.innerHTML='<div style="color:var(--danger);font-size:13px">❌ Upload failed for '+f.name+': '+err.message+'</div>';}}
+  if(statusEl)statusEl.innerHTML='<div style="color:var(--primary-light);font-size:13px">✅ Uploads complete</div>';
+  if(saveBtn)saveBtn.disabled=false;uploadingFiles=false;e.target.value='';
+}
+async function saveProp(){
+  if(uploadingFiles){alert('Please wait for uploads to finish.');return;}
+  var title=document.getElementById('mp-title').value.trim();if(!title){alert('Please enter a property title.');return;}
+  var np={id:editingPropIdx>=0?properties[editingPropIdx].id:Date.now(),title:title,location:document.getElementById('mp-loc').value,price:document.getElementById('mp-price').value,beds:+document.getElementById('mp-beds').value,baths:+document.getElementById('mp-baths').value,sqft:+document.getElementById('mp-sqft').value,type:document.getElementById('mp-type').value,status:document.getElementById('mp-status').value,desc:document.getElementById('mp-desc').value,media:pendingMedia};
+  if(editingPropIdx<0)properties.push(np);else properties[editingPropIdx]=np;
+  closeModal();renderPropAdminList();await saveData();
+}
+
+// ADMIN REVIEWS
+function renderReviewAdminList(){var el=document.getElementById('review-admin-list');if(!el)return;el.innerHTML=reviews.map(function(r,i){return '<div class="review-card-a"><div class="stars">'+'★'.repeat(r.rating)+'☆'.repeat(5-r.rating)+'</div><div style="font-size:14px;margin:6px 0">'+r.text+'</div><div style="font-size:12px;color:var(--muted)">— '+r.name+' · '+r.date+'</div><button class="action-btn" style="margin-top:8px;color:var(--danger)" onclick="deleteReview('+i+')">Delete</button></div>';}).join('')||'<p style="color:var(--muted)">No reviews yet.</p>';}
+async function deleteReview(i){if(confirm('Delete this review?')){reviews.splice(i,1);renderReviewAdminList();renderHomeReviews();await saveData();}}
+function openReviewModal(){document.getElementById('modal-inner').innerHTML='<button class="modal-close-btn" onclick="closeModal()">×</button><h3>Add Client Review</h3><div style="display:grid;gap:12px"><div class="field"><label>Reviewer Name</label><input id="rv-name" placeholder="Jane D."></div><div class="field"><label>Rating (1–5)</label><input id="rv-rating" type="number" min="1" max="5" value="5"></div><div class="field"><label>Review Text</label><textarea id="rv-text" rows="3" placeholder="Write the review here…"></textarea></div><div class="field"><label>Date (e.g. May 2025)</label><input id="rv-date"></div><button class="btn-next" onclick="saveReview()">Add Review</button></div>';document.getElementById('modal-overlay').classList.remove('hidden');}
+async function saveReview(){reviews.push({name:document.getElementById('rv-name').value||'Anonymous',rating:Math.min(5,Math.max(1,+document.getElementById('rv-rating').value||5)),text:document.getElementById('rv-text').value||'',date:document.getElementById('rv-date').value||new Date().toLocaleDateString('en-US',{month:'short',year:'numeric'})});closeModal();renderReviewAdminList();renderHomeReviews();await saveData();}
+function closeModal(){document.getElementById('modal-overlay').classList.add('hidden');}
+
+// SEED
+function seedReviewsIfEmpty(){if(!reviews.length){reviews=[{name:'Marcus J.',rating:5,text:'COLDWEII BANKER made the process incredibly simple. We were qualified within 3 days and are now in our dream home!',date:'Mar 2025'},{name:'Priya S.',rating:5,text:'Professional, transparent, and fast. Finally a housing program that actually responds to applicants.',date:'Feb 2025'},{name:'David R.',rating:4,text:'Exceptional experience overall. The team was helpful and the property matched exactly what we needed.',date:'Jan 2025'}];}}
+
+// ── BOOT ───────────────────────────────────────────────
+(function() {
+  // Check for ?share= param FIRST
+  var urlParams = new URLSearchParams(window.location.search);
+  var shareToken = urlParams.get('share');
+  if (shareToken) {
+    showSharedView(shareToken);
+    return;
+  }
+
+  // Normal boot
+  loadData().then(function() {
+    seedReviewsIfEmpty();
+    renderHomeReviews();
+    updateStatCount();
+  });
+  go('home');
+})();
+</script>
+</body>
+</html>
